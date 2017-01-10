@@ -1,10 +1,5 @@
 ---
 ---
-/*
- * Globals
- */
-
-/* Links */
 a,
 a:focus,
 a:hover {
@@ -22,18 +17,9 @@ a:hover {
 }
 
 
-/*
- * Base structure
- */
-
 html,
 body {
-  height: 100%;
-  background-color: #333;
-}
-
-html,
-body {
+    height: 100%;
     background: url('../../assets/cover.jpg');
     background-repeat: no-repeat;
     background-position: center center;
@@ -42,6 +28,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
 }
 
 body {
@@ -73,10 +60,6 @@ body {
   padding: 30px;
 }
 
-
-/*
- * Header
- */
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -120,10 +103,6 @@ body {
 }
 
 
-/*
- * Cover
- */
-
 .cover {
   padding: 0 20px;
 }
@@ -132,20 +111,11 @@ body {
   font-weight: bold;
 }
 
-
-/*
- * Footer
- */
-
 .mastfoot {
   color: #999; /* IE8 proofing */
   color: rgba(255,255,255,.5);
 }
 
-
-/*
- * Affix and center
- */
 
 @media (min-width: 768px) {
   /* Pull out the header and footer */
