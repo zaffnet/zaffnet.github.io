@@ -335,7 +335,7 @@ There are several architectures in the field of Convolutional Networks that have
 **VGGNet in detail**.
 Lets break down the [VGGNet](http://www.robots.ox.ac.uk/~vgg/research/very_deep/) in more detail as a case study. The whole VGGNet is composed of CONV layers that perform 3x3 convolutions with stride 1 and pad 1, and of POOL layers that perform 2x2 max pooling with stride 2 (and no padding). We can write out the size of the representation at each step of the processing and keep track of both the representation size and the total number of weights:
 
-```
+{% highlight shell %}
 INPUT: [224x224x3]        memory:  224*224*3=150K   weights: 0
 CONV3-64: [224x224x64]  memory:  224*224*64=3.2M   weights: (3*3*3)*64 = 1,728
 CONV3-64: [224x224x64]  memory:  224*224*64=3.2M   weights: (3*3*64)*64 = 36,864
@@ -361,7 +361,7 @@ FC: [1x1x1000]  memory:  1000 weights: 4096*1000 = 4,096,000
 
 TOTAL memory: 24M * 4 bytes ~= 93MB / image (only forward! ~*2 for bwd)
 TOTAL params: 138M parameters
-```
+{% endhighlight %}
 
 As is common with Convolutional Networks, notice that most of the memory (and also compute time) is used in the early CONV layers, and that most of the parameters are in the last FC layers. In this particular case, the first FC layer contains 100M weights, out of a total of 140M.
 

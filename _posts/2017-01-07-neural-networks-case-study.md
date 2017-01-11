@@ -26,7 +26,7 @@ In this section we'll walk through a complete implementation of a toy Neural Net
 
 Lets generate a classification dataset that is not easily linearly separable. Our favorite example is the spiral dataset, which can be generated as follows:
 
-```python
+{% highlight python %}
 N = 100 # number of points per class
 D = 2 # dimensionality
 K = 3 # number of classes
@@ -40,7 +40,7 @@ for j in xrange(K):
   y[ix] = j
 # lets visualize the data:
 plt.scatter(X[:, 0], X[:, 1], c=y, s=40, cmap=plt.cm.Spectral)
-```
+{% endhighlight %}
 
 <div class="fig figcenter fighighlight">
   <img src="/assets/eg/spiral_raw.png">
@@ -61,11 +61,11 @@ Normally we would want to preprocess the dataset so that each feature has zero m
 
 Lets first train a Softmax classifier on this classification dataset. As we saw in the previous sections, the Softmax classifier has a linear score function and uses the cross-entropy loss. The parameters of the linear classifier consist of a weight matrix `W` and a bias vector `b` for each class. Lets first initialize these parameters to be random numbers:
 
-```python
+{% highlight python %}
 # initialize parameters randomly
 W = 0.01 * np.random.randn(D,K)
 b = np.zeros((1,K))
-```
+{% endhighlight %}
 
 Recall that we `D = 2` is the dimensionality and `K = 3` is the number of classes.
 
@@ -75,10 +75,10 @@ Recall that we `D = 2` is the dimensionality and `K = 3` is the number of classe
 
 Since this is a linear classifier, we can compute all class scores very simply in parallel with a single matrix multiplication:
 
-```python
+{% highlight python %}
 # compute class scores for a linear classifier
 scores = np.dot(X, W) + b
-```
+{% endhighlight %}
 
 In this example we have 300 2-D points, so after this multiplication the array `scores` will have size [300 x 3], where each row gives the class scores corresponding to the 3 classes (blue, red, yellow).
 
@@ -102,27 +102,27 @@ $$
 
 Given the array of `scores` we've computed above, we can compute the loss. First, the way to obtain the probabilities is straight forward:
 
-```python
+{% highlight python %}
 # get unnormalized probabilities
 exp_scores = np.exp(scores)
 # normalize them for each example
 probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
-```
+{% endhighlight %}
 
 We now have an array `probs` of size [300 x 3], where each row now contains the class probabilities. In particular, since we've normalized them every row now sums to one. We can now query for the  log probabilities assigned to the correct classes in each example:
 
-```python
+{% highlight python %}
 corect_logprobs = -np.log(probs[range(num_examples),y])
-```
+{% endhighlight %}
 
 The array `correct_logprobs` is a 1D array of just the probabilities assigned to the correct classes for each example. The full loss is then the average of these log probabilities and the regularization loss:
 
-```python
+{% highlight python %}
 # compute the loss: average cross-entropy loss and regularization
 data_loss = np.sum(corect_logprobs)/num_examples
 reg_loss = 0.5*reg*np.sum(W*W)
 loss = data_loss + reg_loss
-```
+{% endhighlight %}
 
 In this code, the regularization strength \\(\lambda\\) is stored inside the `reg`. The convenience factor of `0.5` multiplying the regularization will become clear in a second. Evaluating this in the beginning (with random parameters) might give us `loss = 1.1`, which is `np.log(1.0/3)`, since with small initial random weights all probabilities assigned to all classes are about one third. We now want to make the loss as low as possible, with `loss = 0` as the absolute lower bound. But the lower the loss is, the higher are the probabilities assigned to the correct classes for all examples.
 
@@ -146,19 +146,19 @@ Notice how elegant and simple this expression is. Suppose the probabilities we c
 
 All of this boils down to the following code. Recall that `probs` stores the probabilities of all classes (as rows) for each example. To get the gradient on the scores, which we call `dscores`, we proceed as follows:
 
-```python
+{% highlight python %}
 dscores = probs
 dscores[range(num_examples),y] -= 1
 dscores /= num_examples
-```
+{% endhighlight %}
 
 Lastly, we had that `scores = np.dot(X, W) + b`, so armed with the gradient on `scores` (stored in `dscores`), we can now backpropagate into `W` and `b`:
 
-```python
+{% highlight python %}
 dW = np.dot(X.T, dscores)
 db = np.sum(dscores, axis=0, keepdims=True)
 dW += reg*W # don't forget the regularization gradient
-```
+{% endhighlight %}
 
 Where we see that we have backpropped through the matrix multiply operation, and also added the contribution from the regularization. Note that the regularization gradient has the very simple form `reg*W` since we used the constant `0.5` for its loss contribution (i.e. \\(\frac{d}{dw} ( \frac{1}{2} \lambda w^2) = \lambda w\\). This is a common convenience trick that simplifies the gradient expression.
 
@@ -168,11 +168,11 @@ Where we see that we have backpropped through the matrix multiply operation, and
 
 Now that we've evaluated the gradient we know how every parameter influences the loss function. We will now perform a parameter update in the *negative* gradient direction to *decrease* the loss:
 
-```python
+{% highlight python %}
 # perform a parameter update
 W += -step_size * dW
 b += -step_size * db
-```
+{% endhighlight %}
 
 <a name='together'></a>
 
@@ -180,7 +180,9 @@ b += -step_size * db
 
 Putting all of this together, here is the full code for training a Softmax classifier with Gradient descent:
 
-```python
+{% highlight python numpy %}
+import numpy as np
+
 #Train a Linear Classifier
 
 # initialize parameters randomly
@@ -224,11 +226,11 @@ for i in xrange(200):
   # perform a parameter update
   W += -step_size * dW
   b += -step_size * db
-```
+{% endhighlight %}
 
 Running this prints the output:
 
-```
+{% highlight console %}
 iteration 0: loss 1.096956
 iteration 10: loss 0.917265
 iteration 20: loss 0.851503
@@ -249,16 +251,16 @@ iteration 160: loss 0.786431
 iteration 170: loss 0.786373
 iteration 180: loss 0.786331
 iteration 190: loss 0.786302
-```
+{% endhighlight %}
 
 We see that we've converged to something after about 190 iterations. We can evaluate the training set accuracy:
 
-```python
+{% highlight python %}
 # evaluate training set accuracy
 scores = np.dot(X, W) + b
 predicted_class = np.argmax(scores, axis=1)
 print 'training accuracy: %.2f' % (np.mean(predicted_class == y))
-```
+{% endhighlight %}
 
 This prints **49%**. Not very good at all, but also not surprising given that the dataset is constructed so it is not linearly separable. We can also plot the learned decision boundaries:
 
@@ -275,58 +277,58 @@ This prints **49%**. Not very good at all, but also not surprising given that th
 
 Clearly, a linear classifier is inadequate for this dataset and we would like to use a Neural Network. One additional hidden layer will suffice for this toy data. We will now need two sets of weights and biases (for the first and second layers):
 
-```python
+{% highlight python %}
 # initialize parameters randomly
 h = 100 # size of hidden layer
 W = 0.01 * np.random.randn(D,h)
 b = np.zeros((1,h))
 W2 = 0.01 * np.random.randn(h,K)
 b2 = np.zeros((1,K))
-```
+{% endhighlight %}
 
 The forward pass to compute scores now changes form:
 
-```python
+{% highlight python %}
 # evaluate class scores with a 2-layer Neural Network
 hidden_layer = np.maximum(0, np.dot(X, W) + b) # note, ReLU activation
 scores = np.dot(hidden_layer, W2) + b2
-```
+{% endhighlight %}
 
 Notice that the only change from before is one extra line of code, where we first compute the hidden layer representation and then the scores based on this hidden layer. Crucially, we've also added a non-linearity, which in this case is simple ReLU that thresholds the activations on the hidden layer at zero.
 
 Everything else remains the same. We compute the loss based on the scores exactly as before, and get the gradient for the scores `dscores` exactly as before. However, the way we backpropagate that gradient into the model parameters now changes form, of course. First lets backpropagate the second layer of the Neural Network. This looks identical to the code we had for the Softmax classifier, except we're replacing `X` (the raw data), with the variable `hidden_layer`):
 
-```python
+{% highlight python %}
 # backpropate the gradient to the parameters
 # first backprop into parameters W2 and b2
 dW2 = np.dot(hidden_layer.T, dscores)
 db2 = np.sum(dscores, axis=0, keepdims=True)
-```
+{% endhighlight %}
 
 However, unlike before we are not yet done, because `hidden_layer` is itself a function of other parameters and the data! We need to continue backpropagation through this variable. Its gradient can be computed as:
 
-```python
+{% highlight python %}
 dhidden = np.dot(dscores, W2.T)
-```
+{% endhighlight %}
 
 Now we have the gradient on the outputs of the hidden layer. Next, we have to backpropagate the ReLU non-linearity. This turns out to be easy because ReLU during the backward pass is effectively a switch. Since \\(r = max(0, x)\\), we have that \\(\frac{dr}{dx} = 1(x > 0) \\). Combined with the chain rule, we see that the ReLU unit lets the gradient pass through unchanged if its input was greater than 0, but *kills it* if its input was less than zero during the forward pass. Hence, we can backpropagate the ReLU in place simply with:
 
-```python
+{% highlight python %}
 # backprop the ReLU non-linearity
 dhidden[hidden_layer <= 0] = 0
-```
+{% endhighlight %}
 
 And now we finally continue to the first layer weights and biases:
 
-```python
+{% highlight python %}
 # finally into W,b
 dW = np.dot(X.T, dhidden)
 db = np.sum(dhidden, axis=0, keepdims=True)
-```
+{% endhighlight %}
 
 We're done! We have the gradients `dW,db,dW2,db2` and can perform the parameter update. Everything else remains unchanged. The full code looks very similar:
 
-```python
+{% highlight python %}
 # initialize parameters randomly
 h = 100 # size of hidden layer
 W = 0.01 * np.random.randn(D,h)
@@ -384,11 +386,11 @@ for i in xrange(10000):
   b += -step_size * db
   W2 += -step_size * dW2
   b2 += -step_size * db2
-```
+{% endhighlight %}
 
 This prints:
 
-```
+{% highlight console %}
 iteration 0: loss 1.098744
 iteration 1000: loss 0.294946
 iteration 2000: loss 0.259301
@@ -399,17 +401,17 @@ iteration 6000: loss 0.245491
 iteration 7000: loss 0.245400
 iteration 8000: loss 0.245335
 iteration 9000: loss 0.245292
-```
+{% endhighlight %}
 
 The training accuracy is now:
 
-```python
+{% highlight python %}
 # evaluate training set accuracy
 hidden_layer = np.maximum(0, np.dot(X, W) + b)
 scores = np.dot(hidden_layer, W2) + b2
 predicted_class = np.argmax(scores, axis=1)
 print 'training accuracy: %.2f' % (np.mean(predicted_class == y))
-```
+{% endhighlight %}
 
 Which prints **98%**!. We can also visualize the decision boundaries:
 
