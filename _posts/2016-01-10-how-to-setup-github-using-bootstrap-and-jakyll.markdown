@@ -1,10 +1,8 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2017-01-10 15:50:06 +0530
-categories: jekyll update
-permalink: hello
-about: It is about something special
+title:  "How to setup github pages using Bootstrap and Jakyll"
+date:   2016-01-10 15:50:06 +0530
+permalink: setting_up
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
@@ -12,12 +10,19 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 Jekyll also offers powerful support for code snippets:
 
-{% highlight python %}
+{% highlight python linenos=table %}
+import numpy as np
+import pandas
 def print_hi(name):
   print "Hi, #{name}"
   s = list("string")
   for i in range(10):
     print "Hi"
+  # include <stdio.h>
+  int main(void)
+  {
+    printf("Hello world\n");
+  }
 
 print_hi('Tom')
 # prints 'Hi, Tom' to STDOUT.

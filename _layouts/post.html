@@ -1,0 +1,35 @@
+{% include header.html %}
+    <link href="assets/css/blog.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Deep Learning Blogs</a>
+          <a class="blog-nav-item active left" href="#">About</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="blog-header">
+      </div>
+        <div class="blog-main">
+          <div class="blog-post text-justify">
+            <h2 class="blog-post-title">{{ page.title }}</h2>
+              {{ content }}
+          </div>
+        </div>
+    </div>
+
+    <footer class="blog-footer">
+      <div class="container">
+        <p>Proudly hosted by
+          <a href="https://github.com" class="nounderline" target="_blank">Github</a> using
+          <a href="https://jekyllrb.com" class="nounderline" target="_blank">Jakyll</a> and
+          <a href="http://getbootstrap.com" class="nounderline" target="_blank">Bootstrap</a></p>
+      </div>
+    </footer>
+
+{% include footer.html %}
