@@ -2,14 +2,19 @@ img {
   max-width: 100%;
   vertical-align: middle; }
 
-figure > img {
-  display: block; }
+.fig{
+  text-align: center !important;
+  margin-bottom: 12px;
+  margin-top: 18px;
+}
 
-figcaption {
-  font-size: 14px; }
+.figure > img {
+  display: block;
+  text-align: center !important;}
 
-ul, ol {
-  margin-left: 30px; }
+.figcaption {
+  font-size: 14px !important;
+  text-align: center !important;}
 
 li > ul,
 li > ol {
