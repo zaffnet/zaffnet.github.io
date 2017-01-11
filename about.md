@@ -17,11 +17,12 @@ I am deeply interested in [Deep Learning](https://en.wikipedia.org/wiki/Deep_lea
 [`numpy`](http://www.numpy.org/), [`pandas`](http://pandas.pydata.org/), [`sklearn`](http://scikit-learn.org/), [`theano`](http://deeplearning.net/software/theano/), [`tensorflow`](https://www.tensorflow.org/), [`keras`](https://keras.io/), [`torch`](http://torch.ch/), [`caffe`](http://caffe.berkeleyvision.org/), [`lasagne`](https://lasagne.readthedocs.io/en/latest/), I keep my hands dirty with all these awesome libraries.
 
 You can find me on various social networking platforms
-  * [Facebook](https://www.facebook.com/zafar.zaffy.007)
-  * [GitHub](https://github.com/zaffnet)
-  * [Google](https://plus.google.com/+ZafarullahMahmood)
-  * [LinkedIn](https://www.linkedin.com/in/zafarullah-mahmood-ba45a786)
-  * [Twitter](https://twitter.com/zaffnet)
+
+- [Facebook](https://www.facebook.com/zafar.zaffy.007)
+- [GitHub](https://github.com/zaffnet)
+- [Google](https://plus.google.com/+ZafarullahMahmood)
+- [LinkedIn](https://www.linkedin.com/in/zafarullah-mahmood-ba45a786)
+- [Twitter](https://twitter.com/zaffnet)
 
 ### About Deep Learning Blogs
 These blogs are for those who want to make their first dive into Deep Learning awesome. Suggestions for improvement are always welcome. It is built with [Jakyll](https://jekyllrb.com/) using [Bootstrap](http://getbootstrap.com/) and [MathJax](https://www.mathjax.org/) along with [Disqus](https://disqus.com/) integration and is hosted by [GitHub Pages](https://pages.github.com/). You can fork it and send me a pull request [here](https://github.com/zaffnet/zaffnet.github.io).
