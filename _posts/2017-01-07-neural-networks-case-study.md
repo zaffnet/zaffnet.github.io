@@ -180,13 +180,13 @@ b += -step_size * db
 
 Putting all of this together, here is the full code for training a Softmax classifier with Gradient descent:
 
-{% highlight python numpy %}
+```numpy
 import numpy as np
 
 #Train a Linear Classifier
 
 # initialize parameters randomly
-W = 0.01 * np.random.randn(D,K)
+W = 0.01 * numpy.random.randn(D,K)
 b = np.zeros((1,K))
 
 # some hyperparameters
@@ -226,7 +226,7 @@ for i in xrange(200):
   # perform a parameter update
   W += -step_size * dW
   b += -step_size * db
-{% endhighlight %}
+```
 
 Running this prints the output:
 

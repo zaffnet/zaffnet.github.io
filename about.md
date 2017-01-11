@@ -25,4 +25,4 @@ You can find me on various social networking platforms
 - [Twitter](https://twitter.com/zaffnet)
 
 ### About Deep Learning Blogs
-These blogs are for those who want to make their first dive into Deep Learning awesome. Suggestions for improvement are always welcome. It is built with [Jakyll](https://jekyllrb.com/) using [Bootstrap](http://getbootstrap.com/) and [MathJax](https://www.mathjax.org/) along with [Disqus](https://disqus.com/) integration and is hosted by [GitHub Pages](https://pages.github.com/). You can fork it and send me a pull request [here](https://github.com/zaffnet/zaffnet.github.io).
+These blogs are for those who want to make their first dive into Deep Learning awesome. Suggestions for improvement are always welcome. It is built with [Jekyll](https://jekyllrb.com/) using [Bootstrap](http://getbootstrap.com/) and [MathJax](https://www.mathjax.org/) along with [Disqus](https://disqus.com/) integration and is hosted by [GitHub Pages](https://pages.github.com/). You can fork it and send me a pull request [here](https://github.com/zaffnet/zaffnet.github.io).
