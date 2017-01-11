@@ -1,4 +1,4 @@
-/*img {
+img {
   max-width: 100%;
   vertical-align: middle; }
 
@@ -13,7 +13,7 @@ ul, ol {
 
 li > ul,
 li > ol {
-  margin-bottom: 0; }*/
+  margin-bottom: 0; }
 pre,
 code {
   font-size: 15px;
