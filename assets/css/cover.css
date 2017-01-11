@@ -1,3 +1,5 @@
+---
+---
 a,
 a:focus,
 a:hover {
@@ -17,7 +19,7 @@ a:hover {
 html,
 body {
     height: 100%;
-    background: url('../../assets/cover.jpg');
+    background: url('{{ "assets/cover.jpg" | absolute_url }}');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
