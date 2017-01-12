@@ -114,4 +114,5 @@ pre > code {
 .linenos { width: 40px; }
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
 .highlighter-rouge pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
-.MJXc-display {max-width: 100% !important; overflow-x: auto;}
+.MJXc-display {max-width: 100% !important; overflow-x: auto; }
+.MJXc-display .mjx-chtml {padding: 5px; }
