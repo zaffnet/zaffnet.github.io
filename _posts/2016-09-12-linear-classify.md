@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Linear Classification"
+date:   2016-09-12 15:50:06 +0530
 comments: true
 permalink: linear-classify
 ---

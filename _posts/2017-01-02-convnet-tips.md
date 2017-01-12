@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "ConvNet Tips"
+date:   2017-01-02 15:50:06 +0530
 comments: true
 permalink: convnet-tips
 ---

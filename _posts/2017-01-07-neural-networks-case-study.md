@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "A case study of Neural Networks"
+date:   2017-01-07 15:50:06 +0530
 comments: true
 permalink: neural-networks-case-study
 ---

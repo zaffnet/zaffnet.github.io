@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Convolutional Layers"
+date:   2017-01-11 15:50:06 +0530
 comments: true
 permalink: convolutional-networks
 ---

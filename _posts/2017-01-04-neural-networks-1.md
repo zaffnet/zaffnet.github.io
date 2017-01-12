@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Neural Networks 1"
+date:   2016-01-04 15:50:06 +0530
 comments: true
 permalink: neural-networks-1
 ---

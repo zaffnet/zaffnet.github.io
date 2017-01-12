@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Classification"
+date:   2017-01-01 15:50:06 +0530
 comments: true
 mathjax: true
 permalink: classification
