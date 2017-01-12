@@ -19,13 +19,17 @@ layout: null
     {% if page.sitemap != null and page.sitemap != empty %}
       <url>
         <loc>{{ site.url }}{{ page.url }}</loc>
-        {% if post.sitemap.lastmod == null %}
+        {% if page.sitemap.lastmod == null %}
           <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
         {% else %}
           <lastmod>{{ page.sitemap.lastmod | date_to_xmlschema }}</lastmod>
         {% endif %}
-        <changefreq>{{ page.sitemap.changefreq }}</changefreq>
-        <priority>{{ page.sitemap.priority }}</priority>
+        <changefreq>monthly</changefreq>
+        {% if page.sitemap.priority == null %}
+          <priority>0.3</priority>
+        {% else %}
+          <priority>{{ page.sitemap.priority }}</priority>
+        {% endif %}
        </url>
     {% endif %}
   {% endfor %}
