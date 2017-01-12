@@ -4,8 +4,13 @@ img {
 
 .fig{
   text-align: center !important;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   margin-top: 18px;
+}
+
+.blog-post > h1, h2, h3
+{
+  margin-top: 24px;
 }
 
 .figure > img {
@@ -108,3 +113,5 @@ pre > code {
 .highlighttable { width: 100%; background-color: #F5F5F5;  table-layout: fixed; }
 .linenos { width: 40px; }
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
+.highlighter-rouge pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
+.MJXc-display {max-width: 100% !important; overflow-x: auto;}
