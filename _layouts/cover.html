@@ -10,10 +10,10 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">Deep Learning Blogs</h3>
+              <h3 class="masthead-brand"><a class="nounderline" href='{{ "" | absolute_url }}'>Deep Learning Blogs</a></h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
+                  <li class="active"><a href='{{ "" | absolute_url }}'>Home</a></li>
                   <li><a href='{{ "/about" | absolute_url }}'>About</a></li>
                   <li><a href='{{ "/blogs" | absolute_url }}'>Blogs</a></li>
                 </ul>
@@ -21,13 +21,7 @@
             </div>
           </div>
 
-          <div class="inner cover">
-            <h1 class="cover-heading">by Zafarullah Mahmood</h1>
-            <p class="lead">Awesome blogs and tutorials to get started with Deep Learning</p>
-            <p class="lead">
-              <a href='{{ "/blogs" | absolute_url }}' class="btn btn-lg btn-default">Explore</a>
-            </p>
-          </div>
+
 
             {{ content }}
 
