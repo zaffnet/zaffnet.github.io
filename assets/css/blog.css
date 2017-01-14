@@ -3,17 +3,18 @@ body {
   color: #555;
 }
 
-h1, .h1,
+/*.blog-main > h1, .h1,
 h2, .h2,
 h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  /*margin-top: 0;*/
+  margin-top: 50px !important;
+  margin-bottom: 20px !important;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #333;
-}
+}*/
 
 /*
  * Override Bootstrap's default container.
@@ -21,7 +22,7 @@ h6, .h6 {
 
 @media (min-width: 1200px) {
   .container {
-    width: 1000px;
+    width: 800px;
   }
 }
 
@@ -137,19 +138,28 @@ h6, .h6 {
   text-decoration: none;
   color: #0085A1;
 }
-.post-preview > a > .post-title {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  font-family: serif;
-  font-size: 20px;
+
+.post-preview > p > a:hover,
+.post-preview > p > a:focus {
+  text-decoration: none;
+  color: #0085A1;
 }
-.post-preview > a > .post-subtitle {
-  margin: 0;
-  margin-bottom: 10px;
+.post-preview > p > .mjx-chtml {
+  font-size: 100% !important;
 }
+.post-preview > .post-title {
+  /*margin-top: 30px;*/
+  /*margin-bottom: 10px;*/
+  /*font-family: serif;*/
+  font-size: 22px !important;
+}
+.post-preview > .post-subtitle {
+  /*font-size: 18px !important;*/
+}
+
 .post-preview > .post-meta {
   color: #777777;
-  font-size: 18px;
+  font-size: 17px;
   font-style: italic;
   margin-top: 0;
 }
@@ -162,7 +172,21 @@ h6, .h6 {
   color: #0085A1;
   text-decoration: underline;
 }
+
+
 @media only screen and (min-width: 768px) {
-  .post-preview > a > .post-title {
-    font-size: 20px;
   }
+
+.readmore {
+  font-family: "Open Sans Condensed", "Open Sans", "Helvetica Neue", Helvetica, Arial, "Nimbus L", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 15px;
+  font-weight: 100;
+  line-height: 30px;
+}
+
+.panel:hover {
+    color: #333;
+    background-color: rgba(185, 187, 191, 0.12);
+    border-color: #adadad;

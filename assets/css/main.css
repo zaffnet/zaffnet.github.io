@@ -8,11 +8,6 @@ img {
   margin-top: 18px;
 }
 
-.blog-post > h1, h2, h3
-{
-  margin-top: 24px;
-}
-
 .figure > img {
   display: block;
   text-align: center !important;}

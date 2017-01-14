@@ -1,10 +1,21 @@
 ---
 layout: post
 title: "Neural Networks 2"
+subtitle: "Hello from the other side"
 date:   2017-01-05 15:50:06 +0530
 comments: true
 permalink: neural-networks-2
 ---
+<!--more-->
+In the previous section we introduced a model of a Neuron, which computes a dot product following a non-linearity, and Neural Networks that arrange neurons into layers. Together, these choices define the new form of the **score function**, which we have extended from the simple linear mapping that we have seen in the Linear Classification section. In particular, a Neural Network performs a sequence of linear mappings with interwoven non-linearities. In this section we will discuss additional design choices regarding data preprocessing, weight initialization, and loss functions.
+<!--more-->
+
+There are three common forms of data preprocessing a data matrix `X`, where we will assume that `X` is of size `[N x D]` (`N` is the number of data, `D` is their dimensionality).
+```python
+# Assume input data matrix X of size [N x D]
+X -= np.mean(X, axis = 0) # zero-center the data (important)
+cov = np.dot(X.T, X) / X.shape[0] # get the data covariance matrix
+```
 
 Table of Contents:
 
@@ -21,11 +32,9 @@ Table of Contents:
 ## Setting up the data and the model
 
 In the previous section we introduced a model of a Neuron, which computes a dot product following a non-linearity, and Neural Networks that arrange neurons into layers. Together, these choices define the new form of the **score function**, which we have extended from the simple linear mapping that we have seen in the Linear Classification section. In particular, a Neural Network performs a sequence of linear mappings with interwoven non-linearities. In this section we will discuss additional design choices regarding data preprocessing, weight initialization, and loss functions.
-
 <a name='datapre'></a>
 
 ### Data Preprocessing
-
 There are three common forms of data preprocessing a data matrix `X`, where we will assume that `X` is of size `[N x D]` (`N` is the number of data, `D` is their dimensionality).
 
 **Mean subtraction**  is the most common form of preprocessing. It involves subtracting the mean across every individual *feature* in the data, and has the geometric interpretation of centering the cloud of data around the origin along every dimension. In numpy, this operation would be implemented as: `X -= np.mean(X, axis = 0)`. With images specifically, for convenience it can be common to subtract a single value from all pixels (e.g. `X -= np.mean(X)`), or to do so separately across the three color channels.

@@ -18,8 +18,9 @@ Table of Contents:
   - [Putting it all together: Training a Softmax Classifier](#together)
 - [Training a Neural Network](#net)
 - [Summary](#summary)
-
+<!--more-->
 In this section we'll walk through a complete implementation of a toy Neural Network in 2 dimensions. We'll first implement a simple linear classifier and then extend the code to a 2-layer Neural Network. As we'll see, this extension is surprisingly simple and very few changes are necessary.
+<!--more-->
 
 <a name='data'></a>
 

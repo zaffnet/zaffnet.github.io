@@ -34,8 +34,9 @@ In the previous sections we've discussed the static parts of a Neural Networks: 
 <a name='gradcheck'></a>
 
 ### Gradient Checks
-
-In theory, performing a gradient check is as simple as comparing the analytic gradient to the numerical gradient. In practice, the process is much more involved and error prone. Here are some tips, tricks, and issues to watch out for:
+<!--more-->
+In theory, performing a gradient check is as simple as comparing the analytic gradient to the numerical gradient. In practice, the process is much more involved and error prone. Here are some tips, tricks, and issues to watch out for.
+<!--more-->
 
 **Use the centered formula**. The formula you may have seen for the finite difference approximation when evaluating the numerical gradient looks as follows:
 

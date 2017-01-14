@@ -24,8 +24,9 @@ Table of Contents:
 <a name='quick'></a>
 
 ## Quick intro
-
+<!--more-->
 It is possible to introduce neural networks without appealing to brain analogies. In the section on linear classification we computed scores for different visual categories given the image using the formula \\( s = W x \\), where \\(W\\) was a matrix and \\(x\\) was an input column vector containing all pixel data of the image. In the case of CIFAR-10, \\(x\\) is a [3072x1] column vector, and \\(W\\) is a [10x3072] matrix, so that the output scores is a vector of 10 class scores.
+<!--more-->
 
 An example neural network would instead compute \\( s = W_2 \max(0, W_1 x) \\). Here, \\(W_1\\) could be, for example, a [100x3072] matrix transforming the image into a 100-dimensional intermediate vector. The function \\(max(0,-) \\) is a non-linearity that is applied elementwise. There are several choices we could make for the non-linearity (which we'll study below), but this one is a common choice and simply thresholds all activations that are below zero to zero. Finally, the matrix \\(W_2\\) would then be of size [10x100], so that we again get 10 numbers out that we interpret as the class scores. Notice that the non-linearity is critical computationally - if we left it out, the two matrices could be collapsed to a single matrix, and therefore the predicted class scores would again be a linear function of the input. The non-linearity is where we get the *wiggle*. The parameters \\(W_2, W_1\\) are learned with stochastic gradient descent, and their gradients are derived with chain rule (and computed with backpropagation).
 
