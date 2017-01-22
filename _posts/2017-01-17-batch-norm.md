@@ -23,6 +23,7 @@ Table of Contents:
 - [Python Numpy Implementation](#implementation)
   - [`batchnorm_forward` API ](#fpropapi)
   - [`batchnorm_backward` API](#bpropapi)
+- [How Powerful is Batch Normalization?](#power)
 - [Summary](#summary)
 
 <a name='intro'></a>
@@ -57,10 +58,10 @@ During backpropagation, we calculate \\(\frac{\partial L}{\partial W} = x\frac{\
 #### *The curse of internal covariate shift*
 As the inputs flow through the network, their distributions deviate from unit gaussian. In fact the input distribution at a particular layer depends on the parameters of all the preceding layers.  The extent of deviation increases as the the network becomes deeper. Thus, merely normalizing the inputs to the network does not solve the problem. We need a mechanism which normalizes the inputs of every single layer. We can apply the same reasoning as we did earlier to prove that normalization of layer inputs helps in faster convergence.
 
-We define Internal Covariate Shift as the change in the distribution of network activations due to the change in network parameters during training. Internal covariate shift is one of the reasons why training a deep neural network is so difficult. Here we are giving highlights from the paper rather than delving deep into all the aspects. For better understanding of the topic, we recommend reading the [paper](https://arxiv.org/pdf/1502.03167v3.pdf):
+We define Internal Covariate Shift as the change in the distribution of network activations due to the change in network parameters during training. Internal covariate shift is one of the reasons why training a deep neural network is so difficult.
 - It requires careful hyperparameter tuning, especially learning rate and initial values of parameters.
 - As the depth of the network increases, internal covariate shift becomes more prominent.
-- The vanishing gradient problem is also linked with internal covariate shift.
+- The [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) is also linked with internal covariate shift.
 
 <a name='batchnorm'></a>
 
@@ -68,25 +69,27 @@ We define Internal Covariate Shift as the change in the distribution of network 
 As the name suggests, Batch Normalization attempts to normalize a *batch* of inputs before they are fed to a non-linear activation unit (like ReLU, sigmoid, etc). The idea is to feed a normalized input to an activation function so as to prevent it from entering into the saturated regime. Consider a batch of inputs to some activation layer. To make each dimension unit gaussian, we apply:
 
 $$
-\hat{x}^{(k)} = \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{\text{Var}[x^{(k)}]}}
+\hat{x}^{(k)} = \frac{x^{(k)} - E\big[x^{(k)}\big]}{\sqrt{\text{Var}\big[x^{(k)}\big]}}
 $$
 
-where $$E[x^{(k)}]$$ and $$\text{Var}[x^{(k)}]$$ are the mean and variance of $$k$$-th feature over a batch. Then we transform $$\hat{x}^{(k)}$$ as:
+where $$E\big[x^{(k)}\big]$$ and $$\text{Var}\big[x^{(k)}\big]$$ are respectively the mean and variance of $$k$$-th feature over a batch. Then we transform $$\hat{x}^{(k)}$$ as:
 
 $$
 y^{(k)} = \gamma^{(k)}\hat{x}^{(k)} + \beta^{(k)}
 $$
 
 Following are the salient features of Batch Normalization:
-- It improves gradient flow through the network (and hence mitigates the Vanishing Gradient Problem).
+- Helps in faster convergence.
+- Improves gradient flow through the network (and hence mitigates the *vanishing gradient* problem).
 - Allows higher learning rate and reduces high dependence on initialization.
 - Acts as a form of regularization and reduces the need for Dropout
-- The learned affine transformation $$y^{(k)} = \gamma^{(k)}\hat{x}^{(k)} + \beta^{(k)}$$ helps in preserving the identity mapping (by setting $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}$$ and $$\beta^{(k)} = E[x^{(k)}]$$) if the network finds this optimal.
+- The learned affine transformation $$y^{(k)} = \gamma^{(k)}\hat{x}^{(k)} + \beta^{(k)}$$ helps in preserving the identity mapping (by setting $$\gamma^{(k)} = \sqrt{\text{Var}\big[x^{(k)}\big]}$$ and $$\beta^{(k)} = E\big[x^{(k)}\big]$$) if the network finds this optimal.
+- The Batch Normalization transformation is differentiable and hence can be added comfortably in a [computational graph](https://colah.github.io/posts/2015-08-Backprop/) (as we will see soon).
 
 <a name='fprop'></a>
 
 ### Forward Propagation through Batch Normalization layer
-The figure given below illustrates the transformation of our inputs using a computational graph. For simplicity, we have shown the normalization of just one feature (thus dropping the superscipt $$k$$). But the idea remains the same. On left hand side are the inputs \\(x_1... x_m \\) to the layer (blue circles). The mean \\(\mu_B\\) is calculated as \\(\mu_B = \frac{1}{m}\sum_{i=1}^{m}x_i \\) (orange circle). Using the mean and the inputs, we compute the variance \\(\sigma_B^2\\) (green circle) and using inputs \\(x_i\\), mean \\(\mu\\) and variance \\(\sigma_B^2\\), we normalize our inputs as $$\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$. The layer produces the outputs through the affine transformation \\(x_i\\) as $$y_i = \gamma\hat{x}_i + \beta $$
+The figure given below illustrates the transformation of our inputs using a computational graph. For simplicity, we have shown the normalization of just one feature (thus dropping the superscipt $$k$$). But the idea remains the same. On left hand side are the inputs \\(x_1... x_m \\) to the layer (blue circles). The mean \\(\mu_B\\) is calculated as \\(\mu_B = \frac{1}{m}\sum_{i=1}^{m}x_i \\) (orange circle). Using the mean and the inputs, we compute the variance \\(\sigma_B^2\\) (green circle) and using inputs \\(x_i\\), mean \\(\mu\\) and variance \\(\sigma_B^2\\), we normalize our inputs as $$\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$   (purple circles). The layer produces the outputs through the affine transformation $$y_i = \gamma\hat{x}_i + \beta $$ (yellow circles).
 
 **Note**: For in-depth discussion on computational graphs, see this [blog](https://colah.github.io/posts/2015-08-Backprop/) by Christopher Olah.
 
@@ -95,7 +98,7 @@ The figure given below illustrates the transformation of our inputs using a comp
   <div class="figcaption"><b>Fig 1.</b> Flow of computation through Batch Normalization layer</div>
 </div>
 
-**Input:** Values of x over a batch \\(B = \{x_1...x_m\}\\); Parameters to be learned: $$\gamma, \beta$$
+**Input:** Values of $$x$$ over a batch \\(B = \{x_1...x_m\}\\); Parameters to be learned: $$\gamma, \beta$$
 
 **Output:** \\(\{y_i = BN_{\gamma, \beta}(x_i)\}\\)
 
@@ -112,9 +115,11 @@ $$
 
 ### Backpropagation through Batch Normalization layer
 
-During backpropagation, we are given the gradients of the loss with respect to the outputs $$\frac{\partial L}{\partial y_i}$$ and are asked to calculate the gradients with respect to parameters ($$\frac{\partial L}{\partial \gamma}$$ and $$\frac{\partial L}{\partial \beta}$$) and inputs ($$\frac{\partial L}{\partial x_i}$$). Using computational graph to backpropagate the error derivatives is quite simple. The only thing we have to take care of is that [derivatives add up at forks](http://cs231n.github.io/optimization-2/#staged). This follows the *multivariable chain rule* in Calculus, which states that if a variable branches out to different parts of the circuit, then the gradients that flow back to it will add.
+During backpropagation, we are given the gradients of the loss with respect to the outputs ($$\frac{\partial L}{\partial y_i}$$) and are asked to calculate the gradients with respect to parameters ($$\frac{\partial L}{\partial \gamma}$$ and $$\frac{\partial L}{\partial \beta}$$) and inputs ($$\frac{\partial L}{\partial x_i}$$). Using computational graph to backpropagate the error derivatives is quite simple. The only thing we have to take care of is that [derivatives add up at forks](http://cs231n.github.io/optimization-2/#staged). This follows the [*multivariable chain rule*](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/multivariable-chain-rule/v/multivariable-chain-rule) in calculus, which states that if a variable branches out to different parts of the circuit, then the gradients that flow back to it will add.
 
 #### **Calculation of $$\frac{\partial L}{\partial \gamma}$$:**
+
+Since $$\gamma$$ is used to calculate all the outputs $$y_i$$ where $$i = \{1...m\}$$, the gradients will be summed during backpropagation:
 
 $$
 \begin{align}
@@ -124,6 +129,7 @@ $$
 $$
 
 #### **Calculation of $$\frac{\partial L}{\partial \beta}$$:**
+Similarly,  $$\beta$$ is used to calculate all the outputs $$y_i$$ where $$i = \{1...m\}$$, the gradients will be summed during backpropagation:
 
 $$
 \begin{align}
@@ -143,17 +149,21 @@ $$
 
 #### **Calculation of $$\frac{\partial L}{\partial \sigma_B^2}$$:**
 
+Again, using *multivariable chain rule* we add the gradients coming from $$\hat{x}_i$$ to compute the gradient with respect to $$\sigma_B^2$$.
+
 $$
 \begin{align}
 \frac{\partial L}{\partial \sigma_B^2} &= \sum_{i = 1}^{m}\frac{\partial L}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial  \sigma_B^2} &&&& (\text{Because gardients add up at forks})\\\\
 &= \sum_{i = 1}^{m}\gamma\cdot\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B)\cdot\frac{-1}{2}\cdot(\sigma_B^2 + \epsilon)^{-3/2}\\\\
-&(\text{Because }\frac{\partial \hat{x}_i}{\partial  \sigma_B^2}  = (x_i - \mu_B)\cdot\frac{-1}{2}\cdot(\sigma_B^2 + \epsilon)^{-3/2})\\\\
+&\bigg(\text{Because }\frac{\partial \hat{x}_i}{\partial  \sigma_B^2}  = (x_i - \mu_B)\cdot\frac{-1}{2}\cdot(\sigma_B^2 + \epsilon)^{-3/2}\bigg)\\\\
 &= -\gamma\cdot\frac{-1}{2}(\sigma_B^2 + \epsilon)^{(-3/2)}\sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B) &&&& (\text{Taking out constant terms})\\\\
-&= \frac{-\gamma\cdot t^3}{2}\sum_{i = 1}^{2}\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B) &&&& (\text{Let } \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} = t)\\\\
+&= \frac{-\gamma\cdot t^3}{2}\sum_{i = 1}^{2}\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B) &&&& \boldsymbol{(\text{Let } \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} = t)}\\\\
 \end{align}
 $$
 
 #### **Calculation of $$\frac{\partial L}{\partial \mu_B}$$:**
+
+Since $$\mu_B$$ is used to calculate not only $$\hat{x}_i$$ but also $$\sigma_B^2$$, we add the respective gradients (refer to the figure above).
 
 $$
 \begin{align}
@@ -167,25 +177,29 @@ $$
 
 #### **Calculation of $$\frac{\partial L}{\partial x_i}$$:**
 
+If you see the computational graph, $$x_i$$ is used to calculate $$\mu_B$$, $$\sigma_B^2$$ and $$\hat{x}_i$$.
+
 $$
 \begin{align}
 \frac{\partial L}{\partial x_i} &= \frac{\partial L}{\partial\hat{x}_i}\frac{\partial\hat{x}_i}{\partial x_i} +  \frac{\partial L}{\partial\sigma_B^2}\frac{\partial\sigma_B^2}{\partial x_i} + \frac{\partial L}{\partial \mu_B}\frac{\partial\mu_B}{\partial x_i} \hspace{10 mm} (\text{Because gardients add up at forks})\\\\
 &= \gamma\cdot\frac{\partial L}{\partial y_i}\cdot\frac{1}{\sqrt{\sigma_B^2 + \epsilon}} - \frac{\gamma\cdot t^3}{2}\sum_{i = 1}^{m}(\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B))\cdot\frac{2}{m}(x_i-\mu_B) - \gamma\cdot t \sum_{i = 1}^{m}(\frac{\partial L}{\partial y_i})\cdot\frac{1}{m}\\\\
 & (\text{Because } \frac{\partial\hat{x}_i}{\partial x_i} = \frac{1}{\sqrt{\sigma_B^2 + \epsilon}};\hspace{10 mm} \frac{\partial\sigma_B^2}{\partial x_i} = \frac{2}{m}(x_i-\mu_B); \hspace{10 mm} \frac{\partial\mu_B}{\partial x_i} = \frac{1}{m})\\\\
-&= \frac{\gamma\cdot t}{m}[m\frac{\partial L}{\partial y_i}  -  t^2\cdot(x_i-\mu_B)\sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}(x_i - \mu_B)  -  \sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}]
+&= \frac{\gamma\cdot t}{m}\bigg[m\frac{\partial L}{\partial y_i}  -  t^2\cdot(x_i-\mu_B)\sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}(x_i - \mu_B)  -  \sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}\bigg]
 \end{align}
 $$
+
+We have derived the expressions for the required gradients. They will be used to implement backpropagation through Batch Normalization.
 
 <a name='test'></a>
 
 ### Backpropagation during test time
-Before we implement Batch Normalization, it is necessary to analyze the behavior of Batch Normalization during test time. Once the network has been trained, we use the normalization
+Before we implement Batch Normalization, it is necessary to analyze its behavior during test time. Once the network has been trained, we use the normalization
 
 $$
 \hat{x}^{(k)} = \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{\text{Var}[x^{(k)}]}}
 $$
 
-using the population, rather than mini-batch statistics. Effectively, we process mini-batches of size m and use their statistics to compute:
+using the population, rather than mini-batch statistics. Effectively, we process mini-batches of size $$m$$ and use their statistics to compute:
 
 $$
 \begin{align}
@@ -307,7 +321,33 @@ def batchnorm_backward(dout, cache):
   return dx, dgamma, dbeta
 {% endhighlight %}
 
+<a name='power'></a>
+
+### How Powerful is Batch Normalization?
+To verify our claim that Batch Normalization helps in faster convergence, we ran a small experiment with 1000 images from [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) dataset. We plotted the training and validation accuracies against the number of epochs both with and without Batch Normalization.
+
+<div class="fig figcenter fighighlight">
+  <img src="/assets/batchnorm/accuracy.jpg">
+  <div class="figcaption"><b>Fig 2.</b> Training and Validation accuracy vs. number of epochs</div>
+</div>
+
+To understand the effect of Batch Normalization on weight initialization, we trained 20 different networks both with and without Batch Normalization using different scales for weight initialization and plotted training accuracy, validation set accuracy and training loss.
+
+<div class="fig figcenter fighighlight">
+  <img src="/assets/batchnorm/init.jpg">
+  <div class="figcaption"><b>Fig 2.</b> Training and Validation accuracy vs. weight initialization scale</div>
+</div>
+
+As we can see, Batch Normalization helps in faster convergence and allows less dependence on weight initialization. But there is a sweet spot at which Batch Normalization gives considerably high accuracy. Before training a neural network, proper weight scale can be estimated by running an experiment with similar setup. As the last plot suggests, without Batch Normalization the network breaks at large weight initialization scale, (may be due to lack of numerical stability), but Batch Normalization still gives some training loss.
 
 <a name='summary'></a>
 
 ### Summary
+Here are some resources that have been referred to while writing this blog.
+- [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/pdf/1502.03167v3.pdf) by Sergey Ioffe and Christian Szegedy, 2015
+- [CS231n lecture by Andrej Karpathy](https://www.youtube.com/watch?v=GUtlrDbHhJM&index=5&list=PLlJy-eBtNFt6EuMxFYRiNRS07MCWN5UIA)
+- [CS231n Notes and Assignments](http://cs231n.github.io/)
+- [Clement Thorey's blog on Batch Normalization](http://cthorey.github.io/about/)
+
+**Note:**
+- Implementation of Batch Normalization using Python and Numpy was part of the assignment given by CS231n (Winter 2016). The code in this blog is taken from [Yasir Mir's GitHub repo](ttps://github.com/yasiemir/cs231n-winter_2016/).
