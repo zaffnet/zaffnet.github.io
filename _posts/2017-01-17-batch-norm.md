@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Training Deep Neural Networks with Batch Normalization"
+desc: "Batch Normalization along with lucid derivation and implementation of backpropagation through BatchNorm Layer"
 date:   2017-01-17 15:50:06 +0530
 comments: true
 permalink: batch-norm
@@ -42,7 +43,7 @@ X /= np.std(X, axis=0)  # Scaling
 {% endhighlight %}
 
 <div class="fig figcenter fighighlight">
-  <img src="/assets/nn2/prepro1.jpeg">
+  <img src="/assets/batchnorm/prepro1.jpeg">
   <div class="figcaption">Common data preprocessing pipeline. <b>Left</b>: Original toy, 2-dimensional input data. <b>Middle</b>: The data is zero-centered by subtracting the mean in each dimension. The data cloud is now centered around the origin. <b>Right</b>: Each dimension is additionally scaled by its standard deviation. The red lines indicate the extent of the data - they are of unequal length in the middle, but of equal length on the right.</div>
 </div>
 
