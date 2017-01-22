@@ -8,7 +8,11 @@
     <meta name="author" content="zaffnet">
     <meta name="google-site-verification" content="Ry_NIMOQWDM4ilISBn-Od4bAlgSAKWIGs1hKFyBMLbY" />
     <meta name="msvalidate.01" content="C98CDD5D490485F7384028B8A0EF655C" />
-    <title>{{ page.title }}</title>
+    {% if page.title == null %}
+      <title>Deep Learning Blogs</title>
+    {% else %}
+      <title>{{ page.title }}</title>
+    {% endif %}
     <!-- google-site-verification: googlee1a02f6d45541f17.html -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

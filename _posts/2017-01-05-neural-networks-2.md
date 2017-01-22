@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Neural Networks 2"
-subtitle: "Hello from the other side"
 date:   2017-01-05 15:50:06 +0530
 comments: true
 permalink: neural-networks-2

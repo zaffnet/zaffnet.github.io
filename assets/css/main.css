@@ -109,3 +109,7 @@ pre > code {
 .linenos { width: 40px; }
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
 .highlighter-rouge pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
+
+.blog-post > p > .mjx-chtml {
+  font-size: 115% !important;
+}
