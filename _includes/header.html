@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% if page.desc %}{{ page.desc | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="author" content="zaffnet">
+    <meta property="author" content="zaffnet">
     <meta property="og:site_name"          content="Deep Learning Blogs"/>
     <meta property="og:url"                content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
     <meta property="og:type"               content="article" />
