@@ -16,8 +16,7 @@
     <meta property="fb:app_id" content="1351774508219707" />
     <meta name="google-site-verification" content="Ry_NIMOQWDM4ilISBn-Od4bAlgSAKWIGs1hKFyBMLbY" />
     <meta name="msvalidate.01" content="C98CDD5D490485F7384028B8A0EF655C" />
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+    {% if page.canonical == null %}<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">{% else %}<link rel="canonical" href="{{ page.canonical | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">{% endif %}
     {% if page.title == null %}<title>Deep Learning Blogs</title>{% else %}<title>{{ page.title }}</title>{% endif %}
     <!-- google-site-verification: googlee1a02f6d45541f17.html -->
     <script>

@@ -5,6 +5,7 @@ desc: "Introduction to Batch Normalization along with lucid derivation and backp
 keywords: "Batch Normalization, Backpropogation, Internal Covariate Shift"
 og_image_url : '/assets/batchnorm/batchnorm.jpg'
 date:   2017-01-17 15:50:06 +0530
+lastmod: 2017-01-25 15:50:06 +0530
 comments: true
 permalink: batch-normalization
 ---
