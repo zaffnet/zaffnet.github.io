@@ -6,12 +6,10 @@ baseurl: ""
 url: "https://zaffnet.github.io"
 twitter_username: zaffnet
 github_username:  zaffnet
-markdown: kramdown
-theme: minima
 gems:
   - jekyll-feed
   - jekyll-gist
+  - execjs
 exclude:
   - Gemfile
   - Gemfile.lock
-highlighter: pygments

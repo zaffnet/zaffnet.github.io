@@ -106,7 +106,10 @@ pre > code {
 .linenodiv pre code { white-space: pre; }
 .code .highlight pre { margin: 6px 0px; border-radius: 0; border: none; word-wrap: normal; }
 .highlighttable { width: 100%; background-color: #F5F5F5;  table-layout: fixed; }
-.linenos { width: 40px; }
+.lineno {
+    color: cadetblue;
+    background-color: rgba(220, 220, 220, 0.45);
+}
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
 .highlighter-rouge pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
 
