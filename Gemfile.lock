@@ -35,12 +35,15 @@ GEM
     mercenary (0.3.6)
     minima (2.1.0)
       jekyll (~> 3.3)
+    multi_json (1.12.1)
     multipart-post (2.0.0)
     octokit (4.6.2)
       sawyer (~> 0.8.0, >= 0.5.3)
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.5)
+    pygments.rb (1.1.1)
+      multi_json (>= 1.0.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -59,6 +62,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.6)
   jekyll-gist
   minima (~> 2.0)
+  pygments.rb
 
 RUBY VERSION
    ruby 2.3.1p112

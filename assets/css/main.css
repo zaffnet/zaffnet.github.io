@@ -126,7 +126,7 @@ z-index: 100;
 display: none;
 text-decoration: none;
 color: #428bca;
-background-color: #ffffff;
+background-color: rgba(255, 255, 255, 0);
 
 }
 .back-to-top  i {

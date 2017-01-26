@@ -233,7 +233,8 @@ The complete implementation of Batch Normalization can be found [here](https://g
 <a name='fpropapi'></a>
 
 #### `batchnorm_forward` **API**
-{% highlight python linenos %}
+{% highlight numpy linenos %}
+import numpy as np
 
 def batchnorm_forward(x, gamma, beta, bn_param):
   """

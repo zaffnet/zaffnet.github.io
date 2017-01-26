@@ -24,3 +24,5 @@ group :jekyll_plugins do
 end
 
 gem 'jekyll-gist'
+
+gem 'pygments.rb'
