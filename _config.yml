@@ -1,7 +1,6 @@
 title: Deep Learning Blog
 email: zafarullahmahmood@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Blogs by Zafarullah Mahmood (zaffnet) | zafarullahmahmood@gmail.com | Covers Deep Neural Networks and image recognition
+description: Blogs by Zafarullah Mahmood (zaffnet) | zafarullahmahmood@gmail.com
 baseurl: ""
 url: "https://zaffnet.github.io"
 twitter_username: zaffnet

@@ -2,6 +2,7 @@
 layout: post
 title: "Training Deep Neural Networks with Batch Normalization"
 desc: "Introduction to Batch Normalization along with lucid derivation and backpropagation through BatchNorm Layer"
+keywords: "Batch Normalization, Backpropogation, Internal Covariate Shift"
 og_image_url : '/assets/batchnorm/batchnorm.jpg'
 date:   2017-01-17 15:50:06 +0530
 comments: true
