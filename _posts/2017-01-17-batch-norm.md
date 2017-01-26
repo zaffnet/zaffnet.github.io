@@ -31,6 +31,7 @@ Table of Contents:
 
 ### Background
 In 1998, Yan LeCun in his famous paper [Effiecient BackProp](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf) highlighted the importance of normalizing the inputs. Preprocessing of the inputs using normalization is a standard machine learning procedure and is known to help in faster convergence. Normalization is done to achieve the following objectives:
+
 - The average of each input variable (or feature) over the training set is close to zero (Mean subtraction).
 - covariances of the features are same (Scaling).
 - the correlation among features is minimum (Whitening).
@@ -60,6 +61,7 @@ During backpropagation, we calculate \\(\frac{\partial L}{\partial W} = x\frac{\
 As the inputs flow through the network, their distributions deviate from unit gaussian. In fact the input distribution at a particular layer depends on the parameters of all the preceding layers.  The extent of deviation increases as the the network becomes deeper. Thus, merely normalizing the inputs to the network does not solve the problem. We need a mechanism which normalizes the inputs of every single layer. We can apply the same reasoning as we did earlier to prove that normalization of layer inputs helps in faster convergence.
 
 We define Internal Covariate Shift as the change in the distribution of network activations due to the change in network parameters during training. Internal covariate shift is one of the reasons why training a deep neural network is so difficult.
+
 - It requires careful hyperparameter tuning, especially learning rate and initial values of parameters.
 - As the depth of the network increases, internal covariate shift becomes more prominent.
 - The [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) is also linked with internal covariate shift.
@@ -80,6 +82,7 @@ y^{(k)} = \gamma^{(k)}\hat{x}^{(k)} + \beta^{(k)}
 $$
 
 Following are the salient features of Batch Normalization:
+
 - Helps in faster convergence.
 - Improves gradient flow through the network (and hence mitigates the *vanishing gradient* problem).
 - Allows higher learning rate and reduces high dependence on initialization.
