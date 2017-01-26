@@ -47,7 +47,7 @@ X /= np.std(X, axis=0)  # Scaling
   <div class="figcaption">Common data preprocessing pipeline. <b>Left</b>: Original toy, 2-dimensional input data. <b>Middle</b>: The data is zero-centered by subtracting the mean in each dimension. The data cloud is now centered around the origin. <b>Right</b>: Each dimension is additionally scaled by its standard deviation. The red lines indicate the extent of the data - they are of unequal length in the middle, but of equal length on the right.</div>
 </div>
 
-The third one requires decorrelating the features. However, the first two are sufficient speed up the convergence, even when the features are not decorrelated. Moreover, whitening is note required for Convolutional Networks. For a detailed discussion on preprocessing, follow this [link](http://cs231n.github.io/neural-networks-2/#datapre).
+The third one requires decorrelating the features. However, the first two are sufficient to speed up the convergence, even when the features are not decorrelated. Moreover, whitening is note required for Convolutional Networks. For a detailed discussion on preprocessing, follow this [link](http://cs231n.github.io/neural-networks-2/#datapre).
 
 <a name='normalization'></a>
 
@@ -350,5 +350,6 @@ Here are some resources that have been referred to while writing this blog.
 - [CS231n Notes and Assignments](http://cs231n.github.io/)
 - [Clement Thorey's blog on Batch Normalization](http://cthorey.github.io/about/)
 
-**Note:**
+**Note**
+
 - Implementation of Batch Normalization using Python and Numpy was part of the assignment given by CS231n (Winter 2016). The code in this blog is taken from [Yasir Mir's GitHub repo](ttps://github.com/yasiemir/cs231n-winter_2016/).

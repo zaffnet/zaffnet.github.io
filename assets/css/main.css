@@ -113,3 +113,22 @@ pre > code {
 .blog-post > p > .mjx-chtml {
   font-size: 115% !important;
 }
+
+.back-to-top {
+background: none;
+margin: 0;
+position: fixed;
+bottom: 0;
+right: 0;
+width: 70px;
+height: 70px;
+z-index: 100;
+display: none;
+text-decoration: none;
+color: #428bca;
+background-color: #ffffff;
+
+}
+.back-to-top  i {
+  font-size: 40px;
+}
