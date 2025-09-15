@@ -1,7 +1,3 @@
-img {
-  max-width: 100%;
-  vertical-align: middle; }
-
 .fig{
   text-align: center !important;
   margin-bottom: 18px;
@@ -15,26 +11,6 @@ img {
 .figcaption {
   font-size: 14px !important;
   text-align: center !important;}
-
-li > ul,
-li > ol {
-  margin-bottom: 0; }
-pre,
-code {
-  font-size: 15px;
-  border: 1px solid #e8e8e8;
-  border-radius: 3px;
-   }
-
-pre {
-  padding: 8px 8px;
-  overflow-x: auto;
-  border: none;}
-pre > code {
-  border: 0;
-  padding-right: 0;
-  padding-left: 0;}
-
 
 .hll { background-color: #ffffcc }
 .c { color: #60a0b0; font-style: italic } /* Comment */
@@ -101,22 +77,6 @@ pre > code {
 .vi { color: #bb60d5 } /* Name.Variable.Instance */
 .il { color: #40a070 } /* Literal.Number.Integer.Long */
 
-.table-responsive { color: #333; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px; }
-.linenodiv pre { margin: 6px 0px; color: #aaa; border-radius: 0; border: none; border-right: solid 1px; word-wrap: normal; }
-.linenodiv pre code { white-space: pre; }
-.code .highlight pre { margin: 6px 0px; border-radius: 0; border: none; word-wrap: normal; }
-.highlighttable { width: 100%; background-color: #F5F5F5;  table-layout: fixed; }
-.lineno {
-    color: cadetblue;
-    background-color: rgba(220, 220, 220, 0.45);
-}
-.highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
-.highlighter-rouge pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
-
-.blog-post > p > .mjx-chtml {
-  font-size: 115% !important;
-}
-
 .back-to-top {
 background: none;
 margin: 0;
@@ -134,40 +94,4 @@ background-color: rgba(255, 255, 255, 0);
 }
 .back-to-top  i {
   font-size: 40px;
-}
-
-/* ZeroClipboard styles */
-
-.zero-clipboard {
-    position: relative;
-    display: none;
-}
-.btn-clipboard {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 100;
-    display: block;
-    padding: 5px 8px;
-    font-size: 12px;
-    color: #777;
-    cursor: pointer;
-    background-color: rgba(220, 220, 220, 0.45);
-    /*border: 1px solid #e1e1e8;*/
-    border-radius: 0 4px 0 4px;
-}
-.btn-clipboard-hover {
-    /*color: #fff;*/
-    /*background-color: #428bca;*/
-    /*border-color: #428bca;*/
-}
-
-@media (min-width: 768px) {
-    .zero-clipboard {
-        display: block;
-    }
-    .zero-clipboard .btn-clipboard {
-        /*top: -16px;*/
-        border-top-right-radius: 0;
-    }
 }
