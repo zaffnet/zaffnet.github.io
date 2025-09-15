@@ -23,7 +23,7 @@
   width: 50%;
 }
 .timeline-container.left {
-  left: 0;
+  left: 0%;
 }
 .timeline-container.right {
   left: 50%;
@@ -45,9 +45,11 @@
 }
 .timeline-content {
   padding: 20px 30px;
-  background-color: #f8f9fa;
+  background-color: white;
   position: relative;
   border-radius: 6px;
+  color: #212529;
+  text-align: left;
 }
 .timeline-content h2 {
     margin-top: 0;
