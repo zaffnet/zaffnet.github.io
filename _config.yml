@@ -3,7 +3,6 @@ email: zafarullahmahmood@gmail.com
 description: Blogs by Zafarullah Mahmood (zaffnet) | zafarullahmahmood@gmail.com
 baseurl: ""
 url: "https://zaffnet.github.io"
-twitter_username: zaffnet
 github_username:  zaffnet
 markdown: kramdown
 gems:
