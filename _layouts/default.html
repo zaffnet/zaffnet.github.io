@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <a href="{{ "/" | relative_url }}" class="nav-logo">Zafarullah Mahmood</a>
+        <ul>
+          <li><a href="{{ "/" | relative_url }}">Home</a></li>
+          <li><a href="{{ "/about" | relative_url }}">About</a></li>
+          <li><a href="{{ "/blogs" | relative_url }}">Blogs</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      {{ content }}
+    </main>
+    <footer>
+      <p>&copy; {{ "now" | date: "%Y" }} Zafarullah Mahmood. Hosted with ❤</p>
+      <p>
+        <a href="mailto:{{ site.email }}">Email</a>
+        &bull;
+        <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a>
+        &bull;
+        <a href="https://www.linkedin.com/in/zaffnet" target="_blank">LinkedIn</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
