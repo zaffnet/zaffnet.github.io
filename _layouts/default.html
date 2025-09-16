@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/syntax.css" | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <div class="container">
@@ -16,7 +19,6 @@
         <a href="{{ "/" | relative_url }}" class="nav-logo">Zafarullah Mahmood</a>
         <ul>
           <li><a href="{{ "/" | relative_url }}">Home</a></li>
-          <li><a href="{{ "/about" | relative_url }}">About</a></li>
           <li><a href="{{ "/blogs" | relative_url }}">Blogs</a></li>
         </ul>
       </nav>
