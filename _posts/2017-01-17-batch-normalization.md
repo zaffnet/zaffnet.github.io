@@ -161,7 +161,11 @@ Again, using *multivariable chain rule* we add the gradients coming from $$\hat{
 $$
 \begin{align}
 \frac{\partial L}{\partial \sigma_B^2} &= \sum_{i = 1}^{m}\frac{\partial L}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial  \sigma_B^2} &&&& (\text{Because gardients add up at forks})\\\\
-&= \sum_{i = 1}^{m}\gamma\cdot\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B)\cdot\frac{-1}{2}\cdot(\sigma_B^2 + \epsilon)^{-3/2}\\\\
+\begin{split}
+&= \sum_{i = 1}^{m}\gamma\cdot\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B) \\
+&\qquad \cdot\frac{-1}{2}\cdot(\sigma_B^2 + \epsilon)^{-3/2}
+\end{split}
+\\\\
 &\bigg(\text{Because }\frac{\partial \hat{x}_i}{\partial  \sigma_B^2}  = (x_i - \mu_B)\cdot\frac{-1}{2}\cdot(\sigma_B^2 + \epsilon)^{-3/2}\bigg)\\\\
 &= -\gamma\cdot\frac{-1}{2}(\sigma_B^2 + \epsilon)^{(-3/2)}\sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B) &&&& (\text{Taking out constant terms})\\\\
 &= \frac{-\gamma\cdot t^3}{2}\sum_{i = 1}^{2}\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B) &&&& \boldsymbol{(\text{Let } \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} = t)}\\\\
@@ -175,7 +179,10 @@ Since $$\mu_B$$ is used to calculate not only $$\hat{x}_i$$ but also $$\sigma_B^
 $$
 \begin{align}
 \frac{\partial L}{\partial \mu_B} &= \sum_{i = 1}^{m}\frac{\partial L}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \mu_B} + \frac{\partial L}{\partial \sigma_B^2}\frac{\partial \sigma_B^2}{\partial  \mu_B} &&&& (\text{Because gardients add up at forks})\\\\
-&= \sum_{i = 1}^{m}\gamma\cdot\frac{\partial L}{\partial y_i}\cdot\frac{-1}{\sqrt{\sigma_B^2 + \epsilon}} + \frac{\partial L}{\partial \sigma_B^2}\cdot\frac{1}{m}\sum_{i = 1}^{m}-2(x_i-\mu_B) &&&& (\text{Because } \frac{\partial \hat{x}_i}{\partial \mu_B} =  \frac{-1}{\sqrt{\sigma_B^2 + \epsilon}}\\\\
+\begin{split}
+&= \sum_{i = 1}^{m}\gamma\cdot\frac{\partial L}{\partial y_i}\cdot\frac{-1}{\sqrt{\sigma_B^2 + \epsilon}} + \frac{\partial L}{\partial \sigma_B^2}\cdot\frac{1}{m}\sum_{i = 1}^{m}-2(x_i-\mu_B)
+\end{split}
+ &&&& (\text{Because } \frac{\partial \hat{x}_i}{\partial \mu_B} =  \frac{-1}{\sqrt{\sigma_B^2 + \epsilon}}\\\\
 &   &&&& \text{and }\frac{\partial \sigma_B^2}{\partial  \mu_B} =  \frac{1}{m}\sum_{i = 1}^{m}-2(x_i-\mu_B))\\\\
 &= -\gamma\cdot t \sum_{i = 1}^{m}\frac{\partial L}{\partial y_i} + \frac{\partial L}{\partial \sigma_B^2}\cdot\frac{1}{m}\sum_{i = 1}^{m}-2(x_i-\mu_B)\\\\
 &= -\gamma\cdot t \sum_{i = 1}^{m}\frac{\partial L}{\partial y_i} &&&& (\text{Because } \sum_{i = 1}^{m}(x_i-\mu_B) = 0)\\\\
@@ -189,9 +196,16 @@ If you see the computational graph, $$x_i$$ is used to calculate $$\mu_B$$, $$\s
 $$
 \begin{align}
 \frac{\partial L}{\partial x_i} &= \frac{\partial L}{\partial\hat{x}_i}\frac{\partial\hat{x}_i}{\partial x_i} +  \frac{\partial L}{\partial\sigma_B^2}\frac{\partial\sigma_B^2}{\partial x_i} + \frac{\partial L}{\partial \mu_B}\frac{\partial\mu_B}{\partial x_i} \hspace{10 mm} (\text{Because gardients add up at forks})\\\\
-&= \gamma\cdot\frac{\partial L}{\partial y_i}\cdot\frac{1}{\sqrt{\sigma_B^2 + \epsilon}} - \frac{\gamma\cdot t^3}{2}\sum_{i = 1}^{m}(\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B))\cdot\frac{2}{m}(x_i-\mu_B) - \gamma\cdot t \sum_{i = 1}^{m}(\frac{\partial L}{\partial y_i})\cdot\frac{1}{m}\\\\
+\begin{split}
+&= \gamma\cdot\frac{\partial L}{\partial y_i}\cdot\frac{1}{\sqrt{\sigma_B^2 + \epsilon}} - \frac{\gamma\cdot t^3}{2}\sum_{i = 1}^{m}(\frac{\partial L}{\partial y_i}\cdot(x_i - \mu_B))\cdot\frac{2}{m}(x_i-\mu_B) \\
+&\qquad - \gamma\cdot t \sum_{i = 1}^{m}(\frac{\partial L}{\partial y_i})\cdot\frac{1}{m}
+\end{split}
+\\\\
 & (\text{Because } \frac{\partial\hat{x}_i}{\partial x_i} = \frac{1}{\sqrt{\sigma_B^2 + \epsilon}};\hspace{10 mm} \frac{\partial\sigma_B^2}{\partial x_i} = \frac{2}{m}(x_i-\mu_B); \hspace{10 mm} \frac{\partial\mu_B}{\partial x_i} = \frac{1}{m})\\\\
-&= \frac{\gamma\cdot t}{m}\bigg[m\frac{\partial L}{\partial y_i}  -  t^2\cdot(x_i-\mu_B)\sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}(x_i - \mu_B)  -  \sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}\bigg]
+\begin{split}
+&= \frac{\gamma\cdot t}{m}\bigg[m\frac{\partial L}{\partial y_i}  -  t^2\cdot(x_i-\mu_B)\sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}(x_i - \mu_B) \\
+&\qquad -  \sum_{i = 1}^{m}\frac{\partial L}{\partial y_i}\bigg]
+\end{split}
 \end{align}
 $$
 

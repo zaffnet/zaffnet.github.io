@@ -200,7 +200,7 @@ footer a {
 
 /* Blog styles */
 .blog-container {
-  max-width: 40vw;
+  max-width: 60vw;
   margin: 0;
   padding: 0 20px;
 }
@@ -250,6 +250,10 @@ footer a {
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+.post-content mjx-container {
+  font-size: 0.9rem;
 }
 
 /* Responsive Design */
