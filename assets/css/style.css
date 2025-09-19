@@ -36,8 +36,8 @@ a:hover {
 
 h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4, h5, h6 { font-size: 1.5rem; }
+h3 { font-size: 1.5rem; }
+h4, h5, h6 { font-size: 1.25rem; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
@@ -56,13 +56,6 @@ header nav {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-}
-
-@media (max-width: 600px) {
-  header nav {
-    flex-direction: column;
-    gap: 10px;
-  }
 }
 
 .nav-logo {
@@ -105,88 +98,113 @@ footer a {
   color: var(--text-secondary);
 }
 
-/* Home Page: Intro */
-.intro {
-  text-align: center;
-  padding: 60px 0;
+/* New Homepage Styles */
+.intro-section {
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+  gap: 40px;
 }
 
-.intro h1 {
+.intro-text {
+  flex: 1;
+}
+
+.intro-text h1 {
   margin-top: 0;
   font-size: 3rem;
   font-weight: 700;
 }
 
-.intro .subtitle {
+.intro-text .subtitle {
   font-size: 1.25rem;
   color: var(--text-secondary);
 }
 
-/* Home Page: Timeline */
-.timeline {
-  position: relative;
-  padding-left: 40px;
-  border-left: 2px solid var(--border-color);
+.contact-links {
+  margin-top: 20px;
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 40px;
+.contact-links a {
+  margin-right: 15px;
+  font-weight: 600;
 }
 
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -48px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  background-color: var(--accent-color);
+.intro-image img {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  border: 2px solid var(--background-primary);
+  object-fit: cover;
 }
 
-.timeline-item h3 {
+.content-section {
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.content-section h2 {
+  margin-top: 0;
+}
+
+/* Timeline */
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.timeline-date {
+  flex: 0 0 120px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-content h3 {
   margin-top: 0;
   font-size: 1.25rem;
-  font-weight: 600;
 }
 
-.timeline-item .date {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 5px;
+.timeline-content p {
+  margin-top: 0;
 }
 
-/* Home Page: Publications */
-.publications-list {
+.timeline-content ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+/* Skills */
+#skills p {
+  margin: 0.5em 0;
+}
+
+/* Publications, Projects, Certifications, Awards */
+.publications-list,
+.projects-list,
+#certifications ul,
+#awards ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding-left: 0;
 }
 
-.publications-list li {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
+.publications-list li,
+.projects-list li,
+#certifications li,
+#awards li {
+  margin-bottom: 15px;
 }
 
-.publications-list li:last-child {
-  border-bottom: none;
+/* Blog styles */
+.blog-container {
+  max-width: 700px;
+  margin-left: 0;
+  padding: 0 20px;
 }
 
-.publication-title {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.publication-venue {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-/* Blog List */
 .blog-list {
   list-style: none;
   padding: 0;
@@ -198,6 +216,7 @@ footer a {
 
 .blog-list-item h2 {
   margin-top: 0;
+  font-size: 1.5rem;
 }
 
 .blog-list-item h2 a {
@@ -217,29 +236,32 @@ footer a {
 
 .post-header h1 {
   margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.post-meta {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+  font-size: 2rem;
 }
 
 .post-content {
-  font-size: 1.1rem;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
-.fig img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .intro-section {
+    flex-direction: column;
+    text-align: center;
+  }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .intro h1 {
-    font-size: 2.5rem;
+  .intro-image {
+    order: -1;
+    margin-bottom: 20px;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .timeline-date {
+    flex: 0 0 auto;
   }
 }

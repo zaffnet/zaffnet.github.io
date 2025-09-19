@@ -3,67 +3,145 @@ layout: default
 title: "Home"
 ---
 
-<div class="intro">
-  <h1>Zafarullah Mahmood</h1>
-  <p class="subtitle">NLP Researcher and Engineer</p>
-</div>
+<div class="container">
+  <div class="intro-section">
+    <div class="intro-text">
+      <h1>Zafarullah Mahmood</h1>
+      <p class="subtitle">NLP Researcher and Engineer</p>
+      <div class="contact-links">
+        <a href="https://github.com/zaffnet" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/zaffnet" target="_blank">LinkedIn</a>
+        <a href="mailto:zafarullah.mahmood@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="intro-image">
+      <img src="assets/profile.jpg" alt="Zafarullah Mahmood">
+    </div>
+  </div>
 
-<div class="about-me">
-  <h2>About Me</h2>
-  <p>Hello! I'm Zafar, an NLP researcher and engineer with a passion for building scalable machine learning systems and real-time NLP applications. My journey in the world of AI has taken me from designing models to deploying them in the cloud.</p>
-  <p>I recently completed my Master’s at the University of Toronto, where I took the opportunity to deepen my research expertise. I'm excited about the future of AI and always eager to connect with fellow enthusiasts and professionals.</p>
-  <p>Feel free to connect with me on:</p>
-  <ul>
-    <li><a href="https://github.com/zaffnet" target="_blank">GitHub</a></li>
-    <li><a href="https://www.linkedin.com/in/zaffnet" target="_blank">LinkedIn</a></li>
-  </ul>
-</div>
+  <div id="about" class="content-section">
+    <h2>About Me</h2>
+    <p>
+      I'm an NLP researcher and engineer passionate about building scalable machine learning systems and real-time NLP applications. My journey in AI has taken me from model design to cloud deployment. I recently completed my Master's at the University of Toronto, where I honed my research skills. I'm always excited to connect with fellow AI enthusiasts and professionals.
+    </p>
+    <p>
+      My interests include the Philosophy of Science, Linguistics, and Behavioural Economics.
+    </p>
+  </div>
 
-<h2>My Journey</h2>
-<div class="timeline">
-  <div class="timeline-item">
-    <div class="date">2023 - Present</div>
-    <h3>Research Collaborator, CAMH</h3>
-    <p>Master of Applied Science, Computer Engineering at the University of Toronto.</p>
+  <div id="timeline" class="content-section">
+    <h2>Timeline</h2>
+    <div class="timeline-item">
+      <div class="timeline-date">2023 - 2025</div>
+      <div class="timeline-content">
+        <h3>Master of Applied Science in Computer Engineering</h3>
+        <p><em>University of Toronto</em></p>
+        <ul>
+          <li><strong>Thesis:</strong> A Fully Generative Motivational Interviewing Counsellor Chatbot for Smoking Cessation and LLM-Based Synthetic Smokers.</li>
+          <li>Deployed a multi-agent therapeutic chatbot on AWS ECS; implemented ReAct framework for counsellor behaviour selection; reduced code complexity using LangChain LCEL; used ChromaDB to dynamically retrieve relevant reflections.</li>
+          <li>Developed synthetic smoker "doppelgängers" by installing human smoker attributes into LLMs; devised a validation framework for high-fidelity persona installation.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Apr 2019 - Aug 2023</div>
+      <div class="timeline-content">
+        <h3>Natural Language Processing Engineer</h3>
+        <p><em>Dialpad Canada Inc.</em></p>
+        <ul>
+          <li>Fine-tuned and deployed a real-time English sentiment model for Spanish-English bilingual support.</li>
+          <li>Contributed to the development of an n-gram boosting algorithm that dynamically adjusted decoder probabilities of a speech-to-text model, improving domain-specific keyword recognition by 26%.</li>
+          <li>Improved capitalization error by ~40% and production inference time by 4% by replacing a two-stage pipeline with a single multi-classification BERT model.</li>
+          <li>Trained a transformer-based grapheme-to-phoneme model using Hugging Face Transformers, achieving a 70% improvement in accuracy.</li>
+          <li>Improved voicemail speech recognition accuracy by 42% through targeted training data enrichment.</li>
+          <li>Automated data ingestion, retention policy enforcement, and de-anonymization workflows using Kubeflow pipelines.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Jun 2018 - Mar 2019</div>
+      <div class="timeline-content">
+        <h3>Data Scientist</h3>
+        <p><em>Exzeo Software, India</em></p>
+        <ul>
+          <li>Built an AWS-based pipeline that transcribed customer calls and provided insights for insurance claim assessments.</li>
+          <li>Prototyped a chatbot using Google DialogFlow with a fallback to an internal database for better intent matching.</li>
+          <li>Built a text-completion model for mobile devices using TensorFlow to assist insurance adjusters in report writing.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2014 - 2018</div>
+      <div class="timeline-content">
+        <h3>Bachelor of Technology in Computer Engineering</h3>
+        <p><em>Jamia Millia Islamia, India</em></p>
+      </div>
+    </div>
   </div>
-  <div class="timeline-item">
-    <div class="date">2019 - 2023</div>
-    <h3>Natural Language Processing Engineer, Dialpad</h3>
-    <p>Worked on a variety of projects including sentiment analysis, text-to-speech, and language models.</p>
+
+  <div id="skills" class="content-section">
+    <h2>Skills</h2>
+    <p><strong>Programming Languages:</strong> Python (Fluent), C/C++ (Familiar), JavaScript (Prior experience)</p>
+    <p><strong>Deep Learning & NLP:</strong> PyTorch, NVIDIA NeMo, HuggingFace (transformers, PEFT), spaCy</p>
+    <p><strong>Generative AI:</strong> LangChain, LangGraph, LlamaIndex, RAG Evaluation (RAGAs), Model Serving (vLLM)</p>
+    <p><strong>MLOps & Cloud:</strong> Docker, Kubernetes, Elastic Container Services, Kubeflow, AWS (Bedrock, SageMaker), GCP (Vertex AI)</p>
+    <p><strong>Databases & Vector Stores:</strong> BigQuery, PostgreSQL (pgvector), Firestore, Redis, ChromaDB, FAISS</p>
+    <p><strong>Misc. Technologies:</strong> Flask, Sanic, SQLAlchemy, Alembic, Angular</p>
   </div>
-  <div class="timeline-item">
-    <div class="date">2018 - 2019</div>
-    <h3>Data Scientist, Exzeo</h3>
-    <p>Built an AWS-based pipeline to transcribe and analyze customer service calls.</p>
+
+  <div id="publications" class="content-section">
+    <h2>Publications</h2>
+    <ul class="publications-list">
+      <li>
+        <a href="https://www.eecg.utoronto.ca/~jayar/ece1786.2023/download/autoannomi.pdf" target="_blank">AutoAnnoMI: A Framework to Automate the Annotations of MI Conversations using LLMs</a> (2024)
+      </li>
+      <li>
+        A Fully Generative Motivational Interviewing Counsellor Chatbot for Moving Smokers Towards the Decision to Quit (Findings of the Association for Computational Linguistics: ACL 2025)
+      </li>
+      <li>
+        <a href="https://arxiv.org/abs/2308.02092" target="_blank">N-gram Boosting: Improving Contextual Biasing with Normalized N-gram Targets</a> (arXiv preprint, 2023)
+      </li>
+      <li>
+        <a href="https://aclanthology.org/2021.sigmorphon-1.8/" target="_blank">Avengers, Ensemble! Benefits of ensembling in grapheme-to-phoneme prediction</a> (SIGMORPHON, 2021)
+      </li>
+    </ul>
   </div>
-  <div class="timeline-item">
-    <div class="date">2017 - 2018</div>
-    <h3>Software Development Intern, ISRO</h3>
-    <p>Worked on NLP for Indian languages.</p>
+
+  <div id="projects" class="content-section">
+    <h2>Projects</h2>
+    <ul class="projects-list">
+      <li><a href="https://github.com/zaffnet/zaffnet.github.io/blob/db4250a48ec04993f33217124180ffbcf11045b3/csc2421.pdf" target="_blank"><strong>Exploring Proposer-Acceptor Disparity in Dynamic Matching (2023)</strong></a>: Analyzed utility disparity in the popular problem of dynamic stable matching by simulating deferred acceptance with agent arrivals; proposed a time-annealed cutoff utility that narrows the gap without reducing match rates.</li>
+      <li><strong>Learning Document Vectors using Attentional CNNs (2018)</strong>: Undergraduate thesis project. Designed a neural network architecture to generate compressed embeddings of large documents for efficient search and retrieval.</li>
+      <li><a href="https://www.kaggle.com/competitions/tensorflow-speech-recognition-challenge" target="_blank"><strong>TensorFlow Speech Recognition Challenge (2018)</strong></a>: Participated in a Kaggle challenge to build a CNN to classify 30 short speech commands.</li>
+      <li><a href="https://zaffnet.github.io/batch-normalization" target="_blank"><strong>Benchmarking Batch Renormalization (2017)</strong></a>: Implemented BatchReNorm1d module in PyTorch and benchmarked its performance.</li>
+      <li><a href="https://github.com/zaffnet/ShapSum" target="_blank"><strong>ShapSum: Shapley Value-Based Multi-Document Summarization (2016)</strong></a>: Developed a novel multi-document summarization method.</li>
+      <li><a href="https://www.kaggle.com/c/random-acts-of-pizza" target="_blank"><strong>Random Acts of Pizza (2016)</strong></a>: Predicted whether a Reddit user would receive a pizza based on their request.</li>
+      <li><a href="https://github.com/zaffnet/TidyWord" target="_blank"><strong>TidyWord (2016)</strong></a>: Text cleaning software in C for removing less frequent words from large documents.</li>
+    </ul>
   </div>
-  <div class="timeline-item">
-    <div class="date">2014 - 2018</div>
-    <h3>Bachelor of Technology, Computer Engineering</h3>
-    <p>Jamia Millia Islamia. Graduated with a grade of 8.2/10.</p>
+
+  <div id="certifications" class="content-section">
+    <h2>Certifications</h2>
+    <ul>
+      <li><a href="https://coursera.org/share/164a2fc7921627d833e73d70d377dcf9" target="_blank">Develop Generative AI Applications</a> (IBM, 2025)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/certificate/3HPKV7MHSH3Z" target="_blank">Creating Behavioral Change</a> (Wesleyan University, 2023)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/certificate/W72MCAUHG3N5" target="_blank">Introduction to Psychology</a> (University of Toronto, 2023)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/certificate/G9XVMHQR62CQ" target="_blank">Philosophy of Science</a> (University of Pennsylvania, 2023)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/certificate/A8CFPR765Z9R" target="_blank">Miracles of Human Language: An Introduction to Linguistics</a> (Leiden University, 2021)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/verify/2AJ9YFVSKWLE" target="_blank">Introduction to Deep Learning</a> (HSE University, 2018)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/specialization/N4FPRNK5FSCD" target="_blank">Mathematics for Machine Learning Specialization</a> (Imperial College London, 2018)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/8J3SBBCBFTDA" target="_blank">Algorithms Specialization</a> (Stanford University, 2017)</li>
+      <li><a href="https://www.coursera.org/account/accomplishments/certificate/RTEGXWJ88N88" target="_blank">Machine Learning</a> (Stanford University, 2016)</li>
+      <li><a href="https://s3.amazonaws.com/verify.edx.org/downloads/e22d0329cce446a3bebcf3141f66ccbd/Certificate.pdf" target="_blank">Introduction to Programming Using Python</a> (MIT, 2015)</li>
+    </ul>
+  </div>
+
+  <div id="awards" class="content-section">
+    <h2>Awards</h2>
+    <ul>
+      <li>Edward S. Rogers Sr. Graduate Scholarship, University of Toronto (2024)</li>
+      <li>Best Kernel Award, Kaggle (2018)</li>
+      <li>Deloitte Innovation Award, Indian Space Research Organisation (2017)</li>
+    </ul>
   </div>
 </div>
-
-<h2>Publications</h2>
-<ul class="publications-list">
-  <li>
-    <span class="publication-title">A Fully Generative Motivational Interviewing Counsellor Chatbot for Moving Smokers Towards the Decision to Quit</span>
-    <span class="publication-venue">Findings of the Association for Computational Linguistics: ACL 2025</span>
-  </li>
-  <li>
-    <span class="publication-title">N-gram Boosting: Improving Contextual Biasing with Normalized N-gram Targets</span>
-    <span class="publication-venue">arXiv preprint arXiv:2308.02092, 2023</span>
-  </li>
-  <li>
-    <span class="publication-title">Avengers, Ensemble! Benefits of ensembling in grapheme-to-phoneme prediction</span>
-    <span class="publication-venue">Proceedings of the 18th SIGMORPHON Workshop on Computational Research in ..., 2021</span>
-  </li>
-  <li>
-    <span class="publication-title">AutoAnnoMI: A Framework to Automate the Annotations of MI Conversations using LLMs</span>
-    <span class="publication-venue">2024</span>
-  </li>
-</ul>

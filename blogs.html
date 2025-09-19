@@ -3,16 +3,17 @@ layout: default
 title: "Blog"
 permalink: /blogs/
 ---
+<div class="blog-container">
+  <h1>Blog</h1>
 
-<h1>Blog</h1>
-
-<ul class="blog-list">
-  {% for post in site.posts %}
-    <li class="blog-list-item">
-      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-      <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</p>
-      <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
-      <a href="{{ post.url | relative_url }}">Read More &rarr;</a>
-    </li>
-  {% endfor %}
-</ul>
+  <ul class="blog-list">
+    {% for post in site.posts %}
+      <li class="blog-list-item">
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+        <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
+        <a href="{{ post.url | relative_url }}">Read More &rarr;</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
