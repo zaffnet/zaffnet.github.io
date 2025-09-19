@@ -34,15 +34,16 @@ a:hover {
   text-decoration: underline;
 }
 
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4, h5, h6 { font-size: 1.5rem; }
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin-top: 2em;
   margin-bottom: 0.5em;
 }
-
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
 
 /* Header */
 header {
@@ -55,6 +56,13 @@ header nav {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+}
+
+@media (max-width: 600px) {
+  header nav {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .nav-logo {
@@ -231,11 +239,6 @@ footer a {
 
 /* Responsive */
 @media (max-width: 600px) {
-  header nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .intro h1 {
     font-size: 2.5rem;
   }
