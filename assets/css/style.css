@@ -200,8 +200,8 @@ footer a {
 
 /* Blog styles */
 .blog-container {
-  max-width: 700px;
-  margin-left: 0;
+  max-width: 40vw;
+  margin: 0;
   padding: 0 20px;
 }
 
@@ -240,8 +240,16 @@ footer a {
 }
 
 .post-content {
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.7;
+}
+
+.post-content img,
+.post-content mjx-container {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Responsive Design */
