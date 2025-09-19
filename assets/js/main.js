@@ -1,45 +1,37 @@
-ZeroClipboard.config({
-    hoverClass: 'btn-clipboard-hover'
-})
-$('.highlight').each(function () {
-    var btnHtml = '<div class="zero-clipboard"><span class="btn-clipboard"><img  width="13" src="assets/clippy.svg" alt="Copy to clipboard"></span></div>';
-    $(this).before(btnHtml)
-});
-var zeroClipboard = new ZeroClipboard($('.btn-clipboard'));
-var htmlBridge = $('#global-zeroclipboard-html-bridge');
-zeroClipboard.on('ready', function (event) {
-    htmlBridge
-        .data('placement', 'top')
-        .attr('title', 'Copy to clipboard')
-        .tooltip();
-
-
-    zeroClipboard.on('copy', function (event) {
-        var highlight = $(event.target).parent().nextAll('.highlight').first().find('.code').first();
-        if (highlight.length == 0)
-        {
-          highlight = $(event.target).parent().nextAll('.highlight').first().find('code').first();
-        }
-        event.clipboardData.setData("text/plain", highlight.text())
-    });
-    zeroClipboard.on('aftercopy', function () {
-        htmlBridge
-            .attr('title', 'Copied!')
-            .tooltip('fixTitle')
-            .tooltip('show')
-            .attr('title', 'Copy to clipboard')
-            .tooltip('fixTitle')
-    });
-});
-
-zeroClipboard.on('error', function () {
-    ZeroClipboard.destroy();
-    htmlBridge
-        .attr('title', 'Flash required')
-        .tooltip('fixTitle')
-        .tooltip('show');
-});
 $(document).ready(function () {
+  // Add copy button to code blocks
+  $('.highlight').each(function () {
+    var btnHtml = '<div class="zero-clipboard"><span class="btn-clipboard"><img width="13" src="/assets/clippy.svg" alt="Copy to clipboard"></span></div>';
+    $(this).before(btnHtml);
+  });
+
+  // Initialize tooltips
+  $('.btn-clipboard').tooltip({
+    title: 'Copy to clipboard',
+    placement: 'top'
+  });
+
+  // Handle copy to clipboard
+  $('.btn-clipboard').on('click', function () {
+    var highlight = $(this).parent().nextAll('.highlight').first();
+    var code = highlight.find('.code').first().text();
+    if (code.length === 0) {
+      code = highlight.find('code').first().text();
+    }
+
+    navigator.clipboard.writeText(code).then(() => {
+      $(this).tooltip('hide')
+        .attr('data-original-title', 'Copied!')
+        .tooltip('show');
+      setTimeout(() => {
+        $(this).tooltip('hide')
+          .attr('data-original-title', 'Copy to clipboard');
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
+  });
+
 	$( ".highlighttable" ).wrap("<div class='table-responsive'></div>");
 });
 
