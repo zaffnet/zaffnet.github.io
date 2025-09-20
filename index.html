@@ -6,7 +6,6 @@ title: "Home"
 <div class="container">
   <div class="intro-section">
     <div class="intro-text">
-      <h1>Zafarullah Mahmood</h1>
       <p class="subtitle">NLP Researcher and Engineer</p>
       <div class="contact-links">
         <a href="https://github.com/zaffnet" target="_blank">GitHub</a>
@@ -22,72 +21,118 @@ title: "Home"
   <div id="about" class="content-section">
     <h2>About Me</h2>
     <p>
-      I'm an NLP researcher and engineer passionate about building scalable machine learning systems and real-time NLP applications. My journey in AI has taken me from model design to cloud deployment. I recently completed my Master's at the University of Toronto, where I honed my research skills. I'm always excited to connect with fellow AI enthusiasts and professionals.
+      I am a Natural Language Processing (NLP) engineer and researcher with a passion for developing cutting-edge AI applications that solve real-world problems. My experience spans the full development lifecycle, from conceptualizing and designing models to deploying them in scalable, real-time environments.
     </p>
     <p>
-      My interests include the Philosophy of Science, Linguistics, and Behavioural Economics.
+      I recently graduated with a Master of Applied Science in Computer Engineering from the University of Toronto, where my research focused on creating a fully generative therapeutic chatbot to help individuals with smoking cessation. This project involved building a multi-agent system, implementing advanced frameworks like ReAct, and leveraging technologies such as LangChain and ChromaDB to improve the chatbot's effectiveness.
+    </p>
+    <p>
+      Before my Master's, I spent over four years at Dialpad, where I worked on a variety of NLP challenges. I have experience in fine-tuning sentiment analysis models, optimizing inference latency for real-time applications, and building data annotation platforms. I am proficient in a wide range of tools and technologies, including PyTorch, HuggingFace, and the AWS and GCP cloud platforms.
+    </p>
+    <p>
+      I am always eager to learn and apply new techniques to create impactful AI solutions. I am particularly interested in the fields of generative AI, MLOps, and the application of NLP in healthcare.
     </p>
   </div>
 
   <div id="timeline" class="content-section">
     <h2>Timeline</h2>
-    <div class="timeline-item">
-      <div class="timeline-date">2023 - 2025</div>
-      <div class="timeline-content">
-        <h3>Master of Applied Science in Computer Engineering</h3>
-        <p><em>University of Toronto</em></p>
-        <ul>
-          <li><strong>Thesis:</strong> A Fully Generative Motivational Interviewing Counsellor Chatbot for Smoking Cessation and LLM-Based Synthetic Smokers.</li>
-          <li>Deployed a multi-agent therapeutic chatbot on AWS ECS; implemented ReAct framework for counsellor behaviour selection; reduced code complexity using LangChain LCEL; used ChromaDB to dynamically retrieve relevant reflections.</li>
-          <li>Developed synthetic smoker "doppelgängers" by installing human smoker attributes into LLMs; devised a validation framework for high-fidelity persona installation.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Apr 2019 - Aug 2023</div>
-      <div class="timeline-content">
-        <h3>Natural Language Processing Engineer</h3>
-        <p><em>Dialpad Canada Inc.</em></p>
-        <ul>
-          <li>Fine-tuned and deployed a real-time English sentiment model for Spanish-English bilingual support.</li>
-          <li>Contributed to the development of an n-gram boosting algorithm that dynamically adjusted decoder probabilities of a speech-to-text model, improving domain-specific keyword recognition by 26%.</li>
-          <li>Improved capitalization error by ~40% and production inference time by 4% by replacing a two-stage pipeline with a single multi-classification BERT model.</li>
-          <li>Trained a transformer-based grapheme-to-phoneme model using Hugging Face Transformers, achieving a 70% improvement in accuracy.</li>
-          <li>Improved voicemail speech recognition accuracy by 42% through targeted training data enrichment.</li>
-          <li>Automated data ingestion, retention policy enforcement, and de-anonymization workflows using Kubeflow pipelines.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Jun 2018 - Mar 2019</div>
-      <div class="timeline-content">
-        <h3>Data Scientist</h3>
-        <p><em>Exzeo Software, India</em></p>
-        <ul>
-          <li>Built an AWS-based pipeline that transcribed customer calls and provided insights for insurance claim assessments.</li>
-          <li>Prototyped a chatbot using Google DialogFlow with a fallback to an internal database for better intent matching.</li>
-          <li>Built a text-completion model for mobile devices using TensorFlow to assist insurance adjusters in report writing.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2014 - 2018</div>
-      <div class="timeline-content">
-        <h3>Bachelor of Technology in Computer Engineering</h3>
-        <p><em>Jamia Millia Islamia, India</em></p>
-      </div>
-    </div>
+    <ul class="timeline">
+      <li class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023 - 2025</div>
+        <div class="timeline-content">
+          <h3>Master of Applied Science in Computer Engineering</h3>
+          <p><em>University of Toronto</em></p>
+          <ul>
+            <li><strong>Thesis:</strong> A Fully Generative Counsellor Chatbot for Smoking Cessation and LLM-Based Synthetic Smokers.</li>
+            <li>Deployed a multi-agent therapeutic chatbot on AWS ECS, which helped smokers increase their confidence in quitting smoking by 1.7 (0-10 scale).</li>
+            <li>Devised a validation framework for high-fidelity persona installation.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Apr 2019 - Aug 2023</div>
+        <div class="timeline-content">
+          <h3>Natural Language Processing Engineer</h3>
+          <p><em>Dialpad Canada Inc.</em></p>
+          <ul>
+            <li>Fine-tuned and deployed a real-time English-only sentiment model for Spanish-English bilingual support.</li>
+            <li>Reduced real-time inference latency by 4% by replacing a sequential punctuation and casing pipeline with a multi-classification-head BERT model.</li>
+            <li>Developed a text-to-speech annotation platform in Angular.</li>
+            <li>Built a tool to create synthetic speech data from a list of “keywords”.</li>
+            <li>Built a Kubeflow pipeline to automate the generation and verification of pronunciations of newly coined words.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Jun 2018 - Mar 2019</div>
+        <div class="timeline-content">
+          <h3>Data Scientist</h3>
+          <p><em>Exzeo Software, India</em></p>
+          <ul>
+            <li>Built a text-based conversational agent using Google DialogFlow with webhook fulfillment to help customers file insurance claims.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2014 - 2018</div>
+        <div class="timeline-content">
+          <h3>Bachelor of Technology in Computer Engineering</h3>
+          <p><em>Jamia Millia Islamia, New Delhi</em></p>
+        </div>
+      </li>
+    </ul>
   </div>
 
   <div id="skills" class="content-section">
     <h2>Skills</h2>
-    <p><strong>Programming Languages:</strong> Python (Fluent), C/C++ (Familiar), JavaScript (Prior experience)</p>
-    <p><strong>Deep Learning & NLP:</strong> PyTorch, NVIDIA NeMo, HuggingFace (transformers, PEFT), spaCy</p>
-    <p><strong>Generative AI:</strong> LangChain, LangGraph, LlamaIndex, RAG Evaluation (RAGAs), Model Serving (vLLM)</p>
-    <p><strong>MLOps & Cloud:</strong> Docker, Kubernetes, Elastic Container Services, Kubeflow, AWS (Bedrock, SageMaker), GCP (Vertex AI)</p>
-    <p><strong>Databases & Vector Stores:</strong> BigQuery, PostgreSQL (pgvector), Firestore, Redis, ChromaDB, FAISS</p>
-    <p><strong>Misc. Technologies:</strong> Flask, Sanic, SQLAlchemy, Alembic, Angular</p>
+    <div class="skills-infographic" id="skills-infographic">
+      <div class="skill-logo" style="background-image: url('https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://raw.githubusercontent.com/sanic-org/sanic-assets/main/png/sanic-framework-logo-400x91.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://www.sqlalchemy.org/img/sqla_logo.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://angular.io/assets/images/logos/angular/angular.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://pytorch.org/assets/images/pytorch-logo.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://huggingface.co/front/assets/huggingface_logo-noborder.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://spacy.io/images/logo.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://python.langchain.com/assets/images/langchain-logo-92x92-e016e54ef86443171869d8d384c00b9c.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://kubernetes.io/images/nav_logo.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://cloud.google.com/images/social-icon-google-cloud-1200-v2.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg');"></div>
+      <div class="skill-logo" style="background-image: url('https://redis.io/wp-content/uploads/2024/04/Logotype.svg?auto=webp&quality=85,75&width=120');"></div>
+      <div class="skill-logo" style="background-image: url('https://www.trychroma.com/logo.png');"></div>
+      <div class="skill-logo" style="background-image: url('https://raw.githubusercontent.com/facebookresearch/faiss/main/docs/faiss_logo.png');"></div>
+    </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const infographic = document.getElementById('skills-infographic');
+      const logos = infographic.getElementsByClassName('skill-logo');
+      const containerWidth = infographic.offsetWidth;
+      const containerHeight = infographic.offsetHeight;
+      const logoSize = 80;
+
+      function animateLogos() {
+        for (let i = 0; i < logos.length; i++) {
+          const logo = logos[i];
+          const x = Math.random() * (containerWidth - logoSize);
+          const y = Math.random() * (containerHeight - logoSize);
+          logo.style.transform = `translate(${x}px, ${y}px)`;
+        }
+      }
+
+      animateLogos();
+      setInterval(animateLogos, 10000);
+    });
+  </script>
 
   <div id="publications" class="content-section">
     <h2>Publications</h2>

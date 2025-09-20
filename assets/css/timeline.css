@@ -1,0 +1,65 @@
+.timeline {
+  position: relative;
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ccc;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item:nth-child(odd) {
+  padding-right: calc(50% + 2rem);
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  padding-left: calc(50% + 2rem);
+}
+
+.timeline-dot {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-date {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.timeline-content h3 {
+  margin-top: 0;
+}
+
+.timeline-content p {
+  margin-bottom: 0;
+}
