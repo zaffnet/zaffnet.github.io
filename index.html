@@ -7,7 +7,12 @@ title: "Home"
   <div class="intro-section">
     <div class="intro-text">
       <h1>Zafarullah Mahmood</h1>
-      <p class="subtitle">NLP Researcher and Engineer</p>
+      <p class="subtitle">Designing human-centred AI systems that behave with care.</p>
+      <p class="intro-description">
+        I translate research breakthroughs into resilient products, from therapeutic multi-agent chatbots to
+        production-grade speech and language platforms. My work spans the entire stack: grounding models in
+        domain expertise, orchestrating reliable deployments, and crafting the tooling that keeps teams shipping.
+      </p>
       <div class="contact-links">
         <a href="https://github.com/zaffnet" target="_blank">GitHub</a>
         <a href="https://www.linkedin.com/in/zaffnet" target="_blank">LinkedIn</a>
@@ -22,71 +27,170 @@ title: "Home"
   <div id="about" class="content-section">
     <h2>About Me</h2>
     <p>
-      I'm an NLP researcher and engineer passionate about building scalable machine learning systems and real-time NLP applications. My journey in AI has taken me from model design to cloud deployment. I recently completed my Master's at the University of Toronto, where I honed my research skills. I'm always excited to connect with fellow AI enthusiasts and professionals.
+      I am an NLP researcher and engineer who enjoys building systems that feel thoughtful to the people who rely on them.
+      Whether I am refining a retrieval-augmented workflow or scaling a speech recognizer, I focus on pairing rigorous
+      experimentation with intuitive product experiences.
     </p>
     <p>
-      My interests include the Philosophy of Science, Linguistics, and Behavioural Economics.
+      Beyond work, I am curious about philosophy of science, linguistics, and behavioural economics&mdash;disciplines that
+      influence how I frame problems and evaluate the impact of AI-driven solutions.
     </p>
   </div>
 
-  <div id="timeline" class="content-section">
+  <div id="timeline" class="content-section timeline">
     <h2>Timeline</h2>
-    <div class="timeline-item">
-      <div class="timeline-date">2023 - 2025</div>
-      <div class="timeline-content">
-        <h3>Master of Applied Science in Computer Engineering</h3>
-        <p><em>University of Toronto</em></p>
-        <ul>
-          <li><strong>Thesis:</strong> A Fully Generative Motivational Interviewing Counsellor Chatbot for Smoking Cessation and LLM-Based Synthetic Smokers.</li>
-          <li>Deployed a multi-agent therapeutic chatbot on AWS ECS; implemented ReAct framework for counsellor behaviour selection; reduced code complexity using LangChain LCEL; used ChromaDB to dynamically retrieve relevant reflections.</li>
-          <li>Developed synthetic smoker "doppelgängers" by installing human smoker attributes into LLMs; devised a validation framework for high-fidelity persona installation.</li>
-        </ul>
+    <div class="timeline-track">
+      <div class="timeline-item">
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <div class="timeline-date">2023 &ndash; 2025</div>
+        <div class="timeline-body">
+          <h3>Master of Applied Science in Computer Engineering</h3>
+          <p class="timeline-organization">University of Toronto</p>
+          <p>
+            My graduate research explored how generative agents can deliver consistent motivational interviewing support to smokers
+            preparing to quit. The resulting thesis presents a fully generative counsellor that balances empathy and clinical fidelity.
+          </p>
+          <p>
+            I deployed the multi-agent counsellor on AWS ECS with LangChain LCEL orchestration, used ReAct strategies to pick the right counselling behaviours in real time, and built a validation workflow that installs human smoker personas into synthetic ``doppelgängers'' for safe experimentation.
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Apr 2019 - Aug 2023</div>
-      <div class="timeline-content">
-        <h3>Natural Language Processing Engineer</h3>
-        <p><em>Dialpad Canada Inc.</em></p>
-        <ul>
-          <li>Fine-tuned and deployed a real-time English sentiment model for Spanish-English bilingual support.</li>
-          <li>Contributed to the development of an n-gram boosting algorithm that dynamically adjusted decoder probabilities of a speech-to-text model, improving domain-specific keyword recognition by 26%.</li>
-          <li>Improved capitalization error by ~40% and production inference time by 4% by replacing a two-stage pipeline with a single multi-classification BERT model.</li>
-          <li>Trained a transformer-based grapheme-to-phoneme model using Hugging Face Transformers, achieving a 70% improvement in accuracy.</li>
-          <li>Improved voicemail speech recognition accuracy by 42% through targeted training data enrichment.</li>
-          <li>Automated data ingestion, retention policy enforcement, and de-anonymization workflows using Kubeflow pipelines.</li>
-        </ul>
+      <div class="timeline-item">
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <div class="timeline-date">Apr 2019 &ndash; Aug 2023</div>
+        <div class="timeline-body">
+          <h3>Natural Language Processing Engineer</h3>
+          <p class="timeline-organization">Dialpad Canada Inc.</p>
+          <p>
+            I partnered with product and research teams to deliver speech and language capabilities that powered millions of customer conversations.
+            Highlights include shipping a bilingual sentiment classifier that matched Spanish performance without sacrificing English accuracy,
+            and developing an n-gram boosting approach that improved domain keyword recognition by 26%.
+          </p>
+          <p>
+            I also unified punctuation and casing into a single BERT model, cutting inference latency by 4% and reducing errors, scaled grapheme-to-phoneme modelling with Hugging Face Transformers for a 70% accuracy lift, and engineered supporting platforms&mdash;from an Angular-based annotation studio to Kubeflow pipelines that automated data hygiene and de-anonymization.
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Jun 2018 - Mar 2019</div>
-      <div class="timeline-content">
-        <h3>Data Scientist</h3>
-        <p><em>Exzeo Software, India</em></p>
-        <ul>
-          <li>Built an AWS-based pipeline that transcribed customer calls and provided insights for insurance claim assessments.</li>
-          <li>Prototyped a chatbot using Google DialogFlow with a fallback to an internal database for better intent matching.</li>
-          <li>Built a text-completion model for mobile devices using TensorFlow to assist insurance adjusters in report writing.</li>
-        </ul>
+      <div class="timeline-item">
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <div class="timeline-date">Jun 2018 &ndash; Mar 2019</div>
+        <div class="timeline-body">
+          <h3>Data Scientist</h3>
+          <p class="timeline-organization">Exzeo Software, India</p>
+          <p>
+            I designed data products that helped insurance teams respond quickly to customer needs, including an AWS-hosted pipeline that
+            transcribed voice calls and surfaced insights for claim assessors.
+          </p>
+          <p>
+            To streamline customer support, I prototyped a DialogFlow assistant with an internal knowledge fallback and delivered a lightweight text completion tool that guided adjusters through field report writing on mobile devices.
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">2014 - 2018</div>
-      <div class="timeline-content">
-        <h3>Bachelor of Technology in Computer Engineering</h3>
-        <p><em>Jamia Millia Islamia, India</em></p>
+      <div class="timeline-item">
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <div class="timeline-date">2014 &ndash; 2018</div>
+        <div class="timeline-body">
+          <h3>Bachelor of Technology in Computer Engineering</h3>
+          <p class="timeline-organization">Jamia Millia Islamia, India</p>
+          <p>
+            I focused on natural language processing during my undergraduate studies, conducted research on document representations, and completed an internship at the Indian Space Research Organisation that cemented my interest in applied AI.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
   <div id="skills" class="content-section">
-    <h2>Skills</h2>
-    <p><strong>Programming Languages:</strong> Python (Fluent), C/C++ (Familiar), JavaScript (Prior experience)</p>
-    <p><strong>Deep Learning & NLP:</strong> PyTorch, NVIDIA NeMo, HuggingFace (transformers, PEFT), spaCy</p>
-    <p><strong>Generative AI:</strong> LangChain, LangGraph, LlamaIndex, RAG Evaluation (RAGAs), Model Serving (vLLM)</p>
-    <p><strong>MLOps & Cloud:</strong> Docker, Kubernetes, Elastic Container Services, Kubeflow, AWS (Bedrock, SageMaker), GCP (Vertex AI)</p>
-    <p><strong>Databases & Vector Stores:</strong> BigQuery, PostgreSQL (pgvector), Firestore, Redis, ChromaDB, FAISS</p>
-    <p><strong>Misc. Technologies:</strong> Flask, Sanic, SQLAlchemy, Alembic, Angular</p>
+    <h2>Skills at a Glance</h2>
+    <p class="skills-intro">
+      These are the technologies I reach for when taking a concept from a research idea to a reliable product experience. The badges double as a quick tour of my toolkit, each styled with a minimalist nod to the original brand palette.
+    </p>
+    <div class="skills-infographic">
+      <div class="skills-card">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">{ }</span>
+          <h3>Programming Languages</h3>
+        </div>
+        <p>I prototype in Python, keep my C/C++ fundamentals sharp, and draw on past JavaScript experience when extending UI workflows.</p>
+        <div class="skill-badges">
+          <span class="skill-badge skill-python" data-initials="Py">Python</span>
+          <span class="skill-badge skill-cpp" data-initials="C++">C/C++</span>
+          <span class="skill-badge skill-javascript" data-initials="JS">JavaScript</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">&#129302;</span>
+          <h3>Deep Learning &amp; NLP</h3>
+        </div>
+        <p>I combine production pragmatism with research fluency using modern deep learning frameworks and NLP libraries.</p>
+        <div class="skill-badges">
+          <span class="skill-badge skill-pytorch" data-initials="Pt">PyTorch</span>
+          <span class="skill-badge skill-nemo" data-initials="Nm">NVIDIA NeMo</span>
+          <span class="skill-badge skill-huggingface" data-initials="HF">HuggingFace</span>
+          <span class="skill-badge skill-spacy" data-initials="sp">spaCy</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">&#9889;</span>
+          <h3>Generative AI Systems</h3>
+        </div>
+        <p>I orchestrate multi-agent and retrieval-augmented flows with modern tooling, and evaluate them with rigor.</p>
+        <div class="skill-badges">
+          <span class="skill-badge skill-langchain" data-initials="LC">LangChain</span>
+          <span class="skill-badge skill-langgraph" data-initials="LG">LangGraph</span>
+          <span class="skill-badge skill-llamaindex" data-initials="LI">LlamaIndex</span>
+          <span class="skill-badge skill-ragas" data-initials="RA">RAGAs</span>
+          <span class="skill-badge skill-vllm" data-initials="vL">vLLM</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">&#128736;</span>
+          <h3>MLOps &amp; Cloud</h3>
+        </div>
+        <p>From containerization to managed services, I design pipelines that stay observable and cost-aware in production.</p>
+        <div class="skill-badges">
+          <span class="skill-badge skill-docker" data-initials="Dk">Docker</span>
+          <span class="skill-badge skill-kubernetes" data-initials="K8">Kubernetes</span>
+          <span class="skill-badge skill-ecs" data-initials="ECS">Elastic CS</span>
+          <span class="skill-badge skill-kubeflow" data-initials="KF">Kubeflow</span>
+          <span class="skill-badge skill-bedrock" data-initials="AB">AWS Bedrock</span>
+          <span class="skill-badge skill-sagemaker" data-initials="SM">SageMaker</span>
+          <span class="skill-badge skill-vertex" data-initials="VX">GCP Vertex AI</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">&#128202;</span>
+          <h3>Data &amp; Vector Stores</h3>
+        </div>
+        <p>I architect storage and retrieval layers that keep AI applications responsive to ever-growing knowledge bases.</p>
+        <div class="skill-badges">
+          <span class="skill-badge skill-bigquery" data-initials="BQ">BigQuery</span>
+          <span class="skill-badge skill-postgres" data-initials="PG">PostgreSQL</span>
+          <span class="skill-badge skill-firestore" data-initials="FS">Firestore</span>
+          <span class="skill-badge skill-redis" data-initials="Rd">Redis</span>
+          <span class="skill-badge skill-chromadb" data-initials="Ch">ChromaDB</span>
+          <span class="skill-badge skill-faiss" data-initials="Fa">FAISS</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">&#128187;</span>
+          <h3>Product Engineering</h3>
+        </div>
+        <p>I round out ML solutions with pragmatic web and service layers that make models usable by real teams.</p>
+        <div class="skill-badges">
+          <span class="skill-badge skill-flask" data-initials="Fl">Flask</span>
+          <span class="skill-badge skill-sanic" data-initials="Sa">Sanic</span>
+          <span class="skill-badge skill-sqlalchemy" data-initials="SQ">SQLAlchemy</span>
+          <span class="skill-badge skill-alembic" data-initials="Al">Alembic</span>
+          <span class="skill-badge skill-angular" data-initials="Ng">Angular</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="publications" class="content-section">
