@@ -20,9 +20,18 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+  box-sizing: border-box;
+}
+
+main > *:not(.blog-container) {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 a {
@@ -56,6 +65,10 @@ header nav {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .nav-logo {
@@ -449,9 +462,14 @@ footer a {
 
 /* Blog styles */
 .blog-container {
-  max-width: 700px;
-  margin-left: 0;
-  padding: 0 20px;
+  width: min(100%, 60vw);
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.blog-container > * {
+  max-width: 100%;
 }
 
 .blog-list {
@@ -491,6 +509,79 @@ footer a {
 .post-content {
   font-size: 1rem;
   line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.post-content img,
+.post-content figure,
+.post-content video,
+.post-content iframe {
+  display: block;
+  max-width: 100%;
+  margin: 2rem auto;
+  height: auto;
+}
+
+.post-content video,
+.post-content iframe {
+  width: 100%;
+}
+
+.post-content figure {
+  width: 100%;
+}
+
+.post-content pre,
+.post-content .highlight {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.post-content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.post-content table th,
+.post-content table td {
+  padding: 0.5rem 0.75rem;
+}
+
+mjx-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+mjx-container[display="block"] {
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 900px) {
+  .blog-container {
+    width: 60vw;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+  }
+
+  .post-content img,
+  .post-content figure,
+  .post-content video,
+  .post-content iframe {
+    margin: 1.5rem 0;
+  }
 }
 
 /* Responsive Design */
