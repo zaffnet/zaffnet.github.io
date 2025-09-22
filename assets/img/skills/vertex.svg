@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Google Cloud Vertex AI</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+    <path d="M32 4l20 12v24L32 52 12 40V16Z" stroke="#5F6368" fill="#F1F3F4"/>
+    <path d="M32 4l20 12-20 12-20-12Z" fill="#E8EAED" stroke="#5F6368"/>
+    <path d="M32 28v24" stroke="#5F6368"/>
+    <path d="M12 16v24l20 12" stroke="#5F6368"/>
+    <path d="M52 16v24L32 52" stroke="#5F6368"/>
+  </g>
+  <g fill="#4285F4">
+    <circle cx="32" cy="10" r="5"/>
+  </g>
+  <g fill="#34A853">
+    <circle cx="48" cy="20" r="5"/>
+  </g>
+  <g fill="#FBBC04">
+    <circle cx="16" cy="20" r="5"/>
+  </g>
+  <g fill="#EA4335">
+    <circle cx="32" cy="44" r="5"/>
+  </g>
+</svg>
