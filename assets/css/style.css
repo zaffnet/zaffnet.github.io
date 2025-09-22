@@ -1,5 +1,6 @@
 /* General styles */
 :root {
+  --font-base: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --text-primary: #333;
   --text-secondary: #555;
   --background-primary: #fff;
@@ -9,8 +10,8 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-base);
+  line-height: 1.65;
   color: var(--text-primary);
   background-color: var(--background-primary);
   margin: 0;
@@ -50,6 +51,7 @@ h3 { font-size: 1.5rem; }
 h4, h5, h6 { font-size: 1.25rem; }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-base);
   font-weight: 600;
   margin-top: 2em;
   margin-bottom: 0.5em;
