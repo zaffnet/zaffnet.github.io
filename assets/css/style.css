@@ -450,6 +450,15 @@ footer a {
   margin-bottom: 15px;
 }
 
+/* Home layout */
+.home-container {
+  width: 100%;
+  max-width: 60vw;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
 /* Blog styles */
 .blog-container {
   width: 100%;
@@ -571,6 +580,11 @@ footer a {
     text-align: left;
   }
 
+  .home-container {
+    max-width: 100%;
+    padding: 0 1.25rem;
+  }
+
   .blog-container {
     width: 100%;
     max-width: 100%;
@@ -583,7 +597,8 @@ footer a {
 }
 
 body.post-page .container > main,
-body.blogs-page .container > main {
+body.blogs-page .container > main,
+body.home-page .container > main {
   width: 100%;
   padding-left: 0;
   padding-right: 0;
