@@ -5,9 +5,17 @@ baseurl: ""
 url: "https://zaffnet.github.io"
 github_username:  zaffnet
 markdown: kramdown
-gems:
+plugins:
   - jekyll-feed
   - jekyll-gist
 exclude:
+  - vendor/
+  - vendor/bundle/
+  - node_modules/
+  - .bundle/
+  - .sass-cache/
+  - .jekyll-cache/
+  - Gemfile
+  - Gemfile.lock
   - Gemfile
   - Gemfile.lock

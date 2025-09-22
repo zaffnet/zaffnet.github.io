@@ -7,3 +7,6 @@ group :jekyll_plugins do
 end
 gem 'jekyll-gist'
 gem 'pygments.rb'
+gem "rubyzip", "~> 2.3"
+gem "webrick", "~> 1.8"
+gem "faraday-retry", "~> 2.2"
