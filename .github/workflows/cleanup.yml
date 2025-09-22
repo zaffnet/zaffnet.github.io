@@ -17,11 +17,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          CUTOFF: ${{ steps.time.outputs.cutoff }}
         run: |
           cutoff=$(date -u -d '5 days ago' +%s)
           gh api repos/${REPO}/deployments --paginate \
-          | jq -c '.[] | select(.environment=="github-pages" and (.created_at|fromdateiso8601) < '"$cutoff"')' \
+          | jq -c '.[] | select(.environment=="github-pages" and (.production_environment == false) and (.created_at|fromdateiso8601) < '"$cutoff"')' \
           | while read d; do
               id=$(echo "$d" | jq -r '.id')
               gh api repos/${REPO}/deployments/$id -X DELETE || true
