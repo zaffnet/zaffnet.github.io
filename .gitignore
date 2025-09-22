@@ -1,4 +1,17 @@
-_site
-.sass-cache
+# Jekyll build
+_site/
+.jekyll-cache/
 .jekyll-metadata
+.sass-cache
 _drafts
+
+# Bundler
+.bundle/
+vendor/
+
+# Jekyll ignore file (commit only if project-specific)
+.jekyllignore
+
+# Backup files
+*_bak
+*.bak

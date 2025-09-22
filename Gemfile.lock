@@ -46,6 +46,10 @@ GEM
       logger
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
+    faraday-retry (2.3.2)
+      faraday (~> 2.0)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     forwardable-extended (2.6.0)
     gemoji (4.1.0)
@@ -235,6 +239,10 @@ GEM
     minitest (5.25.5)
     net-http (0.6.0)
       uri
+    nokogiri (1.18.10-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.10-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
     octokit (4.25.1)
@@ -273,17 +281,22 @@ GEM
     webrick (1.9.1)
 
 PLATFORMS
+  aarch64-linux
+  arm64-darwin-24
   x86_64-linux
 
 DEPENDENCIES
+  faraday-retry (~> 2.2)
   github-pages
   jekyll-feed (~> 0.6)
   jekyll-gist
   minima (~> 2.0)
   pygments.rb
+  rubyzip (~> 2.3)
+  webrick (~> 1.8)
 
 RUBY VERSION
-   ruby 3.2.3p157
+   ruby 3.4.6p54
 
 BUNDLED WITH
    2.4.19
