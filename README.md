@@ -10,9 +10,7 @@ sitemap:
     lastmod: 2017-01-06 15:50:06 +0530
 ---
 # [zaffnet.github.io](https://zaffnet.github.io)
-Deep Learning Blogs
 
-Suggestions/PRs are always welcome
 
 ## Local development with Docker
 
