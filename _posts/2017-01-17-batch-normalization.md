@@ -10,10 +10,8 @@ comments: true
 permalink: batch-normalization
 ---
 
-<!--more-->
-
 Since its inception in 2015 by Ioffe and Szegedy, [Batch Normalization](https://arxiv.org/pdf/1502.03167v3.pdf) has gained popularity among Deep Learning practitioners as a technique to achieve faster convergence by reducing the *internal covariate shift* and to some extent regularizing the network. We discuss the salient features of the paper followed by calculation of derivatives for backpropagation through the Batch Normalization layer. Lastly, we explain an efficient implementation of backpropagation using Python and Numpy.
-<!--more-->
+
 
 Table of Contents:
 
