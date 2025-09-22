@@ -11,7 +11,6 @@ sitemap:
 ---
 # [zaffnet.github.io](https://zaffnet.github.io)
 
-Suggestions/PRs are always welcome
 
 ## Local development with Docker
 
