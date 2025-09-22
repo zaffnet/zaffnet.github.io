@@ -357,4 +357,4 @@ Here are some resources that have been referred to while writing this blog.
 
 **Note**
 
-- Implementation of Batch Normalization using Python and Numpy was part of the assignment given by CS231n (Winter 2016). The code in this blog is taken from [Yasir Mir's GitHub repo](ttps://github.com/yasiemir/cs231n-winter_2016/).
+- Implementation of Batch Normalization using Python and Numpy was part of the assignment given by CS231n (Winter 2016). The code in this blog is taken from [Yasir Mir's GitHub repo](https://github.com/yasiemir/cs231n-winter_2016/).
