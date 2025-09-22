@@ -69,7 +69,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Header */
 header {
   height: var(--header-height);
-  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
 }
 
 header nav {
@@ -77,9 +78,10 @@ header nav {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  width: 100%;
-  padding: 0;
+  width: 60vw;
+  padding: 0 20px;
   box-sizing: border-box;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .nav-logo {
