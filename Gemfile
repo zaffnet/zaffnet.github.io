@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.4.6"  # or latest stable supported by your build platform
+ruby "~> 3.4"
 
 gem "jekyll", "~> 4.4"
 
