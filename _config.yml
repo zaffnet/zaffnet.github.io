@@ -17,5 +17,3 @@ exclude:
   - .jekyll-cache/
   - Gemfile
   - Gemfile.lock
-  - Gemfile
-  - Gemfile.lock
