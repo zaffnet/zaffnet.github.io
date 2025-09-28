@@ -1,8 +1,8 @@
-title: Deep Learning Blog
+title: Zafarullah Mahmood
 email: zafarullahmahmood@gmail.com
-description: Blogs by Zafarullah Mahmood (zaffnet) | zafarullahmahmood@gmail.com
+description: Blogs by Zafarullah Mahmood (zaffnet) | zafar@zafarmahmood.com
 baseurl: ""
-url: "https://zaffnet.github.io"
+url: "https://zafarmahmood.com"
 github_username:  zaffnet
 markdown: kramdown
 plugins:
