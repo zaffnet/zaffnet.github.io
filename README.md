@@ -11,7 +11,7 @@ sitemap:
 ---
 # [zaffnet.github.io](https://zaffnet.github.io)
 
-
+[![pages-build-deployment](https://github.com/zaffnet/zaffnet.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/zaffnet/zaffnet.github.io/actions/workflows/pages/pages-build-deployment)
 ## Local development with Docker
 
 If you prefer not to install Ruby, Bundler, or Jekyll locally, you can use the Docker helper script:
