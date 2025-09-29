@@ -385,6 +385,7 @@ footer a {
   border: 1px solid var(--badge-border);
   box-shadow: 0 10px 22px rgba(var(--shadow-color-rgb), 0.08);
   color: var(--badge-text);
+  text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
