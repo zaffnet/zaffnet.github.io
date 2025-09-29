@@ -24,8 +24,8 @@
       <nav>
         <a href="{{ "/" | relative_url }}" class="nav-logo" aria-label="Homepage"></a>
         <ul>
-          <li><a href="{{ "/" | relative_url }}">Home</a></li>
-          <li><a href="{{ "/blogs" | relative_url }}">Blogs</a></li>
+          <li><a class="nav-link{% if page.url == '/' or page.permalink == '/' %} is-active{% endif %}" href="{{ "/" | relative_url }}">Home</a></li>
+          <li><a class="nav-link{% if page.url contains '/blogs' or page.permalink contains '/blogs' %} is-active{% endif %}" href="{{ "/blogs" | relative_url }}">Blogs</a></li>
         </ul>
       </nav>
     </header>
