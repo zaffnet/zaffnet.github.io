@@ -64,7 +64,7 @@ a {
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:focus-visible {
@@ -141,6 +141,7 @@ header nav a:hover,
 header nav a:focus-visible {
   color: var(--accent-color);
   transform: translateY(-1px);
+  text-decoration: none;
 }
 
 /* Footer */
@@ -312,7 +313,6 @@ footer a {
   --timeline-line-width: 3px;
   --timeline-marker-diameter: 18px;
   padding-left: var(--timeline-padding);
-  z-index: 1;
 }
 
 .timeline-track::before {
