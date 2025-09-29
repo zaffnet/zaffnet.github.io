@@ -1,13 +1,31 @@
-title: Deep Learning Blog
-email: zafarullahmahmood@gmail.com
-description: Blogs by Zafarullah Mahmood (zaffnet) | zafarullahmahmood@gmail.com
+title: Zafarullah Mahmood
+description: Blogs by Zafarullah Mahmood (zaffnet) | zafar@zafarmahmood.com
+url: https://zafarmahmood.com
 baseurl: ""
-url: "https://zaffnet.github.io"
-github_username:  zaffnet
+timezone: America/Toronto
+permalink: /:categories/:title/
+
 markdown: kramdown
+kramdown:
+  input: GFM
+
+# Pick ONE of the following theme options:
+
+# A) Local theme (e.g., minima)
+theme: minima
+
+# B) Remote theme (requires plugin + this line)
+# remote_theme: pages-themes/minimal@v0.2.0
+
 plugins:
   - jekyll-feed
   - jekyll-gist
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-mentions
+  - jekyll-redirect-from
+  - jekyll-include-cache
+
 exclude:
   - vendor/
   - vendor/bundle/
@@ -17,5 +35,7 @@ exclude:
   - .jekyll-cache/
   - Gemfile
   - Gemfile.lock
-  - Gemfile
-  - Gemfile.lock
+  - .DS_Store
+
+sass:
+  quiet_deps: true

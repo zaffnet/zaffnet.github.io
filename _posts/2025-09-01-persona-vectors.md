@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A Summary of Anthropic's 'Persona Vectors' Research"
+title: "A Summary of Anthropic’s Persona Vectors Research"
 desc: "Understanding and controlling character traits in language models."
 keywords: "AI, Language Models, Persona Vectors, Anthropic"
 date:   2025-09-01 12:00:00 +0000
