@@ -1,0 +1,59 @@
+name: Clean CF Pages previews
+
+on:
+  workflow_dispatch:
+  delete: {}                        # branch/tag deleted
+  pull_request:
+    types: [closed]                 # PR merged or closed
+
+jobs:
+  cleanup:
+    if: github.event.ref_type == 'branch' || github.event.pull_request.merged == true || github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    env:
+      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      CF_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}   # scope: Pages Read+Write
+      CF_PROJECT:    ${{ secrets.CF_PAGES_PROJECT }}
+    steps:
+      - name: Set target branch
+        id: b
+        run: |
+          if [[ "${{ github.event_name }}" == "delete" ]]; then
+            echo "branch=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+          else
+            echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
+          fi
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Delete preview deployments for branch
+        env:
+          BRANCH: ${{ steps.b.outputs.branch }}
+        run: |
+          echo "Target branch: $BRANCH"
+          BASE="https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects/$CF_PROJECT/deployments"
+          AUTH=(-H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json")
+
+          # paginate until empty (Pages API returns 25 per page by default)
+          page=1
+          found=0
+          while : ; do
+            resp=$(curl -fsS "${BASE}?env=preview&page=${page}" "${AUTH[@]}")
+            ids=($(echo "$resp" | jq -r --arg br "$BRANCH" '.result[] | select(.deployment_trigger.metadata.branch==$br) | .id'))
+            [[ ${#ids[@]} -eq 0 ]] && {
+              # stop if no results on this page
+              # also break if no more pages
+              total_pages=$(echo "$resp" | jq -r '.result_info.total_pages // 1')
+              [[ $page -ge ${total_pages:-1} ]] && break
+              ((page++))
+              continue
+            }
+            found=1
+            for id in "${ids[@]}"; do
+              echo "Deleting deployment $id"
+              curl -fsS -X DELETE "${BASE}/${id}" "${AUTH[@]}" >/dev/null || echo "Failed: $id"
+            done
+            ((page++))
+          done
+          if [[ $found -eq 0 ]]; then
+            echo "No preview deployments found for $BRANCH"
+          fi
