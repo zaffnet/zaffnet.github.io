@@ -198,7 +198,6 @@ footer a {
   content: "";
   position: absolute;
   border-radius: 999px;
-  filter: blur(0px);
   opacity: 0.65;
 }
 
@@ -266,17 +265,20 @@ footer a {
   border-radius: 999px;
   font-weight: 600;
   color: #ffffff;
-  background: var(--color-primary);
-  box-shadow: 0 18px 36px rgba(103, 80, 164, 0.28);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.contact-links a:nth-child(2) {
+.contact-links a.github {
+  background: var(--color-primary);
+  box-shadow: 0 18px 36px rgba(103, 80, 164, 0.28);
+}
+
+.contact-links a.linkedin {
   background: var(--color-secondary);
   box-shadow: 0 16px 32px rgba(98, 91, 113, 0.28);
 }
 
-.contact-links a:nth-child(3) {
+.contact-links a.email {
   background: var(--color-tertiary);
   box-shadow: 0 16px 30px rgba(125, 82, 96, 0.3);
 }
@@ -284,7 +286,6 @@ footer a {
 .contact-links a:hover {
   transform: translateY(-2px);
   box-shadow: 0 24px 48px rgba(29, 25, 43, 0.28);
-  color: #ffffff;
 }
 
 .intro-image img {
@@ -536,7 +537,6 @@ footer a {
 .skill-badge:hover {
   transform: translateY(-2px);
   box-shadow: 0 20px 40px rgba(29, 25, 43, 0.2);
-  color: var(--badge-text);
 }
 
 @keyframes float {
