@@ -478,6 +478,7 @@ footer a:hover {
   border: 1px solid var(--badge-border);
   box-shadow: 0 10px 24px rgba(88, 70, 45, 0.12);
   color: var(--badge-text);
+  text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
