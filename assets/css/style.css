@@ -24,6 +24,7 @@ body {
   font-family: var(--font-family-base);
   line-height: 1.7;
   color: var(--text-primary);
+  background-color: var(--background-primary);
   background: linear-gradient(180deg, rgba(246, 241, 231, 0.96), rgba(243, 235, 220, 0.88));
   margin: 0;
   padding: 0;
@@ -172,7 +173,7 @@ footer a {
   flex-wrap: wrap;
   padding: clamp(2.5rem, 7vw, 4rem);
   margin-bottom: 36px;
-  background: var(--surface-elevated);
+  background: var(--surface-card);
   border: 1px solid var(--border-color);
   border-radius: 32px;
   box-shadow: var(--soft-shadow);
