@@ -1,11 +1,15 @@
-/* General styles */
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Work+Sans:wght@400;500;600&display=swap');
-
 :root {
   --text-primary: #2a2a2a;
   --text-secondary: #5b564f;
   --background-primary: #f8f5ef;
   --accent-color: #0b5ba5;
+  --accent-color-hover: #073864;
+  --heading-color: #1e1b16;
+  --image-border-color: rgba(255, 255, 255, 0.85);
+  --shadow-color-rgb: 15, 23, 42;
+  --border-color-light: rgba(0, 0, 0, 0.06);
+  --timeline-body-bg: rgba(255, 255, 255, 0.92);
+  --card-bg: rgba(255, 255, 255, 0.95);
   --border-color: #ded6c8;
   --header-height: 80px;
   --font-family-base: 'Source Serif 4', 'Georgia', 'Times New Roman', serif;
@@ -54,7 +58,7 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: #073864;
+  color: var(--accent-color-hover);
 }
 
 h1 { font-size: 2.35rem; }
@@ -69,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
   margin-top: 2.2em;
   margin-bottom: 0.6em;
-  color: #1e1b16;
+  color: var(--heading-color);
 }
 
 p {
@@ -193,8 +197,8 @@ footer a {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.18);
+  border: 3px solid var(--image-border-color);
+  box-shadow: 0 18px 32px rgba(var(--shadow-color-rgb), 0.18);
 }
 
 .intro-image {
@@ -206,7 +210,7 @@ footer a {
 
 .content-section {
   padding: 32px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 1px solid var(--border-color-light);
 }
 
 .content-section h2 {
@@ -268,11 +272,11 @@ footer a {
 }
 
 .timeline-body {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: var(--timeline-body-bg);
+  border: 1px solid var(--border-color-light);
   border-radius: 16px;
   padding: 20px 24px;
-  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 35px rgba(var(--shadow-color-rgb), 0.1);
 }
 
 .timeline-body h3 {
@@ -321,11 +325,11 @@ footer a {
 }
 
 .skills-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: var(--card-bg);
+  border: 1px solid rgba(var(--shadow-color-rgb), 0.08);
   border-radius: 18px;
   padding: 24px;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 40px rgba(var(--shadow-color-rgb), 0.1);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -334,7 +338,7 @@ footer a {
 
 .skills-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 28px 50px rgba(15, 23, 42, 0.16);
+  box-shadow: 0 28px 50px rgba(var(--shadow-color-rgb), 0.16);
 }
 
 .card-header {
@@ -352,7 +356,7 @@ footer a {
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
-  color: #0b5ba5;
+  color: var(--accent-color);
   box-shadow: inset 0 0 0 1px rgba(0, 122, 255, 0.25);
   animation: float 8s ease-in-out infinite;
 }
@@ -370,7 +374,7 @@ footer a {
 
 .skill-badge {
   --badge-surface: #ffffff;
-  --badge-border: rgba(15, 23, 42, 0.12);
+  --badge-border: rgba(var(--shadow-color-rgb), 0.12);
   --badge-text: #0f172a;
   display: inline-flex;
   align-items: center;
@@ -379,7 +383,7 @@ footer a {
   border-radius: 999px;
   background: var(--badge-surface);
   border: 1px solid var(--badge-border);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 22px rgba(var(--shadow-color-rgb), 0.08);
   color: var(--badge-text);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -398,7 +402,7 @@ footer a {
 
 .skill-badge:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+  box-shadow: 0 14px 30px rgba(var(--shadow-color-rgb), 0.16);
 }
 
 @keyframes float {
@@ -494,7 +498,7 @@ footer a {
   .skills-card:hover,
   .skill-badge:hover {
     transform: none;
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 20px 45px rgba(var(--shadow-color-rgb), 0.12);
   }
 }
 
