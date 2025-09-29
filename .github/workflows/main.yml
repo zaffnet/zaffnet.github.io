@@ -1,32 +1,76 @@
-name: Update Branches
+name: Update all branches from main
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update-branches:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout full history
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # need full history to rebase/merge
+          fetch-depth: 0
 
-      - name: Set up Git
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Update all branches
+      - name: Get branch list (exclude main)
+        id: branches
         run: |
-          branches=$(git for-each-ref --format='%(refname:short)' refs/remotes/origin | grep -v '^origin/main$' | sed 's|^origin/||')
-          for branch in $branches; do
-            echo "Updating $branch"
-            git checkout "$branch"
-            git pull origin "$branch"
-            git merge origin/main || true
-            git push origin "$branch"
-          done
+          mapfile -t BRANCHES < <(git ls-remote --heads origin | awk -F/ '{print $3}' | grep -v '^main$')
+          printf '%s\n' "${BRANCHES[@]}" > /tmp/branches.txt
+          echo "count=${#BRANCHES[@]}" >> $GITHUB_OUTPUT
+
+      - name: Update each branch
+        if: steps.branches.outputs.count != '0'
+        run: |
+          set -euo pipefail
+          git fetch origin --prune
+          : > /tmp/conflicts.log
+
+          while read -r BR; do
+            echo "=== Processing $BR ==="
+            WT="../wt-$BR"
+            git worktree add "$WT" "refs/remotes/origin/$BR"
+            pushd "$WT" >/dev/null
+
+            # Try merge from main into BR. Choose policy as needed:
+            #   plain merge:        git merge origin/main
+            #   prefer main files:  git merge -X theirs origin/main
+            #   prefer branch:      git merge -X ours origin/main
+            set +e
+            git merge origin/main -m "chore: merge main into $BR"
+            MSTATUS=$?
+            set -e
+
+            if [ $MSTATUS -eq 0 ]; then
+              echo "Merged cleanly. Pushing $BR."
+              git push origin HEAD:"$BR"
+            else
+              echo "Conflict on $BR. Aborting and skipping." | tee -a /tmp/conflicts.log
+              # Capture conflicted files for logs
+              git diff --name-only --diff-filter=U >> /tmp/conflicts.log || true
+              git merge --abort || true
+            fi
+
+            popd >/dev/null
+            git worktree remove "$WT" --force
+          done < /tmp/branches.txt
+
+      - name: Summarize conflicts
+        if: always()
+        run: |
+          if [ -s /tmp/conflicts.log ]; then
+            echo "Some branches had conflicts and were skipped:"
+            cat /tmp/conflicts.log
+          else
+            echo "No conflicts."
+          fi
