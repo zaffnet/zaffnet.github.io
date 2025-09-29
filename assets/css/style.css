@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Work+Sans:wght@500;600;700&display=swap');
-
 /* General styles */
 :root {
   --text-primary: #2d261f;
@@ -159,17 +157,12 @@ header nav {
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(58, 107, 143, 0.18), rgba(58, 107, 143, 0.35));
   color: var(--accent-color-strong);
-  text-decoration: none;
-  position: relative;
-}
-
-.nav-logo::after {
-  content: "ZM";
   font-family: var(--font-family-heading);
   font-weight: 600;
   letter-spacing: 0.16em;
   font-size: 0.75rem;
-  color: var(--accent-color-strong);
+  text-decoration: none;
+  position: relative;
 }
 
 .nav-logo:hover {
