@@ -1,50 +1,91 @@
-- name: Update each branch
-  if: steps.branches.outputs.count != '0'
-  run: |
-    set -euo pipefail
-    git fetch origin --prune
+name: Update all branches from main
 
-    : > /tmp/conflicts.log
-    while read -r BR; do
-      [ -z "$BR" ] && continue
-      echo "=== Processing $BR ==="
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
-      # Skip if remote branch no longer exists
-      if ! git ls-remote --heads origin "$BR" >/dev/null; then
-        echo "Remote branch missing: $BR. Skipping."
-        continue
-      fi
+permissions:
+  contents: write
 
-      WT="$(mktemp -d -p .. wt-$BR-XXXXXXXX)"
-      cleanup() { git worktree remove "$WT" --force >/dev/null 2>&1 || true; }
-      trap 'cleanup' RETURN
+jobs:
+  update-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # Create isolated worktree at remote tip
-      git worktree add "$WT" "refs/remotes/origin/$BR"
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      pushd "$WT" >/dev/null
+      - name: Get branch list (exclude main)
+        id: branches
+        run: |
+          mapfile -t BRANCHES < <(git ls-remote --heads origin | awk -F/ '{print $3}' | grep -v '^main$')
+          printf '%s\n' "${BRANCHES[@]}" > /tmp/branches.txt
+          echo "count=${#BRANCHES[@]}" >> $GITHUB_OUTPUT
 
-      # Merge main into branch. Choose policy as needed.
-      set +e
-      git merge origin/main -m "chore: merge main into $BR"
-      MSTATUS=$?
-      set -e
+      - name: Update each branch
+        if: steps.branches.outputs.count != '0'
+        run: |
+          set -euo pipefail
+          git fetch origin --prune
+      
+          : > /tmp/conflicts.log
+          while read -r BR; do
+            [ -z "$BR" ] && continue
+            echo "=== Processing $BR ==="
+      
+            # Skip if remote branch no longer exists
+            if ! git ls-remote --heads origin "$BR" >/dev/null; then
+              echo "Remote branch missing: $BR. Skipping."
+              continue
+            fi
+      
+            WT="$(mktemp -d -p .. wt-$BR-XXXXXXXX)"
+            cleanup() { git worktree remove "$WT" --force >/dev/null 2>&1 || true; }
+            trap 'cleanup' RETURN
+      
+            # Create isolated worktree at remote tip
+            git worktree add "$WT" "refs/remotes/origin/$BR"
+      
+            pushd "$WT" >/dev/null
+      
+            # Merge main into branch. Choose policy as needed.
+            set +e
+            git merge origin/main -m "chore: merge main into $BR"
+            MSTATUS=$?
+            set -e
+      
+            if [ $MSTATUS -eq 0 ]; then
+              git push origin HEAD:"$BR"
+              echo "Pushed $BR"
+            else
+              echo "Conflict on $BR. Aborting and skipping." | tee -a /tmp/conflicts.log
+              git merge --abort || true
+            fi
+      
+            popd >/dev/null
+            # worktree removed by trap
+          done < /tmp/branches.txt
+      
+          if [ -s /tmp/conflicts.log ]; then
+            echo "Summary of conflicts:"
+            cat /tmp/conflicts.log
+          else
+            echo "No conflicts."
+          fi
 
-      if [ $MSTATUS -eq 0 ]; then
-        git push origin HEAD:"$BR"
-        echo "Pushed $BR"
-      else
-        echo "Conflict on $BR. Aborting and skipping." | tee -a /tmp/conflicts.log
-        git merge --abort || true
-      fi
-
-      popd >/dev/null
-      # worktree removed by trap
-    done < /tmp/branches.txt
-
-    if [ -s /tmp/conflicts.log ]; then
-      echo "Summary of conflicts:"
-      cat /tmp/conflicts.log
-    else
-      echo "No conflicts."
-    fi
+      - name: Summarize conflicts
+        if: always()
+        run: |
+          if [ -s /tmp/conflicts.log ]; then
+            echo "Some branches had conflicts and were skipped:"
+            cat /tmp/conflicts.log
+          else
+            echo "No conflicts."
+          fi
