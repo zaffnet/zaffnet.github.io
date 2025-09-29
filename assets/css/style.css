@@ -3,11 +3,14 @@
   --text-primary: #2f2a24;
   --text-secondary: #6d6259;
   --background-primary: #fdf8f4;
+  --background-secondary: #f7efe5;
   --background-surface: #ffffff;
   --background-tint: rgba(255, 255, 255, 0.82);
   --accent-color: #3f6d79;
+  --accent-color-hover: #2b5360;
   --accent-soft: rgba(63, 109, 121, 0.1);
   --border-color: rgba(125, 105, 91, 0.18);
+  --text-heading: #2c2b28;
   --header-height: 80px;
   --font-family-base: 'Source Serif 4', 'Iowan Old Style', 'Palatino', 'Georgia', serif;
   --font-family-heading: 'Work Sans', 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -18,7 +21,7 @@ body {
   font-size: clamp(0.95rem, 0.9rem + 0.18vw, 1.05rem);
   line-height: 1.75;
   color: var(--text-primary);
-  background: linear-gradient(180deg, var(--background-primary) 0%, #f7efe5 100%);
+  background: linear-gradient(180deg, var(--background-primary) 0%, var(--background-secondary) 100%);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -55,7 +58,7 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: #2b5360;
+  color: var(--accent-color-hover);
 }
 
 h1 { font-size: clamp(2.1rem, 1.8rem + 1vw, 2.6rem); }
@@ -70,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.35;
   margin-top: 2em;
   margin-bottom: 0.5em;
-  color: #2c2b28;
+  color: var(--text-heading);
 }
 
 p {
@@ -105,7 +108,7 @@ header nav {
   justify-content: center;
   width: 48px;
   height: 100%;
-  color: #2f2a24;
+  color: var(--text-primary);
   font-family: var(--font-family-heading);
   letter-spacing: 0.08em;
 }
@@ -144,7 +147,7 @@ main {
 footer {
   text-align: center;
   padding: 48px 0;
-  border-top: 1px solid rgba(125, 105, 91, 0.18);
+  border-top: 1px solid var(--border-color);
   color: var(--text-secondary);
   font-size: 0.9rem;
   background: rgba(253, 248, 244, 0.75);
@@ -579,13 +582,6 @@ footer a {
 }
 
 /* Blog styles */
-.home-container {
-  width: 100%;
-  max-width: min(1040px, 92vw);
-  margin: 0 auto;
-  padding: 0 1.75rem;
-  box-sizing: border-box;
-}
 
 .blog-container {
   width: 100%;
