@@ -25,37 +25,38 @@ jobs:
       - name: Get branch list (exclude main)
         id: branches
         run: |
-          mapfile -t BRANCHES < <(git ls-remote --heads origin | awk -F/ '{print $3}' | grep -v '^main$')
-          printf '%s\n' "${BRANCHES[@]}" > /tmp/branches.txt
-          echo "count=${#BRANCHES[@]}" >> $GITHUB_OUTPUT
-
+          # Preserve full branch names like codex/foo
+          git for-each-ref --format='%(refname:short)' refs/remotes/origin \
+            | sed 's|^origin/||' \
+            | grep -v '^main$' \
+            > /tmp/branches.txt
+          echo "count=$(wc -l < /tmp/branches.txt)" >> "$GITHUB_OUTPUT"
+      
       - name: Update each branch
         if: steps.branches.outputs.count != '0'
         run: |
           set -euo pipefail
           git fetch origin --prune
-      
           : > /tmp/conflicts.log
+      
           while read -r BR; do
             [ -z "$BR" ] && continue
             echo "=== Processing $BR ==="
       
-            # Skip if remote branch no longer exists
+            # Skip if remote branch missing
             if ! git ls-remote --heads origin "$BR" >/dev/null; then
               echo "Remote branch missing: $BR. Skipping."
               continue
             fi
       
-            WT="$(mktemp -d -p .. wt-$BR-XXXXXXXX)"
+            # Worktree dir cannot contain slashes
+            WT="$(mktemp -d -p .. "wt-$(printf '%s' "$BR" | tr '/' '-')-XXXXXXXX")"
             cleanup() { git worktree remove "$WT" --force >/dev/null 2>&1 || true; }
             trap 'cleanup' RETURN
       
-            # Create isolated worktree at remote tip
             git worktree add "$WT" "refs/remotes/origin/$BR"
-      
             pushd "$WT" >/dev/null
       
-            # Merge main into branch. Choose policy as needed.
             set +e
             git merge origin/main -m "chore: merge main into $BR"
             MSTATUS=$?
@@ -70,12 +71,11 @@ jobs:
             fi
       
             popd >/dev/null
-            # worktree removed by trap
+            # cleanup via trap
           done < /tmp/branches.txt
       
           if [ -s /tmp/conflicts.log ]; then
-            echo "Summary of conflicts:"
-            cat /tmp/conflicts.log
+            echo "Summary of conflicts:"; cat /tmp/conflicts.log
           else
             echo "No conflicts."
           fi
