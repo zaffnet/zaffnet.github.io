@@ -1,24 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap');
+
 /* General styles */
 :root {
-  --text-primary: #333;
-  --text-secondary: #555;
-  --background-primary: #fff;
-  --accent-color: #007aff;
-  --border-color: #e5e5e5;
+  --text-primary: #2c241d;
+  --text-secondary: #5d534a;
+  --background-primary: #fdf8f1;
+  --background-elevated: #ffffff;
+  --accent-color: #bb5a2b;
+  --border-color: #e6d9c7;
   --header-height: 80px;
-  --font-family-base: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-family-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-base: 'Source Serif 4', 'Source Serif Pro', 'Iowan Old Style', 'Palatino', 'Georgia', serif;
+  --font-family-heading: 'Source Sans 3', 'Work Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body {
   font-family: var(--font-family-base);
-  line-height: 1.6;
+  font-size: 0.96rem;
+  line-height: 1.7;
   color: var(--text-primary);
   background-color: var(--background-primary);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  font-size: 1.02em;
+  max-width: 72ch;
 }
 
 .container {
@@ -52,16 +61,16 @@ a:hover {
   text-decoration: underline;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4, h5, h6 { font-size: 1.25rem; }
+h1 { font-size: clamp(2.1rem, 5vw, 2.6rem); }
+h2 { font-size: clamp(1.65rem, 4vw, 2rem); }
+h3 { font-size: clamp(1.28rem, 3vw, 1.55rem); }
+h4, h5, h6 { font-size: 1.18rem; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-heading);
   font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.3;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
   margin-top: 2em;
   margin-bottom: 0.5em;
 }
@@ -107,7 +116,7 @@ header nav ul {
 
 /* Main content */
 main {
-  padding: 40px 0;
+  padding: 40px 0 60px;
 }
 
 /* Footer */
@@ -143,18 +152,20 @@ footer a {
 
 .intro-text h1 {
   margin-top: 0;
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 3rem);
+  font-weight: 600;
 }
 
 .intro-text .subtitle {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
 .intro-description {
   margin-top: 1.2rem;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   color: var(--text-secondary);
 }
 
@@ -208,7 +219,7 @@ footer a {
   top: 4px;
   bottom: 4px;
   width: var(--timeline-line-width);
-  background: linear-gradient(180deg, rgba(0, 122, 255, 0.45), rgba(0, 122, 255, 0));
+  background: linear-gradient(180deg, rgba(187, 90, 43, 0.45), rgba(187, 90, 43, 0));
 }
 
 .timeline-item {
@@ -230,8 +241,8 @@ footer a {
   width: var(--timeline-marker-diameter);
   height: var(--timeline-marker-diameter);
   border-radius: 50%;
-  background: linear-gradient(135deg, #007aff, #4fb6ff);
-  box-shadow: 0 0 0 6px rgba(0, 122, 255, 0.15);
+  background: linear-gradient(135deg, #c0632f, #f4a259);
+  box-shadow: 0 0 0 6px rgba(187, 90, 43, 0.15);
   animation: pulse 6s ease-in-out infinite;
 }
 
@@ -242,16 +253,16 @@ footer a {
 }
 
 .timeline-body {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 14px;
-  padding: 18px 22px;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  background: var(--background-elevated);
+  border: 1px solid rgba(187, 90, 43, 0.08);
+  border-radius: 16px;
+  padding: 18px 24px;
+  box-shadow: 0 18px 36px rgba(77, 54, 35, 0.08);
 }
 
 .timeline-body h3 {
   margin-top: 0;
-  font-size: 1.3rem;
+  font-size: 1.22rem;
 }
 
 .timeline-body p {
@@ -265,17 +276,18 @@ footer a {
 .timeline-organization {
   font-style: italic;
   color: var(--text-secondary);
+  letter-spacing: 0.01em;
 }
 
 @keyframes pulse {
   0%,
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 6px rgba(0, 122, 255, 0.15);
+    box-shadow: 0 0 0 6px rgba(187, 90, 43, 0.15);
   }
   50% {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 10px rgba(0, 122, 255, 0.1);
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px rgba(187, 90, 43, 0.12);
   }
 }
 
@@ -293,11 +305,11 @@ footer a {
 }
 
 .skills-card {
-  background: #ffffff;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: var(--background-elevated);
+  border: 1px solid rgba(187, 90, 43, 0.08);
   border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+  padding: 22px;
+  box-shadow: 0 22px 45px rgba(77, 54, 35, 0.08);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -306,7 +318,7 @@ footer a {
 
 .skills-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 28px 50px rgba(15, 23, 42, 0.16);
+  box-shadow: 0 26px 50px rgba(77, 54, 35, 0.14);
 }
 
 .card-header {
@@ -319,13 +331,13 @@ footer a {
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(0, 122, 255, 0.15), rgba(0, 122, 255, 0.35));
+  background: linear-gradient(135deg, rgba(187, 90, 43, 0.16), rgba(244, 162, 89, 0.32));
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
-  color: #0052a3;
-  box-shadow: inset 0 0 0 1px rgba(0, 122, 255, 0.25);
+  color: #7c3618;
+  box-shadow: inset 0 0 0 1px rgba(187, 90, 43, 0.25);
   animation: float 8s ease-in-out infinite;
 }
 
@@ -342,8 +354,8 @@ footer a {
 
 .skill-badge {
   --badge-surface: #ffffff;
-  --badge-border: rgba(15, 23, 42, 0.12);
-  --badge-text: #0f172a;
+  --badge-border: rgba(187, 90, 43, 0.16);
+  --badge-text: #2c241d;
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
@@ -351,7 +363,7 @@ footer a {
   border-radius: 999px;
   background: var(--badge-surface);
   border: 1px solid var(--badge-border);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 20px rgba(77, 54, 35, 0.08);
   color: var(--badge-text);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -363,14 +375,14 @@ footer a {
 }
 
 .skill-name {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
 
 .skill-badge:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+  box-shadow: 0 16px 32px rgba(77, 54, 35, 0.14);
 }
 
 @keyframes float {
@@ -383,21 +395,21 @@ footer a {
   }
 }
 
-.skill-python { --badge-surface: rgba(55, 118, 171, 0.15); --badge-border: rgba(55, 118, 171, 0.35); --badge-text: #0b1f33; }
-.skill-cpp { --badge-surface: rgba(0, 89, 156, 0.14); --badge-border: rgba(0, 68, 130, 0.35); }
-.skill-javascript { --badge-surface: rgba(247, 223, 30, 0.22); --badge-border: rgba(240, 180, 0, 0.38); --badge-text: #3c2a00; }
-.skill-pytorch { --badge-surface: rgba(238, 76, 44, 0.16); --badge-border: rgba(238, 76, 44, 0.4); }
-.skill-nemo { --badge-surface: rgba(118, 185, 0, 0.18); --badge-border: rgba(118, 185, 0, 0.36); --badge-text: #0c1a00; }
-.skill-huggingface { --badge-surface: rgba(255, 204, 77, 0.22); --badge-border: rgba(255, 157, 77, 0.4); --badge-text: #3a2200; }
-.skill-spacy { --badge-surface: rgba(9, 163, 213, 0.16); --badge-border: rgba(9, 163, 213, 0.36); }
-.skill-langchain { --badge-surface: rgba(10, 92, 74, 0.18); --badge-border: rgba(28, 193, 141, 0.36); --badge-text: #0a2f26; }
-.skill-langgraph { --badge-surface: rgba(60, 47, 128, 0.18); --badge-border: rgba(60, 47, 128, 0.36); }
-.skill-llamaindex { --badge-surface: rgba(255, 111, 97, 0.18); --badge-border: rgba(255, 111, 97, 0.36); }
-.skill-ragas { --badge-surface: rgba(29, 151, 108, 0.18); --badge-border: rgba(29, 151, 108, 0.36); --badge-text: #053321; }
-.skill-vllm { --badge-surface: rgba(59, 130, 246, 0.18); --badge-border: rgba(147, 51, 234, 0.32); }
-.skill-docker { --badge-surface: rgba(13, 183, 237, 0.16); --badge-border: rgba(6, 109, 165, 0.36); }
-.skill-kubernetes { --badge-surface: rgba(50, 108, 229, 0.16); --badge-border: rgba(50, 108, 229, 0.36); }
-.skill-ecs { --badge-surface: rgba(255, 153, 0, 0.2); --badge-border: rgba(255, 153, 0, 0.4); --badge-text: #4d2e00; }
+.skill-python { --badge-surface: rgba(55, 118, 171, 0.14); --badge-border: rgba(55, 118, 171, 0.3); --badge-text: #0b1f33; }
+.skill-cpp { --badge-surface: rgba(0, 89, 156, 0.12); --badge-border: rgba(0, 68, 130, 0.28); }
+.skill-javascript { --badge-surface: rgba(247, 223, 30, 0.18); --badge-border: rgba(240, 180, 0, 0.3); --badge-text: #3c2a00; }
+.skill-pytorch { --badge-surface: rgba(238, 76, 44, 0.14); --badge-border: rgba(238, 76, 44, 0.32); }
+.skill-nemo { --badge-surface: rgba(118, 185, 0, 0.15); --badge-border: rgba(118, 185, 0, 0.3); --badge-text: #0c1a00; }
+.skill-huggingface { --badge-surface: rgba(255, 204, 77, 0.18); --badge-border: rgba(255, 157, 77, 0.32); --badge-text: #3a2200; }
+.skill-spacy { --badge-surface: rgba(9, 163, 213, 0.14); --badge-border: rgba(9, 163, 213, 0.3); }
+.skill-langchain { --badge-surface: rgba(10, 92, 74, 0.15); --badge-border: rgba(28, 193, 141, 0.3); --badge-text: #0a2f26; }
+.skill-langgraph { --badge-surface: rgba(60, 47, 128, 0.15); --badge-border: rgba(60, 47, 128, 0.3); }
+.skill-llamaindex { --badge-surface: rgba(255, 111, 97, 0.15); --badge-border: rgba(255, 111, 97, 0.3); }
+.skill-ragas { --badge-surface: rgba(29, 151, 108, 0.15); --badge-border: rgba(29, 151, 108, 0.3); --badge-text: #053321; }
+.skill-vllm { --badge-surface: rgba(59, 130, 246, 0.15); --badge-border: rgba(147, 51, 234, 0.28); }
+.skill-docker { --badge-surface: rgba(13, 183, 237, 0.14); --badge-border: rgba(6, 109, 165, 0.3); }
+.skill-kubernetes { --badge-surface: rgba(50, 108, 229, 0.14); --badge-border: rgba(50, 108, 229, 0.3); }
+.skill-ecs { --badge-surface: rgba(255, 153, 0, 0.18); --badge-border: rgba(255, 153, 0, 0.32); --badge-text: #4d2e00; }
 .skill-kubeflow { --badge-surface: rgba(0, 125, 174, 0.18); --badge-border: rgba(0, 125, 174, 0.38); }
 .skill-bedrock { --badge-surface: rgba(35, 47, 62, 0.16); --badge-border: rgba(255, 153, 0, 0.38); --badge-text: #101722; }
 .skill-sagemaker { --badge-surface: rgba(27, 127, 121, 0.16); --badge-border: rgba(27, 127, 121, 0.36); }
@@ -466,7 +478,7 @@ footer a {
   .skills-card:hover,
   .skill-badge:hover {
     transform: none;
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 20px 45px rgba(77, 54, 35, 0.12);
   }
 }
 
