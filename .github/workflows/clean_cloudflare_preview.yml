@@ -28,6 +28,9 @@ jobs:
       - name: Delete preview deployments for branch
         env:
           BRANCH: ${{ steps.b.outputs.branch }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}   # scope: Pages Read+Write
+          CF_PROJECT:    ${{ secrets.CF_PAGES_PROJECT }}
         run: |
           echo "Target branch: $BRANCH"
           BASE="https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects/$CF_PROJECT/deployments"
