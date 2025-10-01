@@ -130,7 +130,7 @@ h6 {
 header {
   display: flex;
   justify-content: center;
-  padding: clamp(1.4rem, 3vw, 2.4rem) 0 0;
+  padding: clamp(1rem, 2vw, 1.75rem) 0 clamp(0.75rem, 2vw, 1.5rem);
 }
 
 header nav {
@@ -138,10 +138,12 @@ header nav {
   justify-content: flex-end;
   align-items: center;
   width: min(960px, 92vw);
-  padding: 0 clamp(1.4rem, 3vw, 2.2rem);
+  padding: 0 clamp(1rem, 4vw, 1.75rem);
   box-sizing: border-box;
   border-bottom: 1px solid var(--surface-border);
   background: transparent;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  flex-wrap: wrap;
 }
 
 header nav ul {
@@ -149,17 +151,18 @@ header nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(1rem, 3vw, 1.75rem);
+  justify-content: flex-end;
 }
 
 header nav li a {
   font-family: var(--font-family-heading);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-primary);
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
 }
 
 header nav li a:hover {
