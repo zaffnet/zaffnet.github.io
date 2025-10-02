@@ -18,8 +18,7 @@
 <body class="{% if page.layout == 'post' %}post-page {% endif %}{% if page.url == '/' or page.permalink == '/' %}home-page {% endif %}{% if page.url == '/blogs/' or page.permalink == '/blogs/' %}blogs-page{% endif %}">
   <div class="container">
     <header>
-      <nav>
-        <a href="{{ "/" | relative_url }}" class="nav-logo" aria-label="Homepage"></a>
+      <nav aria-label="Primary">
         <ul>
           <li><a href="{{ "/" | relative_url }}">Home</a></li>
           <li><a href="{{ "/blogs" | relative_url }}">Blogs</a></li>
