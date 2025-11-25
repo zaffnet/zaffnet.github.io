@@ -3,8 +3,8 @@ layout: post
 title: "Building qareen: My Experience with Multi-Agent Coding"
 desc: "Reflections on building a multimodal few-shot framework using a swarm of AI coding agents."
 keywords: "AI Agents, Coding Assistants, qareen, Multimodal AI, LLM-as-a-Judge"
-date:   2025-11-25 00:00:00 +0000
-lastmod: 2025-11-25 00:00:00 +0000
+date:   2025-11-23 00:00:00 +0000
+lastmod: 2025-11-23 00:00:00 +0000
 comments: true
 permalink: building-qareen-agents
 ---
