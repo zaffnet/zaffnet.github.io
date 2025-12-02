@@ -1,0 +1,65 @@
+<svg width="760" height="420" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">Persona vector steering overview</title>
+  <desc id="desc">Diagram showing how persona vectors are detected with linear probes, monitored, and used to steer model responses.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#cbd5e1"/>
+    </marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+  </defs>
+  <rect width="760" height="420" fill="url(#bg)"/>
+  <text x="380" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">Detect, measure, steer</text>
+  <text x="380" y="52" text-anchor="middle" font-family="'Inter', Arial" font-size="13" fill="#94a3b8">Linear probes + activation logging, exactly as in the paper</text>
+
+  <g transform="translate(50,90)" font-family="'Inter', Arial" fill="#e2e8f0" font-size="12">
+    <rect x="0" y="0" width="200" height="110" fill="#1e293b" rx="14"/>
+    <text x="100" y="24" text-anchor="middle" font-size="14">Contrast prompts</text>
+    <text x="100" y="48" text-anchor="middle">trait vs neutral pairs</text>
+    <text x="100" y="70" text-anchor="middle">collect hidden states</text>
+  </g>
+
+  <g transform="translate(280,80)" font-family="'Inter', Arial" fill="#e2e8f0" font-size="12">
+    <rect x="0" y="0" width="200" height="130" fill="#0ea5e9" rx="14" opacity="0.9"/>
+    <text x="100" y="24" text-anchor="middle" font-size="14">Linear probe</text>
+    <text x="100" y="48" text-anchor="middle">logistic regression</text>
+    <text x="100" y="70" text-anchor="middle">find separating direction</text>
+    <text x="100" y="92" text-anchor="middle">keeps base weights frozen</text>
+  </g>
+
+  <g transform="translate(510,90)" font-family="'Inter', Arial" fill="#e2e8f0" font-size="12">
+    <rect x="0" y="0" width="200" height="110" fill="#22c55e" rx="14" opacity="0.9"/>
+    <text x="100" y="24" text-anchor="middle" font-size="14">Persona vector v</text>
+    <text x="100" y="48" text-anchor="middle">direction in activation space</text>
+    <text x="100" y="70" text-anchor="middle">validated by editing activations</text>
+  </g>
+
+  <g transform="translate(150,240)" font-family="'Inter', Arial" fill="#e2e8f0" font-size="12">
+    <rect x="0" y="0" width="210" height="120" fill="#1d4ed8" rx="14" opacity="0.9"/>
+    <text x="105" y="24" text-anchor="middle" font-size="14">Monitor</text>
+    <text x="105" y="48" text-anchor="middle">log |h · v| per turn</text>
+    <text x="105" y="70" text-anchor="middle">alert when magnitude spikes</text>
+    <text x="105" y="92" text-anchor="middle">pairs with human review</text>
+  </g>
+
+  <g transform="translate(400,240)" font-family="'Inter', Arial" fill="#e2e8f0" font-size="12">
+    <rect x="0" y="0" width="240" height="120" fill="#f97316" rx="14" opacity="0.9"/>
+    <text x="120" y="24" text-anchor="middle" font-size="14">Steer response</text>
+    <text x="120" y="48" text-anchor="middle">add or subtract v at strength α</text>
+    <text x="120" y="70" text-anchor="middle">keeps tone in-bounds</text>
+    <text x="120" y="92" text-anchor="middle">log edits for audit</text>
+  </g>
+
+  <g stroke="#cbd5e1" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity="0.85">
+    <path d="M250 145 L280 145"/>
+    <path d="M480 145 L510 145"/>
+    <path d="M360 190 L360 240"/>
+    <path d="M580 190 L580 240"/>
+  </g>
+
+  <g fill="#cbd5e1" font-family="'Inter', Arial" font-size="12">
+    <text x="380" y="390" text-anchor="middle">Same knobs used for mitigation, monitoring, and data flagging.</text>
+  </g>
+</svg>

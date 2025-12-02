@@ -1,0 +1,60 @@
+<svg width="760" height="420" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">Roles in the qareen build</title>
+  <desc id="desc">Timeline of planner, builders, critic, and UI helper contributions while coding qareen.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="760" height="420" fill="#0b1224"/>
+  <text x="380" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">How the agents split the work</text>
+  <text x="380" y="52" text-anchor="middle" font-family="'Inter', Arial" font-size="13" fill="#94a3b8">Based on the actual qareen build log: plan → code → critique → demo</text>
+
+  <g transform="translate(60,80)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="0" width="620" height="90" rx="16" fill="#111827"/>
+    <text x="20" y="26" font-size="14">Planner</text>
+    <text x="20" y="52" font-size="12">Writes briefs for reranker, eval harness, and UI; tags acceptance criteria.</text>
+    <text x="20" y="72" font-size="12">Keeps scope tight so builders do not wander.</text>
+    <rect x="460" y="18" width="140" height="54" rx="10" fill="#22d3ee" opacity="0.8"/>
+    <text x="530" y="48" text-anchor="middle" font-size="14" fill="#0b1224">Tickets + boundaries</text>
+  </g>
+
+  <g transform="translate(60,190)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="0" width="620" height="90" rx="16" fill="url(#panel)"/>
+    <text x="20" y="26" font-size="14">Builders</text>
+    <text x="20" y="52" font-size="12">Ship retriever + reranker code, run eval notebooks, document the CLI.</text>
+    <text x="20" y="72" font-size="12">Pair with UI helper when weights need live tweaking.</text>
+    <rect x="460" y="18" width="140" height="54" rx="10" fill="#f8fafc" opacity="0.9"/>
+    <text x="530" y="48" text-anchor="middle" font-size="14" fill="#0ea5e9">PRs + notebooks</text>
+  </g>
+
+  <g transform="translate(60,300)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="0" width="300" height="90" rx="16" fill="#7c3aed" opacity="0.9"/>
+    <text x="20" y="28" font-size="14">Critic</text>
+    <text x="20" y="52" font-size="12">Runs linting, sanity checks, small benchmarks.</text>
+    <text x="20" y="72" font-size="12">Flags missing imports before CI.</text>
+  </g>
+
+  <g transform="translate(380,300)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="0" width="300" height="90" rx="16" fill="#f97316" opacity="0.9"/>
+    <text x="20" y="28" font-size="14">UI helper</text>
+    <text x="20" y="52" font-size="12">Tweaks Gradio sliders for modality weights.</text>
+    <text x="20" y="72" font-size="12">Screenshare demos for human review.</text>
+  </g>
+
+  <g stroke="#cbd5e1" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity="0.8">
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+        <path d="M0 0 L10 5 L0 10 z" fill="#cbd5e1"/>
+      </marker>
+    </defs>
+    <path d="M370 125 L370 190"/>
+    <path d="M370 235 L370 300"/>
+    <path d="M360 345 L380 345"/>
+  </g>
+
+  <g fill="#cbd5e1" font-family="'Inter', Arial" font-size="12">
+    <text x="380" y="392" text-anchor="middle">Loop repeats until the human review signs off the release.</text>
+  </g>
+</svg>
