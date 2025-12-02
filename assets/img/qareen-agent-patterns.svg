@@ -1,58 +1,57 @@
-<svg width="940" height="420" viewBox="0 0 940 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Agent design patterns used while building qareen</title>
-  <desc id="desc">Six patterns: planner-builder loop, critic pass, router to tools, replay buffer, UI feedback, and human taste checks.</desc>
-  <style>
-    text { font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #0f172a; }
-    .label { font-size: 15px; font-weight: 700; }
-    .body { font-size: 12.5px; fill: #1f2937; }
-    .card { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.2; }
-  </style>
-  <rect width="940" height="420" rx="18" fill="#f1f5f9"/>
-  <text x="28" y="40" class="label">Patterns that survived production</text>
-  <text x="28" y="60" class="body">Each box mirrors what actually landed in qareen's workflow; nothing hypothetical.</text>
-
-  <g transform="translate(32, 86)">
-    <rect class="card" x="0" y="0" width="270" height="100" rx="14" fill="#eef2ff" stroke="#c7d2fe"/>
-    <text x="14" y="30" class="label">Planner → Builders</text>
-    <text x="14" y="54" class="body">One planner splits issues into focused diffs</text>
-    <text x="14" y="74" class="body">Builders commit reranker + UI changes</text>
-  </g>
-
-  <g transform="translate(330, 86)">
-    <rect class="card" x="0" y="0" width="270" height="100" rx="14" fill="#ecfdf3" stroke="#bbf7d0"/>
-    <text x="14" y="30" class="label">Critic pass</text>
-    <text x="14" y="54" class="body">Auto linting and unit tests gate merges</text>
-    <text x="14" y="74" class="body">Caught import slips before CI</text>
-  </g>
-
-  <g transform="translate(628, 86)">
-    <rect class="card" x="0" y="0" width="270" height="100" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
-    <text x="14" y="30" class="label">Router to tools</text>
-    <text x="14" y="54" class="body">Lightweight routing picked between</text>
-    <text x="14" y="74" class="body">vector prep, evaluation, or UI scripts</text>
-  </g>
-
-  <g transform="translate(32, 214)">
-    <rect class="card" x="0" y="0" width="270" height="120" rx="14" fill="#e0f2fe" stroke="#bfdbfe"/>
-    <text x="14" y="30" class="label">Replay buffer</text>
-    <text x="14" y="54" class="body">Agent commands + outputs logged per run</text>
-    <text x="14" y="74" class="body">Replayed sequences when tool changes</text>
-    <text x="14" y="94" class="body">shifted results</text>
-  </g>
-
-  <g transform="translate(330, 214)">
-    <rect class="card" x="0" y="0" width="270" height="120" rx="14" fill="#ecfeff" stroke="#a5f3fc"/>
-    <text x="14" y="30" class="label">UI feedback loop</text>
-    <text x="14" y="54" class="body">Gradio sliders for alpha/beta weights</text>
-    <text x="14" y="74" class="body">made reranker behavior visible</text>
-    <text x="14" y="94" class="body">during tuning</text>
-  </g>
-
-  <g transform="translate(628, 214)">
-    <rect class="card" x="0" y="0" width="270" height="120" rx="14" fill="#fff1f2" stroke="#fecdd3"/>
-    <text x="14" y="30" class="label">Human taste check</text>
-    <text x="14" y="54" class="body">Manual review kept outputs relevant</text>
-    <text x="14" y="74" class="body">and stopped over-optimization on</text>
-    <text x="14" y="94" class="body">benchmarks</text>
-  </g>
+<svg width="780" height="380" viewBox="0 0 780 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Patterns that worked in building qareen - hand-drawn style</title>
+  <desc id="desc">Sketchy grid of patterns: planner-builders, critic, router, replay, UI feedback, human review</desc>
+  
+  <!-- Rough paper background -->
+  <rect width="780" height="380" fill="#fffef8"/>
+  
+  <!-- Sketchy title -->
+  <text x="35" y="35" font-family="Comic Sans MS, Marker Felt, cursive" font-size="18" fill="#1e293b" transform="rotate(-0.5 35 35)">Patterns that actually survived</text>
+  <text x="35" y="55" font-family="Comic Sans MS, cursive" font-size="12" fill="#64748b">(after trying a lot that didn't)</text>
+  
+  <!-- Pattern 1: Planner → Builders -->
+  <path d="M30 80 Q32 77 240 82 Q245 85 242 155 Q240 160 28 157 Q25 154 30 80 Z" fill="#e0e7ff" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <text x="50" y="105" font-family="Comic Sans MS, cursive" font-size="13" fill="#4338ca" font-weight="bold">📋→🔨 Planner to Builders</text>
+  <text x="45" y="128" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">One brain, many hands</text>
+  <text x="45" y="145" font-family="Comic Sans MS, cursive" font-size="10" fill="#64748b">Small tasks = fewer mistakes</text>
+  
+  <!-- Pattern 2: Critic pass -->
+  <path d="M270 80 Q272 77 500 82 Q505 85 502 155 Q500 160 268 157 Q265 154 270 80 Z" fill="#dcfce7" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+  <text x="295" y="105" font-family="Comic Sans MS, cursive" font-size="13" fill="#15803d" font-weight="bold">🔍 Critic Pass</text>
+  <text x="285" y="128" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">Linting before human eyes</text>
+  <text x="285" y="145" font-family="Comic Sans MS, cursive" font-size="10" fill="#64748b">Catches the obvious stuff</text>
+  
+  <!-- Pattern 3: Router -->
+  <path d="M530 80 Q532 77 750 82 Q755 85 752 155 Q750 160 528 157 Q525 154 530 80 Z" fill="#ffedd5" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  <text x="560" y="105" font-family="Comic Sans MS, cursive" font-size="13" fill="#c2410c" font-weight="bold">🔀 Tool Router</text>
+  <text x="545" y="128" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">Right tool for the job</text>
+  <text x="545" y="145" font-family="Comic Sans MS, cursive" font-size="10" fill="#64748b">No more hammer for screws</text>
+  
+  <!-- Pattern 4: Replay buffer -->
+  <path d="M30 190 Q32 187 240 192 Q245 195 242 275 Q240 280 28 277 Q25 274 30 190 Z" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+  <text x="55" y="218" font-family="Comic Sans MS, cursive" font-size="13" fill="#1d4ed8" font-weight="bold">📼 Replay Buffer</text>
+  <text x="45" y="242" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">Log every agent action</text>
+  <text x="45" y="260" font-family="Comic Sans MS, cursive" font-size="10" fill="#64748b">"What changed?" → check tape</text>
+  
+  <!-- Pattern 5: UI feedback -->
+  <path d="M270 190 Q272 187 500 192 Q505 195 502 275 Q500 280 268 277 Q265 274 270 190 Z" fill="#cffafe" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+  <text x="300" y="218" font-family="Comic Sans MS, cursive" font-size="13" fill="#0e7490" font-weight="bold">🎛️ UI Feedback Loop</text>
+  <text x="285" y="242" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">Sliders > staring at JSON</text>
+  <text x="285" y="260" font-family="Comic Sans MS, cursive" font-size="10" fill="#64748b">See problems, not just numbers</text>
+  
+  <!-- Pattern 6: Human taste -->
+  <path d="M530 190 Q532 187 750 192 Q755 195 752 275 Q750 280 528 277 Q525 274 530 190 Z" fill="#fce7f3" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/>
+  <text x="560" y="218" font-family="Comic Sans MS, cursive" font-size="13" fill="#be185d" font-weight="bold">👤 Human Taste Check</text>
+  <text x="545" y="242" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">Metrics aren't everything</text>
+  <text x="545" y="260" font-family="Comic Sans MS, cursive" font-size="10" fill="#64748b">"Does this feel right?"</text>
+  
+  <!-- Fun footer annotation -->
+  <text x="250" y="330" font-family="Comic Sans MS, cursive" font-size="12" fill="#94a3b8" transform="rotate(-1 250 330)">Pro tip: start with 1-3 patterns. Add more when you actually need them.</text>
+  
+  <!-- Little lightbulb doodle -->
+  <ellipse cx="700" cy="330" rx="18" ry="22" fill="none" stroke="#eab308" stroke-width="2"/>
+  <path d="M692 352 L692 365 M708 352 L708 365 M692 365 L708 365" stroke="#eab308" stroke-width="1.5" fill="none"/>
+  <path d="M700 308 L700 298" stroke="#eab308" stroke-width="1.5"/>
+  <path d="M715 315 L722 308" stroke="#eab308" stroke-width="1.5"/>
+  <path d="M685 315 L678 308" stroke="#eab308" stroke-width="1.5"/>
 </svg>

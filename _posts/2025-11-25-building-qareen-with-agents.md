@@ -9,23 +9,23 @@ comments: true
 permalink: building-qareen-agents
 ---
 
-I recently released [`qareen`](https://github.com/zaffnet/qareen), a framework that picks better few-shot examples for LLM tasks. When you prompt a language model with examples, the quality of those examples matters. `qareen` finds examples that are relevant but not repetitive, mixing text and image signals to avoid the "same five examples every time" problem.
+A few weeks ago I shipped [`qareen`](https://github.com/zaffnet/qareen), a framework for picking better few-shot examples. The algorithm is useful, but honestly? The interesting part was *how* I built it: by conducting a small orchestra of AI coding agents.
 
-**So what?** If you use LLMs for evaluation or classification, better examples mean better results. `qareen` automates the selection so you don't have to hand-pick them.
+Imagine pair programming, except your pair is five different AIs with strong opinions about code style and a mysterious tendency to import libraries that don't exist.
 
-But the most interesting part wasn't the algorithm—it was how I built it. I worked with multiple AI coding agents, each handling a different piece: one planned tasks, others wrote code, another ran tests. This changed how I work day-to-day.
+### The gist of qareen
 
-![Diagram showing how agents worked together: planner creates tickets, builders and evaluator work in parallel, critic checks code, human reviews](/assets/img/qareen-agents.svg)
-<span aria-hidden="true" style="font-size:14px;color:#475569;">Work flows left to right: planner breaks tasks into tickets, builders and evaluator run in parallel, critic gates quality, human makes final calls.</span>
+When you prompt an LLM with examples (few-shot learning), the examples matter. A lot. Give it five variations of the same thing and it'll parrot those patterns. Give it carefully selected, *diverse* examples and it generalizes better.
 
-![Six design patterns used: planner-builders, critic pass, router, replay buffer, UI feedback, human taste checks](/assets/img/qareen-agent-patterns.svg)
-<span aria-hidden="true" style="font-size:14px;color:#475569;">The six patterns that actually worked: task planning, code critique, tool routing, run replay, visual feedback, and human review.</span>
+`qareen` picks examples that are relevant to your task but different enough from each other to actually teach something. It blends text and image signals—like making a mixtape where every song is both thematically appropriate *and* introduces something new.
 
-### From writer to reviewer
+![Hand-drawn sketch of the agent workflow](/assets/img/qareen-agents.svg)
 
-Working with agents changed my role. Instead of writing every line, I spent more time reviewing, setting direction, and catching problems early. The speed surprised me: I could test different ranking approaches in the time it used to take to set up one experiment.
+### My new job: reviewer in chief
 
-Here's a small piece of what the agents and I worked on for picking diverse examples:
+The biggest shift wasn't technical—it was how I spent my time. Before agents, I wrote code. Now I mostly review it. I went from keyboard-forward developer to someone who spends more time saying "wait, why would you do it that way?" to a robot.
+
+This sounds like a downgrade until you realize: the iteration speed is wild. What used to be "set up an experiment, go get coffee, come back, realize you made a typo" became "propose five experiments, agents run all of them, pick the winner by lunch."
 
 ```python
 from qareen.sampler import rr_rank, normalize_scores
@@ -33,48 +33,37 @@ from qareen.sampler import rr_rank, normalize_scores
 def rerank_candidates(text_scores, image_scores, alpha=0.6):
     text = normalize_scores(text_scores)
     image = normalize_scores(image_scores)
-    # Blend text and image signals; alpha controls the mix.
+    # Blend signals. Alpha was tuned through more experiments
+    # than I want to admit.
     return rr_rank(text, image, weight=alpha)
 ```
 
-**So what?** This pattern—agents drafting code while I focus on design—cut iteration time significantly and let me test more ideas.
+### Patterns that actually worked
 
-### What worked
+I tried a lot of things. Most didn't work. Here's what survived:
 
-A few lessons from the build:
+![Hand-drawn patterns that worked in building qareen](/assets/img/qareen-agent-patterns.svg)
 
-* **Clear instructions matter.** Agents work well when tasks are specific. Vague requests lead to guesswork.
-* **Review more, write less.** My time shifted from typing to catching mistakes and guiding direction.
-* **Visual tools help.** A quick UI for adjusting weights made it easy to spot when something was off.
-* **Keep logs.** Recording what agents ran made it possible to reproduce good results or debug failures.
+**Planner → Builders.** One agent breaks issues into small, specific tasks. Others pick them up and execute. This sounds obvious, but getting the granularity right took some trial and error. Too big and agents get confused. Too small and you're managing a to-do list the length of a CVS receipt.
 
-The workflow was straightforward: short briefs, automated tests, human review at the end.
+**Critic in the loop.** Before code hits my screen, a critic agent runs linting and tests. It's like having a very literal-minded coworker who catches the obvious stuff so I can focus on the subtle stuff.
 
-```mermaid
-flowchart LR
-  Prompt --> Retriever
-  Retriever --> Reranker
-  Reranker --> Judge
-  Judge --> UI[Gradio UI]
-  UI --> Prompt
-```
+**Keep logs of everything.** Every agent run dumps its commands and outputs to a log. When something breaks—and it will—you can replay the sequence to figure out what changed. Think git blame, but for agent decisions.
 
-### Patterns that helped
+**Gradio for instant feedback.** I wired up a quick UI with sliders for the ranking weights. Being able to *see* the reranker's decisions made tuning dramatically faster than staring at JSON outputs.
 
-I kept the playbook simple:
+### What I'd do differently
 
-* **Planner and builders.** One agent breaks work into small tasks; others execute them. Each task stays focused.
-* **Critic in the loop.** A critic agent runs linting and tests before I review. It catches most obvious problems early.
-* **Router for tools.** A simple router points agents to the right tool—vector store setup, evaluation runs, or UI changes—so they don't use the wrong one.
-* **Replayable logs.** Every agent run writes its commands and outputs to a log. Replaying helps find what changed when something breaks.
-* **Human final call.** Agents draft, but I make the final decision on trade-offs. This keeps the output practical, not just optimized for metrics.
+A few lessons learned the hard way:
 
-### Takeaways
+* **Vague tasks = creative interpretations.** When I said "improve the reranker," one agent decided the way to do that was to rewrite the entire module in a different framework. Specific acceptance criteria are your friend.
 
-* **Agents speed things up, but need direction.** They work fast, but clear tasks and acceptance criteria matter.
-* **Keep a human in the loop.** Someone needs to make judgment calls that agents can't.
-* **Mixing text and images works.** Combining both signals reduced repetition and surfaced better examples.
+* **Don't trust imports.** Agents will confidently import libraries that don't exist, or that exist but do something completely different. The critic pass caught most of these, but not all.
 
-**So what?** Multi-agent workflows aren't just a curiosity—they're a practical way to build faster while keeping quality high. The key is treating agents as collaborators, not replacements.
+* **Human taste still matters.** Agents can optimize for metrics, but metrics don't always capture "does this actually feel right?" I kept a human checkpoint before anything shipped.
 
-`qareen` is open source. If you're working on retrieval or few-shot prompting, give it a try and let me know what works.
+### The takeaway
+
+Multi-agent coding isn't a toy or a demo—it's a genuinely different way to work. Not faster in *every* way (debugging agent confusion takes time), but faster in enough ways that the overall velocity goes up. You trade writing code for reviewing it, and if you're okay with that shift, it's pretty great.
+
+`qareen` is open source if you want to try the framework. And if you build something with a swarm of agents, I'd love to hear which patterns worked for you—and which ones went hilariously wrong.
