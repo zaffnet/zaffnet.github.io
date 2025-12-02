@@ -1,0 +1,60 @@
+<svg width="760" height="420" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">Persona vector pipeline</title>
+  <desc id="desc">Flow from data splits to activation logging, linear probe training, validation sweeps, and inference steering hooks.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#cbd5f5"/>
+    </marker>
+  </defs>
+  <rect width="760" height="420" rx="14" fill="#0f172a"/>
+  <text x="380" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">How persona vectors are found and used</text>
+  <text x="380" y="54" text-anchor="middle" font-family="'Inter', Arial" font-size="13" fill="#cbd5e1">Stages mirror the Anthropic study: contrastive prompts, linear probes, validation sweeps, then steering at inference.</text>
+
+  <g font-family="'Inter', Arial" font-size="13" fill="#e2e8f0" transform="translate(40,90)">
+    <rect x="0" y="0" width="160" height="120" rx="12" fill="#1e293b"/>
+    <text x="80" y="26" text-anchor="middle" font-size="15">Data splits</text>
+    <text x="80" y="52" text-anchor="middle">trait vs neutral prompts</text>
+    <text x="80" y="72" text-anchor="middle">paired by topic</text>
+  </g>
+
+  <g font-family="'Inter', Arial" font-size="13" fill="#e2e8f0" transform="translate(220,90)">
+    <rect x="0" y="0" width="160" height="120" rx="12" fill="#0ea5e9" opacity="0.9"/>
+    <text x="80" y="26" text-anchor="middle" font-size="15">Activation logs</text>
+    <text x="80" y="52" text-anchor="middle">hidden states per token</text>
+    <text x="80" y="72" text-anchor="middle">layer sweep</text>
+  </g>
+
+  <g font-family="'Inter', Arial" font-size="13" fill="#0b1224" transform="translate(400,80)">
+    <rect x="0" y="0" width="160" height="140" rx="12" fill="#22d3ee" opacity="0.92"/>
+    <text x="80" y="26" text-anchor="middle" font-size="15">Linear probes</text>
+    <text x="80" y="50" text-anchor="middle">contrastive directions</text>
+    <text x="80" y="70" text-anchor="middle">normed vectors</text>
+    <text x="80" y="90" text-anchor="middle">per layer/per trait</text>
+  </g>
+
+  <g font-family="'Inter', Arial" font-size="13" fill="#e2e8f0" transform="translate(580,80)">
+    <rect x="0" y="0" width="140" height="140" rx="12" fill="#7c3aed" opacity="0.9"/>
+    <text x="70" y="26" text-anchor="middle" font-size="15">Validation</text>
+    <text x="70" y="50" text-anchor="middle">ablate + add vectors</text>
+    <text x="70" y="70" text-anchor="middle">score tone shifts</text>
+    <text x="70" y="90" text-anchor="middle">pick safe ranges</text>
+  </g>
+
+  <g font-family="'Inter', Arial" font-size="13" fill="#e2e8f0" transform="translate(220,250)">
+    <rect x="0" y="0" width="320" height="120" rx="14" fill="#1f2937"/>
+    <text x="160" y="28" text-anchor="middle" font-size="15">Inference steering</text>
+    <text x="160" y="52" text-anchor="middle">add or subtract persona vector in hidden states</text>
+    <text x="160" y="72" text-anchor="middle">log magnitude per turn</text>
+    <text x="160" y="92" text-anchor="middle">trip alerts when traits spike</text>
+  </g>
+
+  <g stroke="#cbd5f5" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity="0.85">
+    <path d="M200 150 L220 150"/>
+    <path d="M380 150 L400 150"/>
+    <path d="M560 150 L580 150"/>
+    <path d="M430 220 L430 250"/>
+  </g>
+  <g font-family="'Inter', Arial" font-size="12" fill="#cbd5e1">
+    <text x="380" y="392" text-anchor="middle">The same vector that shifts tone is also monitored, which keeps persona edits auditable.</text>
+  </g>
+</svg>

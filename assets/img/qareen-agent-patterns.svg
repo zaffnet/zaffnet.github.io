@@ -1,0 +1,52 @@
+<svg width="720" height="380" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">Agent design patterns used in qareen</title>
+  <desc id="desc">Flow showing planner, routing, builders, critic, replay log, and human review steps applied while developing qareen.</desc>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="380" fill="#0b1224"/>
+  <text x="360" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">Patterns that stuck</text>
+  <g transform="translate(60,70)" font-family="'Inter', Arial" fill="#e2e8f0" font-size="13">
+    <rect x="0" y="0" width="130" height="70" fill="url(#grad)" rx="12"/>
+    <text x="65" y="30" text-anchor="middle" font-size="14">Planner</text>
+    <text x="65" y="50" text-anchor="middle">tickets + acceptance</text>
+
+    <rect x="160" y="0" width="130" height="70" fill="#0ea5e9" rx="12" opacity="0.85"/>
+    <text x="225" y="30" text-anchor="middle" font-size="14">Tool router</text>
+    <text x="225" y="50" text-anchor="middle">retrieval vs UI tasks</text>
+
+    <rect x="320" y="0" width="130" height="70" fill="#22c55e" rx="12" opacity="0.85"/>
+    <text x="385" y="30" text-anchor="middle" font-size="14">Builders</text>
+    <text x="385" y="50" text-anchor="middle">implement + docs</text>
+
+    <rect x="480" y="0" width="130" height="70" fill="#7c3aed" rx="12" opacity="0.9"/>
+    <text x="545" y="30" text-anchor="middle" font-size="14">Critic</text>
+    <text x="545" y="50" text-anchor="middle">lint + sanity checks</text>
+
+    <rect x="120" y="140" width="160" height="70" fill="#1f2937" rx="12"/>
+    <text x="200" y="170" text-anchor="middle" font-size="14">Replay log</text>
+    <text x="200" y="190" text-anchor="middle">commands + outputs</text>
+
+    <rect x="360" y="140" width="190" height="70" fill="#f97316" rx="12" opacity="0.9"/>
+    <text x="455" y="170" text-anchor="middle" font-size="14">Human review</text>
+    <text x="455" y="190" text-anchor="middle">merge only after check</text>
+  </g>
+  <g stroke="#cbd5f5" stroke-width="3" fill="none" opacity="0.8">
+    <path d="M190 105 L225 105"/>
+    <path d="M350 105 L385 105"/>
+    <path d="M510 105 L545 105"/>
+    <path d="M245 140 C245 120 345 120 345 140"/>
+    <path d="M400 210 L400 250 L455 250" marker-end="url(#arrow)"/>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#cbd5f5"/>
+    </marker>
+  </defs>
+  <g fill="#cbd5e1" font-family="'Inter', Arial" font-size="12">
+    <text x="360" y="320" text-anchor="middle">Same loop repeated: plan → route → build → critique → replay if needed → human merge.</text>
+  </g>
+</svg>

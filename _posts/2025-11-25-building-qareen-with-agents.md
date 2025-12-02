@@ -9,24 +9,70 @@ comments: true
 permalink: building-qareen-agents
 ---
 
-I recently released [`qareen`](https://github.com/zaffnet/qareen), a framework designed to solve a specific problem in LLM evaluations: balancing relevance and diversity in few-shot examples. It extends Maximum Marginal Relevance (MMR) to multimodal tasks, helping LLM-as-a-Judge workflows avoid position bias and redundancy.
+I recently released [`qareen`](https://github.com/zaffnet/qareen), a framework designed to balance relevance and diversity in few-shot examples. It extends Maximum Marginal Relevance (MMR) to multimodal tasks, helping LLM-as-a-Judge workflows avoid position bias and redundancy.
 
-But the most interesting part of building `qareen` wasn't just the algorithm itself—it was *how* I built it. I used a swarm of AI coding agents to accelerate the development process, and it taught me a lot about the changing nature of software engineering.
+But the most interesting part of building `qareen` wasn't just the algorithm itself; it was *how* I built it. I teamed up with a swarm of coding agents (imagine a hackathon with a planner, a critic, and a UI tinkerer trading riffs) and the workflow reshaped my day-to-day work.
 
-### From Coder to Orchestrator
+![Rough sketch of how different agents pitched in](/assets/img/qareen-agents.svg)
 
-Working with multiple agents simultaneously shifted my role from writing every line of code to orchestrating a team. Instead of getting bogged down in boilerplate, I found myself defining boundaries, reviewing architecture, and ensuring that the agents didn't step on each other's toes.
+![Quick visual of agent design patterns used in this build](/assets/img/qareen-agent-patterns.svg)
 
-The speed of iteration was incredible. I could experiment with different strategies for combining text and image signals—like Weighted Linear Combination versus Reciprocal Rank Fusion (RRF)—much faster than if I were coding solo. If an approach didn't work, I could pivot immediately.
+![How qareen blends text and image signals with MMR-style reranking](/assets/img/qareen-multimodal-flow.svg)
 
-### Learnings from the Swarm
+### From coder to conductor
 
-Here are a few key takeaways from this experience:
+Working with multiple agents shifted my role from writing every line of code to conducting the orchestra. I spent more time setting the tempo, defining boundaries, reviewing architecture, and making sure nobody soloed over the melody. The speed of iteration was wild: I could A/B test Weighted Linear Combination versus Reciprocal Rank Fusion (RRF) for blending text and image signals in the time it used to take me to refill my mug, and the agents wrote the first draft of the benchmarking harness before I finished the coffee.
 
-*   **Context is King:** Agents are powerful, but they need clear context. Defining strict interfaces and modular components allowed the agents to work autonomously on different parts of the system without breaking the whole.
-*   **Review over Authoring:** My time was spent less on typing and more on code review. Catching subtle logic errors or hallucinations became the primary task. The "human in the loop" is essential for quality control.
-*   **Rapid Prototyping:** The ability to spin up a Gradio UI to visualize modality weights or test different alpha values for MMR happened in minutes, not hours. This immediate feedback loop is a game-changer for research engineering.
+Here's a tiny slice of what the agents and I iterated on for picking contrastive examples:
 
-### Conclusion
+```python
+from qareen.sampler import rr_rank, normalize_scores
 
-`qareen` is open source, and I invite you to check it out. It's a testament not just to the power of multimodal retrieval, but to a new way of building software—where human creativity is amplified by a swarm of tireless digital assistants.
+def rerank_candidates(text_scores, image_scores, alpha=0.6):
+    text = normalize_scores(text_scores)
+    image = normalize_scores(image_scores)
+    # Agents argued about alpha like it was a Spotify playlist order.
+    return rr_rank(text, image, weight=alpha)
+```
+
+### The swarm playbook
+
+A few lessons that felt less like sci-fi and more like solid engineering:
+
+* **Context is king.** The agents were great at parallelizing tasks once the interfaces were crystal clear. Ambiguous tickets turned into improv comedy (funny, but not shippable).
+* **Review over authoring.** My keyboard time dropped, but design reviews shot up. Catching subtle logic bugs and hallucinated imports became the main sport.
+* **Visual feedback wins.** Spinning up a quick Gradio UI to tweak modality weights made it easy to see when a reranker was overconfident, which led to instant "this mix slaps" or "hard pass" decisions.
+* **Reuse the logs.** Keeping transcripts of agent runs (commands plus outputs) made it possible to replay a good idea or diagnose when a tool change broke the chain. This mirrored the "replay buffer" pattern popular in existing agent frameworks.
+
+To coordinate the swarm, I leaned on a simple ritual: short briefs, automated tests, and human taste checks at the end.
+
+```mermaid
+flowchart LR
+  Prompt --> Retriever
+  Retriever --> Reranker
+  Reranker --> Judge
+  Judge --> UI[Gradio UI]
+  UI --> Prompt
+```
+
+### Agentic design patterns that actually helped
+
+I kept the playbook small so it stayed real and testable:
+
+* **Planner and builders.** A planner agent broke tickets into subtasks, then task-focused agents delivered diffs. The pattern mirrors the planner-executor loop from AutoGPT-style systems but with tight scopes so nobody wandered.
+* **Critic in the loop.** A critic agent ran linting and sanity checks, then I reviewed the PRs. It caught most missing imports before CI did.
+* **Router for tools.** A lightweight router pointed agents to the right tool (vector store prep, evaluation harness, or UI tweak) so they did not hammer the same script for everything.
+* **Replayable harness.** Every agent run wrote its commands and outputs into a log. Replaying the sequence made regressions easier to spot and removed debate about "what changed?".
+* **Human taste check.** Even with good routing and critics, the final call on tradeoffs stayed human. It kept the reranker focused on clarity over cleverness.
+
+![How the planner, builders, critic, and reviewer passed work back and forth](/assets/img/qareen-agent-lifecycle.svg)
+
+The diagram above mirrors what I actually used while shipping the retrieval and reranking code: short briefs from the planner, scoped tool calls for the builders, a critic agent that linted and ran quick checks, then a human review before merge. Runs lived in a logbook so the same idea could be replayed when a dependency changed.
+
+### Takeaways for future builds
+
+* **Agents are interns with superpowers.** They ship fast but still appreciate clear acceptance criteria (and fewer puns than this blog).
+* **Keep a human-in-the-loop.** The model that suggests "just YOLO the alpha" needs an adult in the room.
+* **Multimodality is worth the fuss.** Blending text and images reduced redundancy and surfaced delightfully weird-but-relevant examples.
+
+`qareen` is open source and evolving. If you're curious about multimodal retrieval or just want to see how a small swarm can punch above its weight, give it a spin and tell me what worked, what broke, and what soundtrack you used while debugging.

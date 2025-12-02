@@ -1,0 +1,59 @@
+<svg width="760" height="420" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">qareen agent lifecycle</title>
+  <desc id="desc">Timeline showing planner briefs, builder execution, critic checks, replay logs, and human review loops used while coding qareen.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#cbd5f5"/>
+    </marker>
+  </defs>
+  <rect width="760" height="420" rx="16" fill="#0b1224"/>
+  <text x="380" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">Agent lifecycle we actually ran</text>
+  <text x="380" y="54" text-anchor="middle" font-family="'Inter', Arial" font-size="13" fill="#cbd5e1">Planner creates briefs → builders execute → critic checks → logbook captures runs → human review merges.</text>
+
+  <g transform="translate(60,110)" font-family="'Inter', Arial" font-size="13" fill="#e2e8f0">
+    <rect x="0" y="0" width="150" height="80" rx="12" fill="#1f2937"/>
+    <text x="75" y="26" text-anchor="middle" font-size="15">Planner brief</text>
+    <text x="75" y="48" text-anchor="middle">tickets + acceptance</text>
+  </g>
+
+  <g transform="translate(230,90)" font-family="'Inter', Arial" font-size="13" fill="#e2e8f0">
+    <rect x="0" y="0" width="150" height="120" rx="12" fill="#0ea5e9" opacity="0.9"/>
+    <text x="75" y="26" text-anchor="middle" font-size="15">Builders</text>
+    <text x="75" y="50" text-anchor="middle">retriever + reranker code</text>
+    <text x="75" y="70" text-anchor="middle">UI prototypes</text>
+    <text x="75" y="90" text-anchor="middle">metrics scripts</text>
+  </g>
+
+  <g transform="translate(400,110)" font-family="'Inter', Arial" font-size="13" fill="#e2e8f0">
+    <rect x="0" y="0" width="140" height="80" rx="12" fill="#7c3aed" opacity="0.9"/>
+    <text x="70" y="26" text-anchor="middle" font-size="15">Critic</text>
+    <text x="70" y="48" text-anchor="middle">lint + sanity checks</text>
+  </g>
+
+  <g transform="translate(560,90)" font-family="'Inter', Arial" font-size="13" fill="#0b1224">
+    <rect x="0" y="0" width="160" height="120" rx="12" fill="#f59e0b" opacity="0.92"/>
+    <text x="80" y="26" text-anchor="middle" font-size="15">Human review</text>
+    <text x="80" y="50" text-anchor="middle">merge gate</text>
+    <text x="80" y="70" text-anchor="middle">taste checks on samples</text>
+    <text x="80" y="90" text-anchor="middle">rerun failing steps</text>
+  </g>
+
+  <g transform="translate(180,250)" font-family="'Inter', Arial" font-size="13" fill="#e2e8f0">
+    <rect x="0" y="0" width="400" height="100" rx="14" fill="#111827"/>
+    <text x="200" y="28" text-anchor="middle" font-size="15">Replay log</text>
+    <text x="200" y="52" text-anchor="middle">commands, tool outputs, timestamps</text>
+    <text x="200" y="72" text-anchor="middle">used to replay fixes after dependency bumps</text>
+  </g>
+
+  <g stroke="#cbd5f5" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity="0.85">
+    <path d="M210 150 L230 150"/>
+    <path d="M380 150 L400 150"/>
+    <path d="M540 150 L560 150"/>
+    <path d="M335 210 L335 250"/>
+    <path d="M425 210 L425 250"/>
+    <path d="M360 350 L360 200" marker-end="url(#arrow)"/>
+  </g>
+  <g font-family="'Inter', Arial" font-size="12" fill="#cbd5e1">
+    <text x="380" y="392" text-anchor="middle">The log kept agent runs reproducible, which made reranking experiments easy to rerun after changes.</text>
+  </g>
+</svg>

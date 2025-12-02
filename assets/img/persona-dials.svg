@@ -1,0 +1,33 @@
+<svg width="640" height="360" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">Persona vector steering overview</title>
+  <desc id="desc">Diagram showing how persona vectors are detected with linear probes and then used to nudge model behavior up or down.</desc>
+  <rect width="640" height="360" fill="#0f172a"/>
+  <text x="320" y="36" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">Detect, measure, steer</text>
+  <g transform="translate(60,80)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="20" width="180" height="200" fill="#1d2a44" rx="14"/>
+    <text x="90" y="45" text-anchor="middle" font-size="15">Find directions</text>
+    <text x="90" y="75" text-anchor="middle" font-size="12">Linear probe on hidden states</text>
+    <circle cx="90" cy="135" r="48" fill="#2dd4bf" opacity="0.85"/>
+    <text x="90" y="138" text-anchor="middle" font-size="26" fill="#0f172a">v</text>
+    <text x="90" y="165" text-anchor="middle" font-size="12">persona vector</text>
+  </g>
+  <g transform="translate(260,80)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="20" width="140" height="200" fill="#1f2937" rx="14"/>
+    <text x="70" y="45" text-anchor="middle" font-size="15">Measure tone</text>
+    <text x="70" y="75" text-anchor="middle" font-size="12">Activation magnitude</text>
+    <line x1="30" y1="150" x2="110" y2="110" stroke="#fbbf24" stroke-width="6"/>
+    <line x1="30" y1="150" x2="110" y2="190" stroke="#38bdf8" stroke-width="6"/>
+    <text x="70" y="165" text-anchor="middle" font-size="12">higher vs lower</text>
+  </g>
+  <g transform="translate(440,80)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="20" width="140" height="200" fill="#1d4ed8" rx="14" opacity="0.9"/>
+    <text x="70" y="45" text-anchor="middle" font-size="15">Steer response</text>
+    <text x="70" y="75" text-anchor="middle" font-size="12">Add or subtract v</text>
+    <path d="M40 130 Q70 90 100 130" stroke="#f8fafc" stroke-width="4" fill="none"/>
+    <path d="M40 150 Q70 190 100 150" stroke="#f8fafc" stroke-width="4" fill="none"/>
+    <text x="70" y="170" text-anchor="middle" font-size="12">tone up / tone down</text>
+  </g>
+  <g fill="#cbd5e1" font-family="'Inter', Arial" font-size="12">
+    <text x="120" y="320">Vectors discovered by contrastive prompts and validated by editing activations, not by prompting tricks.</text>
+  </g>
+</svg>

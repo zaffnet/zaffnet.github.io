@@ -1,0 +1,57 @@
+<svg width="760" height="420" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">qareen multimodal reranking flow</title>
+  <desc id="desc">Diagram of how qareen blends text and image scores with an MMR-style reranker before LLM-as-a-judge evaluation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#cbd5f5"/>
+    </marker>
+  </defs>
+  <rect width="760" height="420" fill="url(#bg)" rx="14"/>
+  <text x="380" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">How qareen blends text and image evidence</text>
+  <text x="380" y="54" text-anchor="middle" font-family="'Inter', Arial" font-size="13" fill="#cbd5e1">Inputs come from separate retrievers, then an MMR-style scorer balances relevance and diversity.</text>
+  <g font-family="'Inter', Arial" font-size="13" fill="#e2e8f0" transform="translate(40,90)">
+    <rect x="0" y="0" width="160" height="120" rx="12" fill="#1f2937"/>
+    <text x="80" y="26" text-anchor="middle" font-size="15">Text retriever</text>
+    <text x="80" y="52" text-anchor="middle">BM25 + embeddings</text>
+    <text x="80" y="72" text-anchor="middle">top-k passages</text>
+
+    <rect x="0" y="170" width="160" height="120" rx="12" fill="#1f2937"/>
+    <text x="80" y="196" text-anchor="middle" font-size="15">Image retriever</text>
+    <text x="80" y="222" text-anchor="middle">CLIP similarity</text>
+    <text x="80" y="242" text-anchor="middle">top-k crops</text>
+  </g>
+
+  <g font-family="'Inter', Arial" font-size="13" fill="#0f172a" transform="translate(250,120)">
+    <rect x="0" y="0" width="220" height="200" rx="16" fill="#22d3ee" opacity="0.92"/>
+    <text x="110" y="26" text-anchor="middle" font-size="16" fill="#0b1224">qareen reranker</text>
+    <text x="110" y="56" text-anchor="middle" fill="#0b1224">MMR over text + image</text>
+    <rect x="20" y="90" width="180" height="60" rx="10" fill="#0ea5e9" opacity="0.92"/>
+    <text x="110" y="116" text-anchor="middle" font-size="12" fill="#e2e8f0">score = \u03b1 * rank_text + (1-\u03b1) * rank_image</text>
+    <text x="110" y="136" text-anchor="middle" font-size="12" fill="#e2e8f0">+ penalty for near-duplicate pairs</text>
+    <rect x="35" y="160" width="150" height="26" rx="8" fill="#38bdf8" opacity="0.9"/>
+    <text x="110" y="178" text-anchor="middle" font-size="12" fill="#0b1224">alpha tuned by sweep</text>
+  </g>
+
+  <g font-family="'Inter', Arial" font-size="13" fill="#e2e8f0" transform="translate(530,140)">
+    <rect x="0" y="0" width="180" height="160" rx="14" fill="#7c3aed" opacity="0.9"/>
+    <text x="90" y="26" text-anchor="middle" font-size="15">LLM-as-a-judge</text>
+    <text x="90" y="52" text-anchor="middle">pairs reranked examples</text>
+    <text x="90" y="72" text-anchor="middle">checks relevance</text>
+    <text x="90" y="92" text-anchor="middle">flags redundancy</text>
+    <rect x="24" y="114" width="132" height="30" rx="8" fill="#fbbf24" opacity="0.9"/>
+    <text x="90" y="134" text-anchor="middle" font-size="12" fill="#111827">feedback loops to alpha</text>
+  </g>
+
+  <g stroke="#cbd5f5" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity="0.85">
+    <path d="M200 140 L250 170"/>
+    <path d="M200 260 L250 210"/>
+    <path d="M470 200 L530 210"/>
+  </g>
+  <g font-family="'Inter', Arial" font-size="12" fill="#cbd5e1">
+    <text x="380" y="360" text-anchor="middle">qareen balances relevance and diversity before the judge step, rather than trusting a single modality.</text>
+  </g>
+</svg>
