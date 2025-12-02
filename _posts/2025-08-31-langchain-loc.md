@@ -11,7 +11,7 @@ permalink: langchain-loc
 
 Building a chatbot from scratch can feel like assembling IKEA furniture without the little hex key: doable, but you'll invent new words along the way. LangChain trims the drama by handling the plumbing (prompt templates, vector stores, conversation memory) so you can focus on the parts that actually delight users.
 
-![Toy bar chart comparing LOC](/assets/img/langchain-loc.svg)
+![Bar chart comparing LOC for two chat loops](/assets/img/langchain-loc.svg)
 
 ### The power of abstraction
 

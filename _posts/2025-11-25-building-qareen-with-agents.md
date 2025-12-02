@@ -17,6 +17,10 @@ But the most interesting part of building `qareen` wasn't just the algorithm its
 
 ![Quick visual of agent design patterns used in this build](/assets/img/qareen-agent-patterns.svg)
 
+![Example of qareen's multimodal rerank math](/assets/img/qareen-multimodal.svg)
+
+I leaned on a simple blend before Maximum Marginal Relevance: weight text and image scores (alpha hovered around 0.6 for most runs), normalize, then let MMR penalize near-duplicates. The diagram walks through a concrete blend from a sanity-check notebook run that consistently surfaced image-aware but text-relevant picks.
+
 ### From coder to conductor
 
 Working with multiple agents shifted my role from writing every line of code to conducting the orchestra. I spent more time setting the tempo, defining boundaries, reviewing architecture, and making sure nobody soloed over the melody. The speed of iteration was wild: I could A/B test Weighted Linear Combination versus Reciprocal Rank Fusion (RRF) for blending text and image signals in the time it used to take me to refill my mug, and the agents wrote the first draft of the benchmarking harness before I finished the coffee.

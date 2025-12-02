@@ -17,6 +17,10 @@ Think of a persona vector as a dimmer switch in the model's internal activations
 
 ![Activation bars for different personas](/assets/img/persona-dials.svg)
 
+![Pipeline from prompts to persona vectors](/assets/img/persona-pipeline.svg)
+
+A typical pass gathers prompt pairs with and without a trait, records hidden activations, trains a linear probe to find the contrast, runs PCA and norm checks for stability, and keeps the resulting direction around for monitoring or steering.
+
 A simplified sketch of the idea:
 
 ```python
