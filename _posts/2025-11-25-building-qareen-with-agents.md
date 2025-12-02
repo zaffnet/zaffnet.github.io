@@ -9,24 +9,51 @@ comments: true
 permalink: building-qareen-agents
 ---
 
-I recently released [`qareen`](https://github.com/zaffnet/qareen), a framework designed to solve a specific problem in LLM evaluations: balancing relevance and diversity in few-shot examples. It extends Maximum Marginal Relevance (MMR) to multimodal tasks, helping LLM-as-a-Judge workflows avoid position bias and redundancy.
+I recently released [`qareen`](https://github.com/zaffnet/qareen), a framework designed to balance relevance and diversity in few-shot examples. It extends Maximum Marginal Relevance (MMR) to multimodal tasks, helping LLM-as-a-Judge workflows avoid position bias and redundancy. 
 
-But the most interesting part of building `qareen` wasn't just the algorithm itself—it was *how* I built it. I used a swarm of AI coding agents to accelerate the development process, and it taught me a lot about the changing nature of software engineering.
+But the most interesting part of building `qareen` wasn't just the algorithm itself; it was *how* I built it. I teamed up with a swarm of coding agents (picture a caffeinated Avengers line-up) to accelerate the process, and it completely reshaped my day-to-day work.
 
-### From Coder to Orchestrator
+![Rough sketch of how different agents pitched in](/assets/img/qareen-agents.svg)
 
-Working with multiple agents simultaneously shifted my role from writing every line of code to orchestrating a team. Instead of getting bogged down in boilerplate, I found myself defining boundaries, reviewing architecture, and ensuring that the agents didn't step on each other's toes.
+### From coder to conductor
 
-The speed of iteration was incredible. I could experiment with different strategies for combining text and image signals—like Weighted Linear Combination versus Reciprocal Rank Fusion (RRF)—much faster than if I were coding solo. If an approach didn't work, I could pivot immediately.
+Working with multiple agents shifted my role from writing every line of code to conducting the orchestra. I spent more time setting the tempo: defining boundaries, reviewing architecture, and making sure nobody soloed over the melody. The speed of iteration was wild: I could A/B test Weighted Linear Combination versus Reciprocal Rank Fusion (RRF) for blending text and image signals in the time it used to take me to refill my mug.
 
-### Learnings from the Swarm
+Here's a tiny slice of what the agents and I iterated on for picking contrastive examples:
 
-Here are a few key takeaways from this experience:
+```python
+from qareen.sampler import rr_rank, normalize_scores
 
-*   **Context is King:** Agents are powerful, but they need clear context. Defining strict interfaces and modular components allowed the agents to work autonomously on different parts of the system without breaking the whole.
-*   **Review over Authoring:** My time was spent less on typing and more on code review. Catching subtle logic errors or hallucinations became the primary task. The "human in the loop" is essential for quality control.
-*   **Rapid Prototyping:** The ability to spin up a Gradio UI to visualize modality weights or test different alpha values for MMR happened in minutes, not hours. This immediate feedback loop is a game-changer for research engineering.
+def rerank_candidates(text_scores, image_scores, alpha=0.6):
+    text = normalize_scores(text_scores)
+    image = normalize_scores(image_scores)
+    # Agents argued about alpha like it was a Spotify playlist order.
+    return rr_rank(text, image, weight=alpha)
+```
 
-### Conclusion
+### The swarm playbook
 
-`qareen` is open source, and I invite you to check it out. It's a testament not just to the power of multimodal retrieval, but to a new way of building software—where human creativity is amplified by a swarm of tireless digital assistants.
+A few lessons that felt less like sci-fi and more like solid engineering:
+
+* **Context is king.** The agents were great at parallelizing tasks once the interfaces were crystal clear. Ambiguous tickets turned into improv comedy (funny, but not shippable).
+* **Review over authoring.** My keyboard time dropped, but design reviews shot up. Catching subtle logic bugs and hallucinated imports became the main sport.
+* **Visual feedback wins.** Spinning up a quick Gradio UI to tweak modality weights made it easy to see when a reranker was overconfident, which led to instant "this mix slaps" or "hard pass" decisions.
+
+To coordinate the swarm, I leaned on a simple ritual: short briefs, automated tests, and human taste checks at the end.
+
+```mermaid
+flowchart LR
+  Prompt --> Retriever
+  Retriever --> Reranker
+  Reranker --> Judge
+  Judge --> UI[Gradio UI]
+  UI --> Prompt
+```
+
+### Takeaways for future builds
+
+* **Agents are interns with superpowers.** They ship fast but still appreciate clear acceptance criteria (and fewer puns than this blog).
+* **Keep a human-in-the-loop.** The model that suggests "just YOLO the alpha" needs an adult in the room.
+* **Multimodality is worth the fuss.** Blending text and images reduced redundancy and surfaced delightfully weird-but-relevant examples.
+
+`qareen` is open source and evolving. If you're curious about multimodal retrieval or just want to see how a small swarm can punch above its weight, give it a spin and tell me what worked, what broke, and what soundtrack you used while debugging.
