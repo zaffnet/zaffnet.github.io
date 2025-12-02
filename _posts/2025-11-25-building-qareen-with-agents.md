@@ -9,21 +9,23 @@ comments: true
 permalink: building-qareen-agents
 ---
 
-I recently released [`qareen`](https://github.com/zaffnet/qareen), a framework designed to balance relevance and diversity in few-shot examples. It extends Maximum Marginal Relevance (MMR) to multimodal tasks, helping LLM-as-a-Judge workflows avoid position bias and redundancy.
+I recently released [`qareen`](https://github.com/zaffnet/qareen), a framework that picks better few-shot examples for LLM tasks. When you prompt a language model with examples, the quality of those examples matters. `qareen` finds examples that are relevant but not repetitive, mixing text and image signals to avoid the "same five examples every time" problem.
 
-But the most interesting part of building `qareen` wasn't just the algorithm itself; it was *how* I built it. I teamed up with a swarm of coding agents (imagine a hackathon with a planner, a critic, and a UI tinkerer trading riffs) and the workflow reshaped my day-to-day work.
+**So what?** If you use LLMs for evaluation or classification, better examples mean better results. `qareen` automates the selection so you don't have to hand-pick them.
 
-![Rough sketch of how different agents pitched in](/assets/img/qareen-agents.svg)
-<span aria-hidden="true" style="font-size:14px;color:#475569;">Planner tickets flowed to builders, evaluator runs, critic checks, then human review loops.</span>
+But the most interesting part wasn't the algorithm—it was how I built it. I worked with multiple AI coding agents, each handling a different piece: one planned tasks, others wrote code, another ran tests. This changed how I work day-to-day.
 
-![Quick visual of agent design patterns used in this build](/assets/img/qareen-agent-patterns.svg)
-<span aria-hidden="true" style="font-size:14px;color:#475569;">Only patterns we used in qareen: planner-builders, critic pass, router, replay buffer, UI feedback, human taste checks.</span>
+![Diagram showing how agents worked together: planner creates tickets, builders and evaluator work in parallel, critic checks code, human reviews](/assets/img/qareen-agents.svg)
+<span aria-hidden="true" style="font-size:14px;color:#475569;">Work flows left to right: planner breaks tasks into tickets, builders and evaluator run in parallel, critic gates quality, human makes final calls.</span>
 
-### From coder to conductor
+![Six design patterns used: planner-builders, critic pass, router, replay buffer, UI feedback, human taste checks](/assets/img/qareen-agent-patterns.svg)
+<span aria-hidden="true" style="font-size:14px;color:#475569;">The six patterns that actually worked: task planning, code critique, tool routing, run replay, visual feedback, and human review.</span>
 
-Working with multiple agents shifted my role from writing every line of code to conducting the orchestra. I spent more time setting the tempo, defining boundaries, reviewing architecture, and making sure nobody soloed over the melody. The speed of iteration was wild: I could A/B test Weighted Linear Combination versus Reciprocal Rank Fusion (RRF) for blending text and image signals in the time it used to take me to refill my mug, and the agents wrote the first draft of the benchmarking harness before I finished the coffee.
+### From writer to reviewer
 
-Here's a tiny slice of what the agents and I iterated on for picking contrastive examples:
+Working with agents changed my role. Instead of writing every line, I spent more time reviewing, setting direction, and catching problems early. The speed surprised me: I could test different ranking approaches in the time it used to take to set up one experiment.
+
+Here's a small piece of what the agents and I worked on for picking diverse examples:
 
 ```python
 from qareen.sampler import rr_rank, normalize_scores
@@ -31,20 +33,22 @@ from qareen.sampler import rr_rank, normalize_scores
 def rerank_candidates(text_scores, image_scores, alpha=0.6):
     text = normalize_scores(text_scores)
     image = normalize_scores(image_scores)
-    # Agents argued about alpha like it was a Spotify playlist order.
+    # Blend text and image signals; alpha controls the mix.
     return rr_rank(text, image, weight=alpha)
 ```
 
-### The swarm playbook
+**So what?** This pattern—agents drafting code while I focus on design—cut iteration time significantly and let me test more ideas.
 
-A few lessons that felt less like sci-fi and more like solid engineering:
+### What worked
 
-* **Context is king.** The agents were great at parallelizing tasks once the interfaces were crystal clear. Ambiguous tickets turned into improv comedy (funny, but not shippable).
-* **Review over authoring.** My keyboard time dropped, but design reviews shot up. Catching subtle logic bugs and hallucinated imports became the main sport.
-* **Visual feedback wins.** Spinning up a quick Gradio UI to tweak modality weights made it easy to see when a reranker was overconfident, which led to instant "this mix slaps" or "hard pass" decisions.
-* **Reuse the logs.** Keeping transcripts of agent runs (commands plus outputs) made it possible to replay a good idea or diagnose when a tool change broke the chain. This mirrored the "replay buffer" pattern popular in existing agent frameworks.
+A few lessons from the build:
 
-To coordinate the swarm, I leaned on a simple ritual: short briefs, automated tests, and human taste checks at the end.
+* **Clear instructions matter.** Agents work well when tasks are specific. Vague requests lead to guesswork.
+* **Review more, write less.** My time shifted from typing to catching mistakes and guiding direction.
+* **Visual tools help.** A quick UI for adjusting weights made it easy to spot when something was off.
+* **Keep logs.** Recording what agents ran made it possible to reproduce good results or debug failures.
+
+The workflow was straightforward: short briefs, automated tests, human review at the end.
 
 ```mermaid
 flowchart LR
@@ -55,20 +59,22 @@ flowchart LR
   UI --> Prompt
 ```
 
-### Agentic design patterns that actually helped
+### Patterns that helped
 
-I kept the playbook small so it stayed real and testable:
+I kept the playbook simple:
 
-* **Planner and builders.** A planner agent broke tickets into subtasks, then task-focused agents delivered diffs. The pattern mirrors the planner-executor loop from AutoGPT-style systems but with tight scopes so nobody wandered.
-* **Critic in the loop.** A critic agent ran linting and sanity checks, then I reviewed the PRs. It caught most missing imports before CI did.
-* **Router for tools.** A lightweight router pointed agents to the right tool (vector store prep, evaluation harness, or UI tweak) so they did not hammer the same script for everything.
-* **Replayable harness.** Every agent run wrote its commands and outputs into a log. Replaying the sequence made regressions easier to spot and removed debate about "what changed?".
-* **Human taste check.** Even with good routing and critics, the final call on tradeoffs stayed human. It kept the reranker focused on clarity over cleverness.
+* **Planner and builders.** One agent breaks work into small tasks; others execute them. Each task stays focused.
+* **Critic in the loop.** A critic agent runs linting and tests before I review. It catches most obvious problems early.
+* **Router for tools.** A simple router points agents to the right tool—vector store setup, evaluation runs, or UI changes—so they don't use the wrong one.
+* **Replayable logs.** Every agent run writes its commands and outputs to a log. Replaying helps find what changed when something breaks.
+* **Human final call.** Agents draft, but I make the final decision on trade-offs. This keeps the output practical, not just optimized for metrics.
 
-### Takeaways for future builds
+### Takeaways
 
-* **Agents are interns with superpowers.** They ship fast but still appreciate clear acceptance criteria (and fewer puns than this blog).
-* **Keep a human-in-the-loop.** The model that suggests "just YOLO the alpha" needs an adult in the room.
-* **Multimodality is worth the fuss.** Blending text and images reduced redundancy and surfaced delightfully weird-but-relevant examples.
+* **Agents speed things up, but need direction.** They work fast, but clear tasks and acceptance criteria matter.
+* **Keep a human in the loop.** Someone needs to make judgment calls that agents can't.
+* **Mixing text and images works.** Combining both signals reduced repetition and surfaced better examples.
 
-`qareen` is open source and evolving. If you're curious about multimodal retrieval or just want to see how a small swarm can punch above its weight, give it a spin and tell me what worked, what broke, and what soundtrack you used while debugging.
+**So what?** Multi-agent workflows aren't just a curiosity—they're a practical way to build faster while keeping quality high. The key is treating agents as collaborators, not replacements.
+
+`qareen` is open source. If you're working on retrieval or few-shot prompting, give it a try and let me know what works.
