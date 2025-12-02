@@ -15,6 +15,8 @@ But the most interesting part of building `qareen` wasn't just the algorithm its
 
 ![Rough sketch of how different agents pitched in](/assets/img/qareen-agents.svg)
 
+![Quick visual of agent design patterns used in this build](/assets/img/qareen-agent-patterns.svg)
+
 ### From coder to conductor
 
 Working with multiple agents shifted my role from writing every line of code to conducting the orchestra. I spent more time setting the tempo, defining boundaries, reviewing architecture, and making sure nobody soloed over the melody. The speed of iteration was wild: I could A/B test Weighted Linear Combination versus Reciprocal Rank Fusion (RRF) for blending text and image signals in the time it used to take me to refill my mug.
@@ -49,6 +51,16 @@ flowchart LR
   Judge --> UI[Gradio UI]
   UI --> Prompt
 ```
+
+### Agentic design patterns that actually helped
+
+I kept the playbook small so it stayed real and testable:
+
+* **Planner and builders.** A planner agent broke tickets into subtasks, then task-focused agents delivered diffs. Clear scopes stopped them from wandering.
+* **Critic in the loop.** A critic agent ran linting and sanity checks, then I reviewed the PRs. It caught most missing imports before CI did.
+* **Router for tools.** A lightweight router pointed agents to the right tool (vector store prep, evaluation harness, or UI tweak) so they did not hammer the same script for everything.
+* **Replayable harness.** Every agent run wrote its commands and outputs into a log. Replaying the sequence made regressions easier to spot and removed debate about "what changed?".
+* **Human taste check.** Even with good routing and critics, the final call on tradeoffs stayed human. It kept the reranker focused on clarity over cleverness.
 
 ### Takeaways for future builds
 
