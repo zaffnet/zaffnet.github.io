@@ -81,8 +81,6 @@
   <path class="arrow" d="M 470 150 L 495 150 L 495 200 L 520 200"/>
   <!-- Arrow: Evaluator to Critic -->
   <path class="arrow" d="M 470 300 L 495 300 L 495 240 L 520 240"/>
-  <text x="475" y="173" class="arrow-label">diffs</text>
-  <text x="475" y="273" class="arrow-label">results</text>
 
   <!-- Step 3: Critic -->
   <g transform="translate(520, 160)">
@@ -99,7 +97,6 @@
 
   <!-- Arrow: Critic to Human -->
   <path class="arrow" d="M 700 220 L 760 220"/>
-  <text x="708" y="208" class="arrow-label">approved</text>
 
   <!-- Step 4: Human review -->
   <g transform="translate(760, 140)">
