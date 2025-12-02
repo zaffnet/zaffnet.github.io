@@ -1,20 +1,44 @@
-<svg width="600" height="360" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
-<title id="title">qareen agent effort chart</title>
-<desc id="desc">Bar chart showing how different agents saved development hours.</desc>
-<rect width="600" height="360" fill="#f8fafc"/>
-<text x="300" y="35" text-anchor="middle" font-family="Inter,Arial" font-size="20" fill="#0f172a">Who did the heavy lifting?</text>
-<g transform="translate(80,70)" fill="#0f172a" font-family="Inter,Arial" font-size="14">
-  <rect x="30" y="70" width="80" height="140" fill="#4f46e5" rx="6"/>
-  <text x="70" y="225" text-anchor="middle">Retriever</text>
-  <text x="70" y="65" text-anchor="middle" font-size="13">3.5h</text>
-  <rect x="170" y="110" width="80" height="100" fill="#22d3ee" rx="6"/>
-  <text x="210" y="225" text-anchor="middle">Reranker</text>
-  <text x="210" y="105" text-anchor="middle" font-size="13">2.5h</text>
-  <rect x="310" y="150" width="80" height="60" fill="#a855f7" rx="6"/>
-  <text x="350" y="225" text-anchor="middle">Judge</text>
-  <text x="350" y="145" text-anchor="middle" font-size="13">1.5h</text>
-  <rect x="450" y="170" width="80" height="40" fill="#f97316" rx="6"/>
-  <text x="490" y="225" text-anchor="middle">UI helper</text>
-  <text x="490" y="165" text-anchor="middle" font-size="13">1h</text>
-</g>
+<svg width="720" height="360" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">Roles in the qareen build</title>
+  <desc id="desc">Swimlanes showing planner, builders, critic, and UI helper roles used while coding qareen.</desc>
+  <rect width="720" height="360" fill="#0a1628"/>
+  <text x="360" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">How the agents split the work</text>
+  <g transform="translate(60,70)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="10" width="160" height="240" fill="#1e293b" rx="14"/>
+    <text x="80" y="40" text-anchor="middle" font-size="15">Planner</text>
+    <text x="80" y="70" text-anchor="middle" font-size="12">break down tickets</text>
+    <text x="80" y="90" text-anchor="middle" font-size="12">sequence tools</text>
+    <circle cx="80" cy="160" r="38" fill="#22d3ee"/>
+    <text x="80" y="165" text-anchor="middle" font-size="20" fill="#0a1628">P</text>
+  </g>
+  <g transform="translate(240,70)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="10" width="160" height="240" fill="#0ea5e9" rx="14" opacity="0.8"/>
+    <text x="80" y="40" text-anchor="middle" font-size="15">Builders</text>
+    <text x="80" y="70" text-anchor="middle" font-size="12">retriever + reranker code</text>
+    <text x="80" y="90" text-anchor="middle" font-size="12">evaluation harness</text>
+    <circle cx="80" cy="160" r="38" fill="#f8fafc" opacity="0.95"/>
+    <text x="80" y="165" text-anchor="middle" font-size="20" fill="#0ea5e9">B</text>
+  </g>
+  <g transform="translate(420,70)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="10" width="120" height="240" fill="#7c3aed" rx="14" opacity="0.85"/>
+    <text x="60" y="40" text-anchor="middle" font-size="15">Critic</text>
+    <text x="60" y="70" text-anchor="middle" font-size="12">lint + tests</text>
+    <text x="60" y="90" text-anchor="middle" font-size="12">notes for review</text>
+    <circle cx="60" cy="160" r="38" fill="#f8fafc" opacity="0.95"/>
+    <text x="60" y="165" text-anchor="middle" font-size="20" fill="#7c3aed">C</text>
+  </g>
+  <g transform="translate(580,70)" font-family="'Inter', Arial" fill="#e2e8f0">
+    <rect x="0" y="10" width="100" height="240" fill="#f97316" rx="14" opacity="0.9"/>
+    <text x="50" y="40" text-anchor="middle" font-size="15">UI helper</text>
+    <text x="50" y="70" text-anchor="middle" font-size="12">Gradio tweaks</text>
+    <text x="50" y="90" text-anchor="middle" font-size="12">weight sliders</text>
+    <circle cx="50" cy="160" r="32" fill="#0a1628" opacity="0.9"/>
+    <text x="50" y="166" text-anchor="middle" font-size="18" fill="#f97316">U</text>
+  </g>
+  <g stroke="#38bdf8" stroke-width="3" fill="none" opacity="0.7">
+    <path d="M200 150 L240 150"/>
+    <path d="M400 150 L420 150"/>
+    <path d="M540 150 L580 150"/>
+  </g>
+  <text x="360" y="320" text-anchor="middle" font-family="'Inter', Arial" font-size="12" fill="#cbd5e1">Order: Planner drafts → Builders code → Critic checks → UI helper demos.</text>
 </svg>

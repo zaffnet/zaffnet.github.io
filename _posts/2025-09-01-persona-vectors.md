@@ -13,7 +13,7 @@ Anthropic's "persona vectors" paper is the rare research drop that reads like bo
 
 ### What are persona vectors?
 
-Think of a persona vector as a dimmer switch in the model's internal activations. Nudge one way and the model gets more "helpful"; nudge another and it slides into "sassy" or "hallucinatory." The researchers built an automated pipeline to find these switches by comparing the model's activations when a trait shows up versus when it doesn't.
+Think of a persona vector as a dimmer switch in the model's internal activations. Nudge one way and the model gets more "helpful"; nudge another and it slides into "sassy" or "hallucinatory." The researchers built an automated pipeline to find these switches by comparing the model's activations when a trait shows up versus when it doesn't. They measured the contrasts using linear probes on hidden states, then verified that adding or subtracting the discovered directions reliably altered tone without re-training the model.
 
 ![Activation bars for different personas](/assets/img/persona-dials.svg)
 
@@ -35,6 +35,7 @@ def steer_reply(model, prompt, persona_vec, strength=-0.4):
 * **Monitoring:** Track persona activations during a conversation to catch when the vibe drifts from "helpful neighbor" to "supervillain origin story." Think of it as a baby monitor for your LLM.
 * **Mitigation:** If a trait spikes, you can steer away from it by damping the corresponding vector. It's the ML version of turning down the treble when the song gets screechy.
 * **Data flagging:** Samples that light up unwanted vectors can be tagged for cleanup before they get baked into the next model release.
+* **Auditable knobs:** Because the vectors live in activation space, you can log their magnitudes alongside responses. That makes the intervention traceable instead of a mysterious prompt tweak.
 
 ```mermaid
 flowchart TD

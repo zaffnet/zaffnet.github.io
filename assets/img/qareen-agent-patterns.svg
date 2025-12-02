@@ -1,53 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" fill="none">
-  <style>
-    .title { font: 20px 'Helvetica', sans-serif; font-weight: bold; fill: #0f172a; }
-    .label { font: 14px 'Helvetica', sans-serif; fill: #111827; }
-    .note { font: 12px 'Helvetica', sans-serif; fill: #374151; }
-    .box { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; rx: 10; ry: 10; }
-    .arrow { stroke: #0f172a; stroke-width: 2; marker-end: url(#arrowhead); }
-  </style>
+<svg width="720" height="380" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+  <title id="title">Agent design patterns used in qareen</title>
+  <desc id="desc">Flow showing planner, routing, builders, critic, replay log, and human review steps applied while developing qareen.</desc>
   <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#0f172a" />
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="380" fill="#0b1224"/>
+  <text x="360" y="32" text-anchor="middle" font-family="'Inter', Arial" font-size="20" fill="#e2e8f0">Patterns that stuck</text>
+  <g transform="translate(60,70)" font-family="'Inter', Arial" fill="#e2e8f0" font-size="13">
+    <rect x="0" y="0" width="130" height="70" fill="url(#grad)" rx="12"/>
+    <text x="65" y="30" text-anchor="middle" font-size="14">Planner</text>
+    <text x="65" y="50" text-anchor="middle">tickets + acceptance</text>
+
+    <rect x="160" y="0" width="130" height="70" fill="#0ea5e9" rx="12" opacity="0.85"/>
+    <text x="225" y="30" text-anchor="middle" font-size="14">Tool router</text>
+    <text x="225" y="50" text-anchor="middle">retrieval vs UI tasks</text>
+
+    <rect x="320" y="0" width="130" height="70" fill="#22c55e" rx="12" opacity="0.85"/>
+    <text x="385" y="30" text-anchor="middle" font-size="14">Builders</text>
+    <text x="385" y="50" text-anchor="middle">implement + docs</text>
+
+    <rect x="480" y="0" width="130" height="70" fill="#7c3aed" rx="12" opacity="0.9"/>
+    <text x="545" y="30" text-anchor="middle" font-size="14">Critic</text>
+    <text x="545" y="50" text-anchor="middle">lint + sanity checks</text>
+
+    <rect x="120" y="140" width="160" height="70" fill="#1f2937" rx="12"/>
+    <text x="200" y="170" text-anchor="middle" font-size="14">Replay log</text>
+    <text x="200" y="190" text-anchor="middle">commands + outputs</text>
+
+    <rect x="360" y="140" width="190" height="70" fill="#f97316" rx="12" opacity="0.9"/>
+    <text x="455" y="170" text-anchor="middle" font-size="14">Human review</text>
+    <text x="455" y="190" text-anchor="middle">merge only after check</text>
+  </g>
+  <g stroke="#cbd5f5" stroke-width="3" fill="none" opacity="0.8">
+    <path d="M190 105 L225 105"/>
+    <path d="M350 105 L385 105"/>
+    <path d="M510 105 L545 105"/>
+    <path d="M245 140 C245 120 345 120 345 140"/>
+    <path d="M400 210 L400 250 L455 250" marker-end="url(#arrow)"/>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#cbd5f5"/>
     </marker>
   </defs>
-  <rect width="100%" height="100%" fill="#f8fafc" rx="16" ry="16" />
-  <text x="32" y="42" class="title">Agentic patterns that kept qareen on track</text>
-  <rect class="box" x="40" y="70" width="160" height="80" />
-  <text x="50" y="100" class="label">Planner</text>
-  <text x="50" y="120" class="note">Breaks work into tickets</text>
-  <text x="50" y="138" class="note">Feeds builders scoped briefs</text>
-
-  <rect class="box" x="260" y="70" width="160" height="80" />
-  <text x="270" y="100" class="label">Builders</text>
-  <text x="270" y="120" class="note">Implement tasks</text>
-  <text x="270" y="138" class="note">Return diffs and notes</text>
-
-  <rect class="box" x="480" y="70" width="180" height="80" />
-  <text x="490" y="100" class="label">Critic</text>
-  <text x="490" y="120" class="note">Lint, sanity checks</text>
-  <text x="490" y="138" class="note">Flags regressions early</text>
-
-  <rect class="box" x="140" y="200" width="180" height="80" />
-  <text x="150" y="230" class="label">Tool router</text>
-  <text x="150" y="250" class="note">Chooses eval, UI, or data path</text>
-
-  <rect class="box" x="380" y="200" width="220" height="80" />
-  <text x="390" y="230" class="label">Replay log</text>
-  <text x="390" y="250" class="note">Stores commands + outputs</text>
-  <text x="390" y="268" class="note">Makes reruns reproducible</text>
-
-  <rect class="box" x="260" y="320" width="200" height="70" fill="#dcfce7" stroke="#16a34a" />
-  <text x="270" y="350" class="label">Human review</text>
-  <text x="270" y="370" class="note">Final call on tradeoffs</text>
-
-  <line class="arrow" x1="200" y1="110" x2="260" y2="110" />
-  <line class="arrow" x1="420" y1="110" x2="480" y2="110" />
-  <line class="arrow" x1="540" y1="150" x2="540" y2="200" />
-  <line class="arrow" x1="220" y1="150" x2="220" y2="200" />
-  <line class="arrow" x1="320" y1="150" x2="320" y2="320" />
-  <line class="arrow" x1="480" y1="240" x2="380" y2="240" />
-  <line class="arrow" x1="360" y1="240" x2="260" y2="240" />
-  <line class="arrow" x1="360" y1="365" x2="280" y2="365" />
-  <line class="arrow" x1="460" y1="365" x2="520" y2="365" marker-end="url(#arrowhead)" />
+  <g fill="#cbd5e1" font-family="'Inter', Arial" font-size="12">
+    <text x="360" y="320" text-anchor="middle">Same loop repeated: plan → route → build → critique → replay if needed → human merge.</text>
+  </g>
 </svg>
