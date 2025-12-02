@@ -1,0 +1,58 @@
+<svg width="940" height="420" viewBox="0 0 940 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Agent design patterns used while building qareen</title>
+  <desc id="desc">Six patterns: planner-builder loop, critic pass, router to tools, replay buffer, UI feedback, and human taste checks.</desc>
+  <style>
+    text { font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #0f172a; }
+    .label { font-size: 15px; font-weight: 700; }
+    .body { font-size: 12.5px; fill: #1f2937; }
+    .card { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.2; }
+  </style>
+  <rect width="940" height="420" rx="18" fill="#f1f5f9"/>
+  <text x="28" y="40" class="label">Patterns that survived production</text>
+  <text x="28" y="60" class="body">Each box mirrors what actually landed in qareen's workflow; nothing hypothetical.</text>
+
+  <g transform="translate(32, 86)">
+    <rect class="card" x="0" y="0" width="270" height="100" rx="14" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="14" y="30" class="label">Planner → Builders</text>
+    <text x="14" y="54" class="body">One planner splits issues into focused diffs</text>
+    <text x="14" y="74" class="body">Builders commit reranker + UI changes</text>
+  </g>
+
+  <g transform="translate(330, 86)">
+    <rect class="card" x="0" y="0" width="270" height="100" rx="14" fill="#ecfdf3" stroke="#bbf7d0"/>
+    <text x="14" y="30" class="label">Critic pass</text>
+    <text x="14" y="54" class="body">Auto linting and unit tests gate merges</text>
+    <text x="14" y="74" class="body">Caught import slips before CI</text>
+  </g>
+
+  <g transform="translate(628, 86)">
+    <rect class="card" x="0" y="0" width="270" height="100" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="14" y="30" class="label">Router to tools</text>
+    <text x="14" y="54" class="body">Lightweight routing picked between</text>
+    <text x="14" y="74" class="body">vector prep, evaluation, or UI scripts</text>
+  </g>
+
+  <g transform="translate(32, 214)">
+    <rect class="card" x="0" y="0" width="270" height="120" rx="14" fill="#e0f2fe" stroke="#bfdbfe"/>
+    <text x="14" y="30" class="label">Replay buffer</text>
+    <text x="14" y="54" class="body">Agent commands + outputs logged per run</text>
+    <text x="14" y="74" class="body">Replayed sequences when tool changes</text>
+    <text x="14" y="94" class="body">shifted results</text>
+  </g>
+
+  <g transform="translate(330, 214)">
+    <rect class="card" x="0" y="0" width="270" height="120" rx="14" fill="#ecfeff" stroke="#a5f3fc"/>
+    <text x="14" y="30" class="label">UI feedback loop</text>
+    <text x="14" y="54" class="body">Gradio sliders for alpha/beta weights</text>
+    <text x="14" y="74" class="body">made reranker behavior visible</text>
+    <text x="14" y="94" class="body">during tuning</text>
+  </g>
+
+  <g transform="translate(628, 214)">
+    <rect class="card" x="0" y="0" width="270" height="120" rx="14" fill="#fff1f2" stroke="#fecdd3"/>
+    <text x="14" y="30" class="label">Human taste check</text>
+    <text x="14" y="54" class="body">Manual review kept outputs relevant</text>
+    <text x="14" y="74" class="body">and stopped over-optimization on</text>
+    <text x="14" y="94" class="body">benchmarks</text>
+  </g>
+</svg>
