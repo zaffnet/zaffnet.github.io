@@ -29,7 +29,7 @@ def measure_activation(model, prompt, probe_vector):
     return float(hidden @ probe_vector)
 
 def steer_reply(model, prompt, persona_vec, strength=-0.4):
-    score = measure_activation(model, prompt, persona_vec)
+    hidden = model.get_hidden_states(prompt)
     # Nudge the model away from the unwanted trait
     adjusted_hidden = hidden - strength * persona_vec
     return model.generate_from_hidden(adjusted_hidden)

@@ -11,7 +11,7 @@ permalink: building-qareen-agents
 
 A few weeks ago I shipped [`qareen`](https://github.com/zaffnet/qareen), a framework for picking better few-shot examples. The algorithm is useful, but honestly? The interesting part was *how* I built it: by conducting a small orchestra of AI coding agents.
 
-Imagine pair programming, except your pair is five different AIs with strong opinions about code style and a mysterious tendency to import libraries that don't exist.
+Imagine pair programming, except your pair is five different AIs with strong opinions about code style. (They also have a mysterious tendency to import libraries that don't exist—more on catching that later.)
 
 ### The gist of qareen
 
