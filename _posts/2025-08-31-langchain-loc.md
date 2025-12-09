@@ -14,6 +14,7 @@ Last month I rebuilt a chatbot that had grown into a spaghetti monster of API ca
 Then I rewrote it with LangChain. 29 lines became 12. My weekend suddenly had fewer Slack alerts.
 
 ![Hand-drawn sketch comparing lines of code](/assets/img/langchain-loc.svg)
+<span aria-hidden="true" style="font-size:14px;color:#475569;">29 lines of vanilla Python shrunk to 12 with LangChain</span>
 
 ### The "I wrote it myself" trap
 

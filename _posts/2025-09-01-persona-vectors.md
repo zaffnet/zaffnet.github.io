@@ -11,7 +11,7 @@ permalink: persona-vectors
 
 Ever had a chatbot turn sarcastic on you mid-conversation? One minute it's helpful, the next it's giving off "annoyed coworker" energy. Turns out there's actual *math* behind these mood swings—and Anthropic figured out how to find and fix them.
 
-Their "persona vectors" research is like discovering the model has personality sliders hidden inside, except no one labeled them and they were set by accident during training.
+Their "persona vectors" research is like discovering hidden personality dials inside the model—except nobody labeled them, and they got set by accident during training.
 
 ### What's actually happening inside
 
