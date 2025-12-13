@@ -11,21 +11,21 @@ permalink: building-qareen-agents
 
 A few weeks ago I shipped [`qareen`](https://github.com/zaffnet/qareen), a framework for picking better few-shot examples. The algorithm is useful, but honestly? The interesting part was *how* I built it: by conducting a small orchestra of AI coding agents.
 
-Imagine pair programming, except your pair is five different AIs with strong opinions about code style. (They also have a mysterious tendency to import libraries that don't exist—more on catching that later.)
+Imagine pair programming, except your pair is five different AIs with strong opinions about code style. (They also have a mysterious tendency to import libraries that don't exist.)
 
-### The gist of qareen
+### The gist of `qareen`
 
-When you prompt an LLM with examples (few-shot learning), the examples matter. A lot. Give it five variations of the same thing and it'll parrot those patterns. Give it carefully selected, *diverse* examples and it generalizes better.
+When one prompts an LLM with examples (few-shot learning), the examples matter. A lot. Give it five variations of the same thing and it'll parrot those patterns. Give it carefully selected, *diverse* examples and it generalizes better.
 
-`qareen` picks examples that are relevant to your task but different enough from each other to actually teach something. It blends text and image signals—like making a mixtape where every song is both thematically appropriate *and* introduces something new.
+`qareen` picks examples that are relevant to a task but different enough from each other to actually teach something. It blends text and image signals—like making a mixtape where every song is both thematically appropriate *and* introduces something new.
 
 ![Hand-drawn sketch of the agent workflow](/assets/img/qareen-agents.svg)
 
 ### My new job: reviewer in chief
 
-The biggest shift wasn't technical—it was how I spent my time. Before agents, I wrote code. Now I mostly review it. I went from keyboard-forward developer to someone who spends more time saying "wait, why would you do it that way?" to a robot.
+The biggest shift wasn't technical. Rather, it was how I spent my time. Before agents, I wrote code. Now I mostly review it. I went from keyboard-forward developer to someone who spends more time saying "wait, why would you do it that way?" to a robot.
 
-This sounds like a downgrade until you realize: the iteration speed is wild. What used to be "set up an experiment, go get coffee, come back, realize you made a typo" became "propose five experiments, agents run all of them, pick the winner by lunch."
+This sounds like a downgrade until you realize: the development speed is wild. What used to be "set up an experiment, go get coffee, come back, realize I made a typo" became "propose five experiments, agents run all of them, pick the winner by lunch."
 
 ```python
 from qareen.sampler import rr_rank, normalize_scores
@@ -64,6 +64,6 @@ A few lessons learned the hard way:
 
 ### The takeaway
 
-Multi-agent coding isn't a toy or a demo—it's a genuinely different way to work. Not faster in *every* way (debugging agent confusion takes time), but faster in enough ways that the overall velocity goes up. You trade writing code for reviewing it, and if you're okay with that shift, it's pretty great.
+Multi-agent coding isn't a toy or a demo. It's a genuinely different way to work. Not faster in *every* way (debugging agent confusion takes time), but faster in enough ways that the overall velocity goes up. You trade writing code for reviewing it, and if you're okay with that shift, it's pretty great.
 
 `qareen` is open source if you want to try the framework. And if you build something with a swarm of agents, I'd love to hear which patterns worked for you—and which ones went hilariously wrong.

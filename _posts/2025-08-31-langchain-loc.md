@@ -74,4 +74,4 @@ Think of LangChain like LEGO for LLM apps:
 2. **Log everything.** LangChain's callback system makes this easy. When (not if) something weird happens, you'll want receipts.
 3. **Tokens still cost money.** Abstractions hide complexity, but they don't hide costs. An abstraction that makes five API calls is still five API calls.
 
-The real win isn't the line count—though that's nice. It's that six months from now, when you need to change something, you'll actually understand what's happening. And maybe, just maybe, you'll get to keep your weekend.
+The real win isn't the line count—though that's nice. It's that six months from now, when I need to change something, I'll actually understand what's happening. And maybe, just maybe, I'll get to keep my weekend.
