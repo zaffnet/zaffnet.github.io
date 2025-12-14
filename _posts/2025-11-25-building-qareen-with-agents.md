@@ -11,7 +11,7 @@ permalink: building-qareen-agents
 
 A few weeks ago I shipped [`qareen`](https://github.com/zaffnet/qareen), a framework for picking better few-shot examples. The algorithm is useful, but honestly? The interesting part was *how* I built it: by conducting a small orchestra of AI coding agents.
 
-Imagine pair programming, except your pair is five different AIs with strong opinions about code style. (They also have a mysterious tendency to import libraries that don't exist.)
+Imagine pair programming, except the pair consists of five different AIs with strong opinions about code style. (They also have a mysterious tendency to import libraries that don't exist.)
 
 ### The gist of `qareen`
 
@@ -25,7 +25,7 @@ When one prompts an LLM with examples (few-shot learning), the examples matter. 
 
 The biggest shift wasn't technical. Rather, it was how I spent my time. Before agents, I wrote code. Now I mostly review it. I went from keyboard-forward developer to someone who spends more time saying "wait, why would you do it that way?" to a robot.
 
-This sounds like a downgrade until you realize: the development speed is wild. What used to be "set up an experiment, go get coffee, come back, realize I made a typo" became "propose five experiments, agents run all of them, pick the winner by lunch."
+This sounds like a downgrade until one realizes: the development speed is wild. What used to be "set up an experiment, go get coffee, come back, realize I made a typo" became "propose five experiments, agents run all of them, pick the winner by lunch."
 
 ```python
 from qareen.sampler import rr_rank, normalize_scores
@@ -44,11 +44,11 @@ I tried a lot of things. Most didn't work. Here's what survived:
 
 ![Hand-drawn patterns that worked in building qareen](/assets/img/qareen-agent-patterns.svg)
 
-**Planner → Builders.** One agent breaks issues into small, specific tasks. Others pick them up and execute. This sounds obvious, but getting the granularity right took some trial and error. Too big and agents get confused. Too small and you're managing a to-do list the length of a CVS receipt.
+**Planner → Builders.** One agent breaks issues into small, specific tasks. Others pick them up and execute. This sounds obvious, but getting the granularity right took some trial and error. Too big and agents get confused. Too small and developers are managing a to-do list the length of a CVS receipt.
 
 **Critic in the loop.** Before code hits my screen, a critic agent runs linting and tests. It's like having a very literal-minded coworker who catches the obvious stuff so I can focus on the subtle stuff.
 
-**Keep logs of everything.** Every agent run dumps its commands and outputs to a log. When something breaks—and it will—you can replay the sequence to figure out what changed. Think git blame, but for agent decisions.
+**Keep logs of everything.** Every agent run dumps its commands and outputs to a log. When something breaks—and it will—the sequence can be replayed to figure out what changed. Think git blame, but for agent decisions.
 
 **Gradio for instant feedback.** I wired up a quick UI with sliders for the ranking weights. Being able to *see* the reranker's decisions made tuning dramatically faster than staring at JSON outputs.
 
@@ -56,7 +56,7 @@ I tried a lot of things. Most didn't work. Here's what survived:
 
 A few lessons learned the hard way:
 
-* **Vague tasks = creative interpretations.** When I said "improve the reranker," one agent decided the way to do that was to rewrite the entire module in a different framework. Specific acceptance criteria are your friend.
+* **Vague tasks = creative interpretations.** When I said "improve the reranker," one agent decided the way to do that was to rewrite the entire module in a different framework. Specific acceptance criteria are essential.
 
 * **Don't trust imports.** Agents will confidently import libraries that don't exist, or that exist but do something completely different. The critic pass caught most of these, but not all.
 
@@ -64,6 +64,6 @@ A few lessons learned the hard way:
 
 ### The takeaway
 
-Multi-agent coding isn't a toy or a demo. It's a genuinely different way to work. Not faster in *every* way (debugging agent confusion takes time), but faster in enough ways that the overall velocity goes up. You trade writing code for reviewing it, and if you're okay with that shift, it's pretty great.
+Multi-agent coding isn't a toy or a demo. It's a genuinely different way to work. Not faster in *every* way (debugging agent confusion takes time), but faster in enough ways that the overall velocity goes up. Developers trade writing code for reviewing it, and if that shift is acceptable, it's pretty great.
 
-`qareen` is open source if you want to try the framework. And if you build something with a swarm of agents, I'd love to hear which patterns worked for you—and which ones went hilariously wrong.
+`qareen` is open source for those wanting to try the framework. And if building something with a swarm of agents, I'd love to hear which patterns were effective—and which ones went hilariously wrong.

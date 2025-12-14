@@ -10,14 +10,3 @@ sitemap:
     lastmod: 2017-01-06 15:50:06 +0530
 ---
 # [zaffnet.github.io](https://zaffnet.github.io)
-
-
-## Local development with Docker
-
-If you prefer not to install Ruby, Bundler, or Jekyll locally, you can use the Docker helper script:
-
-```bash
-./build.sh
-```
-
-The script cleans previous build caches and starts a containerised Jekyll server on http://localhost:4000, mounting the current directory so that your latest changes are served immediately.

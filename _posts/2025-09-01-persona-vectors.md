@@ -25,7 +25,7 @@ When a model generates text, it runs through layers of neural networks, each pro
 
 ![Hand-drawn diagram of persona vector discovery and steering](/assets/img/persona-dials.svg)
 
-The clever part: you can find these directions without retraining the model. Just compare how the activations differ when the model is being helpful versus when it's being snarky. Train a simple classifier (literally logistic regression), and boom—the classifier's weights point straight at the "snark direction."
+The clever part: these directions can be found without retraining the model. Just compare how the activations differ when the model is being helpful versus when it's being snarky. Train a simple classifier (literally logistic regression), and boom—the classifier's weights point straight at the "snark direction."
 
 Here's the simplified version of what that looks like:
 
@@ -43,20 +43,20 @@ def steer_reply(model, prompt, persona_vec, strength=-0.4):
 
 ### Why this is actually useful
 
-Once you have these vectors, you can do a few things that weren't possible before:
+Once these vectors are identified, several things become possible that weren't before:
 
-**Catch problems before users do.** Monitor persona activations during conversations. If the "unhelpful" vector spikes, you can flag it internally before anyone tweets about it.
+**Catch problems before users do.** Monitor persona activations during conversations. If the "unhelpful" vector spikes, it can be flagged internally before anyone tweets about it.
 
-**Course-correct in real time.** Instead of retraining or prompt engineering your way out of bad behavior, just subtract a bit of the problematic vector during inference. It's like adjusting an EQ knob on a mixing board—turn down the treble when it gets too harsh.
+**Course-correct in real time.** Instead of retraining or using prompt engineering to work around bad behavior, just subtract a bit of the problematic vector during inference. It's like adjusting an EQ knob on a mixing board—turn down the treble when it gets too harsh.
 
-**Clean your training data.** Before your next fine-tuning run, scan examples for high activation on vectors you don't want. Cut them before they poison the next model.
+**Clean training data.** Before the next fine-tuning run, scan examples for high activation on unwanted vectors. Cut them before they poison the next model.
 
-**Actually explain interventions.** Because the vectors live in activation space, you can log them. When someone asks "why did you change the model's behavior?"—you have receipts.
+**Actually explain interventions.** Because the vectors live in activation space, they can be logged. When someone asks "why did you change the model's behavior?"—there are receipts.
 
 ### The bigger picture
 
-This isn't a silver bullet. You still need good prompts, good data, and probably a human reviewing outputs for anything sensitive. But persona vectors give you *visibility*. Instead of treating the model as a black box that occasionally misbehaves, you can peek inside and see which switches are flipping.
+This isn't a silver bullet. Good prompts, good data, and human review of sensitive outputs are still required. But persona vectors provide *visibility*. Instead of treating the model as a black box that occasionally misbehaves, one can peek inside and see which switches are flipping.
 
-For anyone running LLMs in production: this moves you from "we'll know it's broken when users complain" to "we see the sarcasm score rising, let's intervene." That's a meaningful upgrade.
+For anyone running LLMs in production: this shifts the workflow from "we'll know it's broken when users complain" to "we see the sarcasm score rising, let's intervene." That's a meaningful upgrade.
 
-And if your chatbot ever insists it's the main character? You'll know exactly which dial to turn down.
+And if a chatbot ever insists it's the main character? The exact dial to adjust will be clear.
