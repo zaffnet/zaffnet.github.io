@@ -17,6 +17,36 @@
   <meta name="theme-color" content="#40256d">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+      startOnLoad: false,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#dbeafe',
+        primaryTextColor: '#1e293b',
+        primaryBorderColor: '#3b82f6',
+        lineColor: '#64748b',
+        secondaryColor: '#dcfce7',
+        tertiaryColor: '#fef9c3'
+      }
+    });
+    
+    // Handle Kramdown's language-mermaid code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+      const mermaidBlocks = document.querySelectorAll('code.language-mermaid, pre code.language-mermaid');
+      mermaidBlocks.forEach(function(block) {
+        const pre = block.parentElement;
+        const diagram = block.textContent;
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = diagram;
+        pre.parentNode.replaceChild(div, pre);
+      });
+      mermaid.run();
+    });
+  </script>
 </head>
 <body class="{% if page.layout == 'post' %}post-page {% endif %}{% if page.url == '/' or page.permalink == '/' %}home-page {% endif %}{% if page.url == '/blogs/' or page.permalink == '/blogs/' %}blogs-page{% endif %}">
   <div class="container">
