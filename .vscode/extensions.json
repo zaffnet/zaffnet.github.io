@@ -1,5 +1,16 @@
 {
     "recommendations": [
-        "ms-playwright.playwright"
+        "streetsidesoftware.code-spell-checker",
+        "charliermarsh.ruff",
+        "redhat.vscode-yaml",
+        "mechatroner.rainbow-csv",
+        "anysphere.cursorpyright",
+        "ms-python.python",
+        "davidanson.vscode-markdownlint",
+        "bierner.markdown-mermaid",
+        "ms-toolsai.jupyter",
+        "github.vscode-pull-request-github",
+        "ms-vscode.vscode-github-issue-notebooks",
+        "github.vscode-github-actions"
     ]
 }
