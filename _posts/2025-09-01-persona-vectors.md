@@ -23,7 +23,25 @@ The researchers at Anthropic developed an automated pipeline to identify these p
 
 When a model generates text, it runs through layers of neural networks, each producing what researchers call "activations" or "hidden states." Think of these as the model's internal thoughts. Anthropic found that certain *directions* in this thought-space correspond to personality traits: helpful, sarcastic, hallucinatory, you name it.
 
-![Hand-drawn diagram of persona vector discovery and steering](/assets/img/persona-dials.svg)
+```mermaid
+flowchart TD
+    collect["1. Collect pairs<br/>helpful vs snarky<br/>prompt examples"]
+    peek["2. Peek inside<br/>Grab hidden states<br/>from the model"]
+    find["3. Find direction<br/>Logistic regression<br/>→ persona vector!"]
+    monitor["📊 Monitor<br/>Snark score rising...<br/>Alert before disaster!"]
+    steer["🎛️ Steer<br/>Turn down the dial<br/>No retraining needed"]
+    
+    collect --> peek
+    peek --> find
+    find --> monitor
+    find --> steer
+    
+    style collect fill:#dbeafe,stroke:#3b82f6
+    style peek fill:#cffafe,stroke:#06b6d4
+    style find fill:#e0e7ff,stroke:#6366f1
+    style monitor fill:#fef9c3,stroke:#eab308
+    style steer fill:#dcfce7,stroke:#22c55e
+```
 
 The clever part: these directions can be found without retraining the model. Just compare how the activations differ when the model is being helpful versus when it's being snarky. Train a simple classifier (literally logistic regression), and boom—the classifier's weights point straight at the "snark direction."
 
@@ -34,7 +52,7 @@ def measure_activation(model, prompt, probe_vector):
     hidden = model.get_hidden_states(prompt)
     return float(hidden @ probe_vector)
 
-def steer_reply(model, prompt, persona_vec, strength=-0.4):
+def steer_reply(model, prompt, persona_vec, strength=0.4):
     hidden = model.get_hidden_states(prompt)
     # Nudge the model away from the unwanted trait
     adjusted_hidden = hidden - strength * persona_vec

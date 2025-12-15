@@ -2,6 +2,13 @@
   <title id="title">Agent workflow for building qareen - hand-drawn style</title>
   <desc id="desc">Sketchy flowchart showing planner, builders, evaluator, critic, and human review</desc>
   
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  
   <!-- Rough paper background -->
   <rect width="800" height="450" fill="#fffef8"/>
   
@@ -34,10 +41,11 @@
   <text x="305" y="268" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">"Is this actually</text>
   <text x="305" y="285" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">better?"</text>
   
-  <!-- Arrows from builders/evaluator to critic -->
-  <path d="M445 135 Q480 140 505 175 Q515 195 515 210" stroke="#64748b" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M445 250 Q480 245 505 225 Q515 210 515 210" stroke="#64748b" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M510 205 L515 218 L522 207" stroke="#64748b" stroke-width="2" fill="none"/>
+  <!-- Arrow from Builders to Critic -->
+  <path d="M445 135 Q480 140 505 175 Q515 195 515 210" stroke="#64748b" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow from Evaluator to Critic -->
+  <path d="M445 250 Q480 245 505 225 Q515 210 515 210" stroke="#64748b" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#arrowhead)"/>
   
   <!-- Step 3: Critic (hexagon-ish) -->
   <path d="M520 185 Q565 170 610 185 Q625 205 625 235 Q625 265 610 280 Q565 295 520 280 Q505 260 505 235 Q505 205 520 185 Z" fill="#fef9c3" stroke="#eab308" stroke-width="2.5" stroke-linecap="round"/>
@@ -45,9 +53,8 @@
   <text x="522" y="248" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">"Did you even</text>
   <text x="530" y="265" font-family="Comic Sans MS, cursive" font-size="11" fill="#1e293b">run lint?"</text>
   
-  <!-- Arrow to Human -->
-  <path d="M625 230 Q660 228 690 230" stroke="#64748b" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M685 225 L695 230 L685 237" stroke="#64748b" stroke-width="2" fill="none"/>
+  <!-- Arrow from Critic to Me -->
+  <path d="M625 230 Q660 228 690 230" stroke="#64748b" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#arrowhead)"/>
   
   <!-- Step 4: Human (rough circle) -->
   <path d="M700 180 Q755 175 770 220 Q780 270 740 295 Q700 310 675 280 Q655 245 670 205 Q685 180 700 180 Z" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round"/>
@@ -60,9 +67,6 @@
   <path d="M85 200 L90 188 L98 198" stroke="#f97316" stroke-width="2" fill="none"/>
   <text x="350" y="400" font-family="Comic Sans MS, cursive" font-size="12" fill="#f97316" transform="rotate(-2 350 400)">↻ "Actually, let's try something else..."</text>
   
-  <!-- Fun annotations -->
-  <text x="460" y="80" font-family="Comic Sans MS, cursive" font-size="10" fill="#94a3b8" transform="rotate(3 460 80)">parallel work!</text>
-  <path d="M455 85 L455 100 M455 100 L450 150 M455 100 L460 200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
   
   <!-- Decorative element - coffee cup -->
   <path d="M50 380 L50 410 Q50 420 65 420 L85 420 Q100 420 100 410 L100 380 Z" fill="none" stroke="#94a3b8" stroke-width="1.5"/>

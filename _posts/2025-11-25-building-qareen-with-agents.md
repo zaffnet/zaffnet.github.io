@@ -19,7 +19,27 @@ When one prompts an LLM with examples (few-shot learning), the examples matter. 
 
 `qareen` picks examples that are relevant to a task but different enough from each other to actually teach something. It blends text and image signals—like making a mixtape where every song is both thematically appropriate *and* introduces something new.
 
-![Hand-drawn sketch of the agent workflow](/assets/img/qareen-agents.svg)
+```mermaid
+flowchart LR
+    planner["📋 Planner<br/>break this into<br/>small tasks"]
+    builders["🔨 Builders<br/>Write the actual code<br/>(sometimes it works!)"]
+    evaluator["📊 Evaluator<br/>Runs the metrics<br/>Is this actually better?"]
+    critic["🔍 Critic<br/>Did you even run lint?"]
+    human["👤 Me<br/>Ship it! or nope"]
+    
+    planner --> builders
+    planner --> evaluator
+    builders --> critic
+    evaluator --> critic
+    critic --> human
+    human -.->|"Actually, let's try something else..."| planner
+    
+    style planner fill:#dbeafe,stroke:#3b82f6
+    style builders fill:#dcfce7,stroke:#22c55e
+    style evaluator fill:#ffedd5,stroke:#f97316
+    style critic fill:#fef9c3,stroke:#eab308
+    style human fill:#fce7f3,stroke:#ec4899
+```
 
 ### My new job: reviewer in chief
 
@@ -42,7 +62,32 @@ def rerank_candidates(text_scores, image_scores, alpha=0.6):
 
 I tried a lot of things. Most didn't work. Here's what survived:
 
-![Hand-drawn patterns that worked in building qareen](/assets/img/qareen-agent-patterns.svg)
+```mermaid
+flowchart TD
+    root["Patterns That Worked"]
+    
+    root --> PlannerBuilders
+    root --> CriticPass
+    root --> ToolRouter
+    root --> ReplayBuffer
+    root --> UIFeedback
+    root --> HumanTaste
+    
+    PlannerBuilders["📋→🔨 Planner to Builders<br/>One brain, many hands<br/>Small tasks = fewer mistakes"]
+    CriticPass["🔍 Critic Pass<br/>Linting before human eyes<br/>Catches the obvious stuff"]
+    ToolRouter["🔀 Tool Router<br/>Right tool for the job<br/>No more hammer for screws"]
+    ReplayBuffer["📼 Replay Buffer<br/>Log every agent action<br/>What changed? → check tape"]
+    UIFeedback["🎛️ UI Feedback Loop<br/>Sliders > staring at JSON<br/>See problems, not just numbers"]
+    HumanTaste["👤 Human Taste Check<br/>Metrics aren't everything<br/>Does this feel right?"]
+    
+    style root fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a
+    style PlannerBuilders fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#1e293b
+    style CriticPass fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#1e293b
+    style ToolRouter fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#1e293b
+    style ReplayBuffer fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#1e293b
+    style UIFeedback fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#1e293b
+    style HumanTaste fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,color:#1e293b
+```
 
 **Planner → Builders.** One agent breaks issues into small, specific tasks. Others pick them up and execute. This sounds obvious, but getting the granularity right took some trial and error. Too big and agents get confused. Too small and developers are managing a to-do list the length of a CVS receipt.
 
