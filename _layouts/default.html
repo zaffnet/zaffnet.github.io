@@ -6,9 +6,6 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/css/syntax.css" | relative_url }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="{{ "/assets/favicon.svg" | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ "/assets/favicon-32.png" | relative_url }}">
   <link rel="icon" type="image/png" sizes="192x192" href="{{ "/assets/favicon-512.png" | relative_url }}">
@@ -48,20 +45,7 @@
     });
   </script>
 </head>
-<body class="{% if page.layout == 'post' %}post-page {% endif %}{% if page.url == '/' or page.permalink == '/' %}home-page {% endif %}{% if page.url == '/blogs/' or page.permalink == '/blogs/' %}blogs-page{% endif %}">
-  <div class="container">
-    <header>
-      <nav>
-        <a href="{{ "/" | relative_url }}" class="nav-logo" aria-label="Homepage"></a>
-        <ul>
-          <li><a href="{{ "/" | relative_url }}">Home</a></li>
-          <li><a href="{{ "/blogs" | relative_url }}">Blogs</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      {{ content }}
-    </main>
-  </div>
+<body>
+  {{ content }}
 </body>
 </html>
