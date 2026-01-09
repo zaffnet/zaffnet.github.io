@@ -71,6 +71,9 @@ h3, h4, h5, h6 {
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em 0.5em;
 }
 
 .intro-links a {
@@ -79,6 +82,13 @@ h3, h4, h5, h6 {
 
 .intro-links a:hover {
   color: var(--text-primary);
+}
+
+.intro-links a:not(:last-child)::after {
+  content: ' /';
+  margin-left: 0.25em;
+  color: var(--text-secondary);
+  pointer-events: none;
 }
 
 .content-section {
