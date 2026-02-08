@@ -4,120 +4,64 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Jekyll-based personal website and blog hosted on GitHub Pages at https://zafarmahmood.com. The site showcases technical writing, publications, projects, and professional experience in NLP and AI engineering.
+Personal portfolio and blog site for Zafarullah Mahmood, built with Jekyll and hosted on GitHub Pages at zafarmahmood.com.
 
-## Build and Development Commands
+## Build & Serve
 
-### Local Development
+**Prerequisites**: Ruby 3.4+ (pinned in `.ruby-version`) and Bundler 2.x. Install Ruby via [rbenv](https://github.com/rbenv/rbenv) or [mise](https://mise.jdx.dev/) — do not use macOS system Ruby.
+
 ```bash
-# Install dependencies (Ruby 3.4+ required)
-bundle install
+# Install dependencies (use vendor/bundle to isolate from system gems)
+bundle config set --local path vendor/bundle
+MAKEFLAGS="CXX=clang++" bundle install
 
-# Serve locally with auto-rebuild
-bundle exec jekyll serve
-
-# Build site to _site/ directory
-bundle exec jekyll build
-
-# Clean build artifacts
-bundle exec jekyll clean
+# Serve locally with live reload at http://localhost:4000
+bundle exec jekyll serve --livereload
 ```
 
-### Testing
-```bash
-# Check for broken links, HTML validation
-bundle exec jekyll build && htmlproofer ./_site --disable-external
+The site builds to `_site/` (gitignored).
 
-# Validate YAML front matter
-ruby -ryaml -e "YAML.load_file('_posts/YYYY-MM-DD-post-name.md')"
-```
+### Common installation issues
+
+- **`sass-embedded` or `google-protobuf` fails**: These ship platform-specific native binaries. Run `bundle lock --add-platform arm64-darwin` (Apple Silicon) or `x86_64-linux-gnu` (Linux), then `bundle install` again.
+- **`nokogiri` build fails**: Needs libxml2/libxslt. On macOS: `brew install libxml2 libxslt`. Usually the pre-built native gem works without this.
+- **`eventmachine` build fails (CXX=false)**: Ruby 3.4.8 via rbenv may be compiled with `CXX=false`, causing eventmachine's native extension to fail (`make: *** [binder.o] Error 1`). Fix: `MAKEFLAGS="CXX=clang++" bundle install`. The MAKEFLAGS prefix is only needed during `bundle install`; `bundle exec jekyll serve` works without it once gems are compiled.
+- **Wrong Ruby version**: If you see `Your Ruby version is X but your Gemfile specified ~> 3.4`, install Ruby 3.4 via `rbenv install 3.4.8` (or whichever patch). The `.ruby-version` file will auto-select it.
+- **Port 4000 in use**: Use `bundle exec jekyll serve --port 4001`.
+- **Sass deprecation warnings**: Already suppressed via `sass: quiet_deps: true` in `_config.yml`.
 
 ## Architecture
 
-### Core Structure
-- **Jekyll 4.4** with Minima theme (customized)
-- **Content**: Blog posts in `_posts/` with YAML front matter
-- **Layouts**: Custom layouts in `_layouts/` (default.html, post.html)
-- **Styling**: SCSS in `_sass/minima/` + custom CSS in `assets/css/`
-- **Pages**: Main portfolio (index.html), blog listing (blogs.html)
+- **Jekyll static site** using the `minima` theme with local SCSS overrides in `_sass/minima/`
+- **Layouts**: `_layouts/default.html` (base, standalone HTML5 document with inline nav) → `_layouts/post.html` (blog posts)
+- **Pages**: `index.html` (homepage with hero, about, timeline), `blogs.html` (post listing), `404.html`
+- **Blog posts**: Markdown files in `_posts/` using Kramdown with GFM input
+- **Styling**: `assets/css/style.css` (main) and `assets/css/syntax.css` (code highlighting); uses CSS custom properties for theming (accent: `#007aff`); Plus Jakarta Sans via Google Fonts
+- **Client-side JS**: MathJax for math rendering, Mermaid v11 (ESM) for diagrams, Font Awesome for icons — all loaded in the default layout
+- **Images**: `assets/img/skills/` (tech skill icons), `assets/img/archive/` (article diagrams)
+- **Includes**: `_includes/header.html` and `_includes/footer.html` exist but are legacy/unused — the default layout is self-contained
 
-### Key Plugins
-- `jekyll-seo-tag`: Auto-generates meta tags for SEO
-- `jekyll-feed`: Creates RSS/Atom feed at /feed.xml
-- `jekyll-sitemap`: Auto-generates sitemap.xml
-- `jekyll-mentions`: Enables @username syntax
-- `jekyll-redirect-from`: Handles URL redirects
-- `jekyll-gist`: Embeds GitHub Gists
+## Blog Post Conventions
 
-### Blog Post Format
-Posts in `_posts/` must follow naming: `YYYY-MM-DD-title.md`
+Posts use this frontmatter structure:
 
-Required front matter:
 ```yaml
----
 layout: post
-title: "Post Title"
-desc: "Brief description for SEO"
+title: "Title"
+desc: "Short description"
 keywords: "comma, separated, keywords"
-date: YYYY-MM-DD HH:MM:SS +0000
-lastmod: YYYY-MM-DD HH:MM:SS +0000
+date: YYYY-MM-DD 00:00:00 +0000
+lastmod: YYYY-MM-DD 00:00:00 +0000
 comments: true
-permalink: custom-url-slug
----
+permalink: slug-without-slashes
 ```
 
-### Custom Features
-- **Hand-drawn SVG diagrams**: Blog posts include custom Excalidraw-style SVG graphics in `/assets/img/`
-- **Skills showcase**: Interactive skill badges with hover effects (index.html lines 104-278)
-- **Timeline layout**: Professional experience timeline with visual markers
-- **Custom SCSS variables**: Defined in `_sass/minima.scss` (colors, spacing, responsive breakpoints)
+Posts support Mermaid diagram blocks (` ```mermaid `) and MathJax notation. The writing style is conversational and uses humor.
 
-## GitHub Actions Workflow
+## CI/CD
 
-`.github/workflows/main.yml` automatically:
-1. Merges `main` into all feature branches on every push to main
-2. Uses git worktrees to handle multiple branches safely
-3. Skips branches with merge conflicts and logs them
+A GitHub Actions workflow (`.github/workflows/main.yml`) automatically merges `main` into all feature branches on every push to `main`. It uses git worktrees to handle branch names with slashes and skips branches with merge conflicts.
 
-This keeps feature branches updated with main automatically.
+## Permalink Structure
 
-## Content Guidelines
-
-### Blog Posts
-- Use natural, conversational tone (see existing posts for voice)
-- Include hand-drawn SVG diagrams for visual concepts
-- Keep code examples concise with inline comments
-- Add descriptive alt text for images
-- Date format in filenames must match format in front matter
-
-### Visual Assets
-- SVG diagrams: Store in `/assets/img/` with descriptive names
-- Skill icons: PNG/SVG in `/assets/img/skills/`
-- Profile images: `/assets/` root directory
-- Use lazy loading: `loading="lazy"` for images below fold
-
-## Configuration Notes
-
-### _config.yml
-- **Timezone**: America/Toronto
-- **Permalink structure**: `/:categories/:title/`
-- **Markdown**: Kramdown with GitHub Flavored Markdown (GFM)
-- **Excluded from build**: vendor/, .bundle/, node_modules/, .jekyll-cache/
-
-### Sass Configuration
-- Uses `sass-embedded` (Ruby Sass is deprecated)
-- SCSS partials imported in `_sass/minima.scss`
-- Custom styles in `assets/css/style.css`
-- Syntax highlighting in `assets/css/syntax.css`
-
-## Common Pitfalls
-
-1. **Blog post dates**: Posts with future dates won't appear on the site
-2. **YAML front matter**: Ensure proper indentation and valid YAML syntax
-3. **Asset paths**: Use `{{ "assets/path/to/file" | relative_url }}` in templates
-4. **SVG files**: Ensure xmlns attribute is present for proper rendering
-5. **Bundle updates**: Run `bundle update` cautiously; lock tested versions in Gemfile.lock
-
-## Deployment
-
-Site is automatically deployed via GitHub Pages from the `main` branch. No manual deployment steps required. Changes pushed to main are live within 1-2 minutes.
+Configured as `/:categories/:title/` in `_config.yml`. Blog posts typically set a custom `permalink` in frontmatter.
