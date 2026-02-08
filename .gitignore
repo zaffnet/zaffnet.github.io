@@ -12,6 +12,9 @@ vendor/
 # Jekyll ignore file (commit only if project-specific)
 .jekyllignore
 
+# Ruby version (rbenv)
+.ruby-version
+
 # Backup files
 *_bak
 *.bak
