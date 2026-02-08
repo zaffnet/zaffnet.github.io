@@ -18,3 +18,9 @@ vendor/
 # Backup files
 *_bak
 *.bak
+
+# Dev tooling
+.claude/
+.codex/
+.playwright-mcp/
+.vscode/
