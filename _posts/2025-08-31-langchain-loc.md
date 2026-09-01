@@ -30,6 +30,7 @@ flowchart LR
     style l12 fill:#bfdbfe,stroke:#1d4ed8
 ```
 
+<!-- markdownlint-disable-next-line MD033 -->
 <span aria-hidden="true" style="font-size:14px;color:#475569;">29 lines of vanilla Python shrunk to 12 with LangChain</span>
 
 ### The "I wrote it myself" trap

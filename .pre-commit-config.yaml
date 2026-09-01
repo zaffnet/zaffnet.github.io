@@ -22,23 +22,3 @@ repos:
     rev: v0.42.0
     hooks:
       - id: markdownlint
-        args:
-          [
-            "--disable",
-            "MD001",
-            "MD007",
-            "MD012",
-            "MD013",
-            "MD022",
-            "MD023",
-            "MD025",
-            "MD032",
-            "MD033",
-            "MD036",
-            "MD037",
-            "MD039",
-            "MD041",
-            "MD045",
-            "MD051",
-            "--",
-          ]
