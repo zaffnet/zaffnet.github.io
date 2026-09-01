@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="{{ "/assets/css/syntax.css" | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,460;9..144,560&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="{{ "/assets/favicon.svg" | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ "/assets/favicon-32.png" | relative_url }}">
   <link rel="icon" type="image/png" sizes="192x192" href="{{ "/assets/favicon-512.png" | relative_url }}">
   <link rel="apple-touch-icon" href="{{ "/assets/apple-touch-icon.png" | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ "/assets/favicon.ico" | relative_url }}">
-  <meta name="theme-color" content="#40256d">
+  <meta name="theme-color" content="#f6f4f0">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -52,16 +52,19 @@
   <div class="container">
     <header>
       <nav>
-        <a href="{{ "/" | relative_url }}" class="nav-logo" aria-label="Homepage"></a>
+        <a href="{{ "/" | relative_url }}" class="nav-logo">Zafarullah Mahmood</a>
         <ul>
           <li><a href="{{ "/" | relative_url }}">Home</a></li>
-          <li><a href="{{ "/blogs" | relative_url }}">Blogs</a></li>
+          <li><a href="{{ "/blogs" | relative_url }}">Writing</a></li>
         </ul>
       </nav>
     </header>
     <main>
       {{ content }}
     </main>
+    <footer>
+      <p>&copy; {{ site.time | date: "%Y" }} Zafarullah Mahmood</p>
+    </footer>
   </div>
 </body>
 </html>
