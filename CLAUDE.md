@@ -32,13 +32,6 @@ The site builds to `_site/` (gitignored).
 
 ## Architecture
 
-- **Jekyll static site** using the `minima` theme with local SCSS overrides in `_sass/minima/`
-- **Layouts**: `_layouts/default.html` (base, standalone HTML5 document with inline nav) → `_layouts/post.html` (blog posts)
-- **Pages**: `index.html` (homepage with hero, about, timeline), `blogs.html` (post listing), `404.html`
-- **Blog posts**: Markdown files in `_posts/` using Kramdown with GFM input
-- **Styling**: `assets/css/style.css` (main) and `assets/css/syntax.css` (code highlighting); uses CSS custom properties for theming (accent: `#007aff`); Plus Jakarta Sans via Google Fonts
-- **Client-side JS**: MathJax for math rendering, Mermaid v11 (ESM) for diagrams, Font Awesome for icons — all loaded in the default layout
-- **Images**: `assets/img/skills/` (tech skill icons), `assets/img/archive/` (article diagrams)
 - **Includes**: `_includes/header.html` and `_includes/footer.html` exist but are legacy/unused — the default layout is self-contained
 
 ## Blog Post Conventions
@@ -61,7 +54,3 @@ Posts support Mermaid diagram blocks (` ```mermaid `) and MathJax notation. The 
 ## CI/CD
 
 A GitHub Actions workflow (`.github/workflows/main.yml`) automatically merges `main` into all feature branches on every push to `main`. It uses git worktrees to handle branch names with slashes and skips branches with merge conflicts.
-
-## Permalink Structure
-
-Configured as `/:categories/:title/` in `_config.yml`. Blog posts typically set a custom `permalink` in frontmatter.
