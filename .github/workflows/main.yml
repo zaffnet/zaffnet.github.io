@@ -31,37 +31,37 @@ jobs:
             | grep -v '^main$' \
             > /tmp/branches.txt
           echo "count=$(wc -l < /tmp/branches.txt)" >> "$GITHUB_OUTPUT"
-      
+
       - name: Update each branch
         if: steps.branches.outputs.count != '0'
         run: |
           set -euo pipefail
           git fetch origin --prune
           : > /tmp/conflicts.log
-      
+
           while read -r BR; do
             [ -z "$BR" ] && continue
             echo "=== Processing $BR ==="
-      
+
             # Skip if remote branch missing
             if ! git ls-remote --heads origin "$BR" >/dev/null; then
               echo "Remote branch missing: $BR. Skipping."
               continue
             fi
-      
+
             # Worktree dir cannot contain slashes
             WT="$(mktemp -d -p .. "wt-$(printf '%s' "$BR" | tr '/' '-')-XXXXXXXX")"
             cleanup() { git worktree remove "$WT" --force >/dev/null 2>&1 || true; }
             trap 'cleanup' RETURN
-      
+
             git worktree add "$WT" "refs/remotes/origin/$BR"
             pushd "$WT" >/dev/null
-      
+
             set +e
             git merge origin/main -m "chore: merge main into $BR"
             MSTATUS=$?
             set -e
-      
+
             if [ $MSTATUS -eq 0 ]; then
               git push origin HEAD:"$BR"
               echo "Pushed $BR"
@@ -69,11 +69,11 @@ jobs:
               echo "Conflict on $BR. Aborting and skipping." | tee -a /tmp/conflicts.log
               git merge --abort || true
             fi
-      
+
             popd >/dev/null
             # cleanup via trap
           done < /tmp/branches.txt
-      
+
           if [ -s /tmp/conflicts.log ]; then
             echo "Summary of conflicts:"; cat /tmp/conflicts.log
           else

@@ -21,9 +21,9 @@ flowchart LR
     subgraph langchain["LangChain"]
         l12["12 lines<br/>All handled by<br/>framework"]
     end
-    
+
     vanilla -->|"17 lines saved"| langchain
-    
+
     style vanilla fill:#fed7aa,stroke:#ea580c
     style langchain fill:#bfdbfe,stroke:#2563eb
     style v29 fill:#fed7aa,stroke:#c2410c

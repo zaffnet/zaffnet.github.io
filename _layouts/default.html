@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ 
+    mermaid.initialize({
       startOnLoad: false,
       theme: 'base',
       themeVariables: {
@@ -32,7 +32,7 @@
         tertiaryColor: '#fef9c3'
       }
     });
-    
+
     // Handle Kramdown's language-mermaid code blocks
     document.addEventListener('DOMContentLoaded', function() {
       const mermaidBlocks = document.querySelectorAll('code.language-mermaid, pre code.language-mermaid');
