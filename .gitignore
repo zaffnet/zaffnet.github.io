@@ -8,6 +8,7 @@ _drafts
 # Bundler
 .bundle/
 vendor/
+node_modules/
 
 # Jekyll ignore file (commit only if project-specific)
 .jekyllignore

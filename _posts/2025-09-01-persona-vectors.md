@@ -30,12 +30,12 @@ flowchart TD
     find["3. Find direction<br/>Logistic regression<br/>→ persona vector!"]
     monitor["📊 Monitor<br/>Snark score rising...<br/>Alert before disaster!"]
     steer["🎛️ Steer<br/>Turn down the dial<br/>No retraining needed"]
-    
+
     collect --> peek
     peek --> find
     find --> monitor
     find --> steer
-    
+
     style collect fill:#dbeafe,stroke:#3b82f6
     style peek fill:#cffafe,stroke:#06b6d4
     style find fill:#e0e7ff,stroke:#6366f1
